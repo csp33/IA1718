@@ -120,35 +120,35 @@ encoding="UTF-8"?>
 <!-- Tercera pregunta: examen de prácticas en convocatoria extraordinaria-->
 
 <category>
-	<pattern>EXAMEN PRACTICAS CONVOCATORIA EXTRAODINARIA</pattern>
+	<pattern>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</pattern>
 	<template>
 		El examen de la convocatoria extraordinaria consta de preguntas tanto teoricas como practicas.
 	</template>
 </category>
 
 <category>
-	<pattern>* examen * practicas * extraordinaria</pattern>
+	<pattern>* examen * practicas * extraordinaria ^</pattern>
 	<template>
 		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
 	</template>
 </category>
 
 <category>
-	<pattern>* examen * practica * extraordinaria</pattern>
+	<pattern>* examen * practica * extraordinaria ^</pattern>
 	<template>
 		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
 	</template>
 </category>
 
 <category>
-	<pattern>* examen * practica * julio</pattern>
+	<pattern>* examen * practica * julio ^</pattern>
 	<template>
 		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
 	</template>
 </category>
 
 <category>
-	<pattern>* examen * practicas * julio</pattern>
+	<pattern>* examen * practicas * julio ^</pattern>
 	<template>
 		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
 	</template>
@@ -159,7 +159,7 @@ encoding="UTF-8"?>
 <category>
 	<pattern>NO ASISTIR A CLASE</pattern>
 	<template>
-		En cuanto a teoria, la asistencia es obligatoria, por lo que tu nota no se vera influida por ello. En cuanto a las practicas, la asistencia y la participacion representa un 10% de la nota final, por lo que yo que tu intentaria asistir a clase.
+		En cuanto a teoria, la asistencia no es obligatoria, por lo que tu nota no se vera influida por ello. En cuanto a las practicas, la asistencia y la participacion representa un 10% de la nota final, por lo que yo que tu intentaria asistir a clase.
 	</template>
 </category>
 
@@ -175,6 +175,11 @@ encoding="UTF-8"?>
 
 <category>
 	<pattern>* no asisto a clase ^</pattern>
+	<template><srai>NO ASISTIR A CLASE</srai></template>
+</category>
+
+<category>
+	<pattern>* no * asistir a clase ^</pattern>
 	<template><srai>NO ASISTIR A CLASE</srai></template>
 </category>
 
@@ -222,7 +227,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* practicas obligatorias ^</pattern>
+	<pattern>* practicas ^ obligatorias ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
@@ -247,12 +252,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* aprobar sin * practicas</pattern>
+	<pattern>* aprobar sin * practicas ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
 <category>
-	<pattern>* aprobar sin * practica</pattern>
+	<pattern>* aprobar sin * practica ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
@@ -335,6 +340,11 @@ encoding="UTF-8"?>
 
 <category>
 	<pattern>* consigo puntos * participacion</pattern>
+	<template><srai>PUNTOS PARTICIPACION</srai></template>
+</category>
+
+<category>
+	<pattern>* consiguen puntos * participacion</pattern>
 	<template><srai>PUNTOS PARTICIPACION</srai></template>
 </category>
 
@@ -520,7 +530,7 @@ encoding="UTF-8"?>
 <category>
 	<pattern>PRIMER EXAMEN TEORIA</pattern>
 	<template>
-		El primer examen de teoria cuenta un 50% de la parte teorica, es decir, un 22.5% de la nota final.
+		El primer examen de teoria cuenta un 50% de la parte teorica, es decir, un 25% de la nota final.
 	</template>
 </category>
 
@@ -646,6 +656,652 @@ encoding="UTF-8"?>
 </category>
 
 <!-- Pregunta 16: me dejo copiar -->
+
+<category>
+	<pattern>ME DEJO COPIAR</pattern>
+	<template>
+		Tanto el que copia como el que se deja copiar obtienen el mismo castigo, un suspenso. Por tanto, no te la juegues y no pases tu codigo.
+	</template>
+</category>
+
+<category>
+	<pattern>* dejo ^ copiar ^</pattern>
+	<template><srai>ME DEJO COPIAR</srai></template>
+</category>
+
+<category>
+	<pattern>* dejo que ^ me copien ^</pattern>
+	<template><srai>ME DEJO COPIAR</srai></template>
+</category>
+
+<category>
+	<pattern>* me copia ^</pattern>
+	<template><srai>ME DEJO COPIAR</srai></template>
+</category>
+
+<category>
+	<pattern>* copia de mi ^</pattern>
+	<template><srai>ME DEJO COPIAR</srai></template>
+</category>
+
+<category>
+	<pattern>* me copian ^</pattern>
+	<template><srai>ME DEJO COPIAR</srai></template>
+</category>
+
+<category>
+	<pattern>* copian de mi ^</pattern>
+	<template><srai>ME DEJO COPIAR</srai></template>
+</category>
+
+<!-- Pregunta 17: suspendo en convocatoria ordinaria -->
+
+<category>
+	<pattern>SUSPENDO CONVOCATORIA ORDINARIA</pattern>
+	<template>
+		Tienes otra oportunidad, la convocatoria extraordinaria de julio en la que haras un examen tanto de teoria como de practicas.
+	</template>
+</category>
+
+<category>
+	<pattern>* suspendo ^ ordinaria ^</pattern>
+	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* no apruebo ^ ordinaria ^</pattern>
+	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* no supero ^ ordinaria ^</pattern>
+	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* suspendo ^ junio ^</pattern>
+	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* no apruebo ^ junio ^</pattern>
+	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* no supero ^ junio ^</pattern>
+	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
+</category>
+
+<!-- Pregunta 18: cuanto vale practica y teoria -->
+
+<category>
+	<pattern>CUANTO PRACTICA TEORIA</pattern>
+	<template>
+		La parte practica y la teorica tienen el mismo peso, un 50% de la nota final cada una.
+	</template>
+</category>
+
+<category>
+	<pattern>* vale * parte^</pattern>
+	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* cuenta * parte^</pattern>
+	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* representa * parte^</pattern>
+	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* pondera * parte^</pattern>
+	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* suma * parte^</pattern>
+	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
+</category>
+
+<!-- Pregunta 19: horario tutorias practicas -->
+
+<category>
+	<pattern>HORARIO TUTORIAS PRACTICAS</pattern>
+	<template>
+		La profesora de practicas del grupo A2 es Rocio Celeste Romero Zaliz. Buscala en decsai y ahi tendras la informacion actualizada ;)
+	</template>
+</category> 
+
+<category>
+	<pattern>* tutorias * practicas ^</pattern>
+	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* tutoria * practicas ^</pattern>
+	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* tutorias * practica ^</pattern>
+	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* tutoria * practica ^</pattern>
+	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
+</category>
+
+<!-- Pregunta 20: aprobar sin presentar una practica -->
+
+<category>
+	<pattern>APROBAR SIN PRESENTAR UNA PRACTICA</pattern>
+	<template>
+		Si, puedes aprobar la asignatura sin problema, ya que el unico requisito indispensable es llegar a un 3 sobre 10 en cada parte por separado.
+	</template>
+</category>
+
+<category>
+	<pattern>* aprobar * no presento * practica ^</pattern>
+	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar * sin presentar * practica ^</pattern>
+	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar * no defiendo * practica ^</pattern>
+	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar * no defender * practica ^</pattern>
+	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar * no entregar * practica ^</pattern>
+	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar * no entrego * practica ^</pattern>
+	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
+</category>
+
+<!-- Pregunta 21: nota minima para hacer media-->
+<category>
+	<pattern>NOTA MINIMA PARA HACER MEDIA</pattern>
+	<template>
+		Debes llegar al 3 sobre 10 en cada parte (teoria y practicas) por separado.
+	</template>
+</category>
+
+<category>
+	<pattern>* nota minima *</pattern>
+	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
+</category>
+
+<category>
+	<pattern>* minimo *</pattern>
+	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
+</category>
+
+<category>
+	<pattern>* calificacion minima *</pattern>
+	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
+</category>
+
+<!-- Pregunta 22: puntuacion por defender L3 en p1 y no superar-->
+
+<category>
+	<pattern>NO SUPERAR NIVEL 3</pattern>
+	<template>
+		Si has llegado a la defensa del nivel 3 quiere decir que ya tienes un 6 por haber defendido los niveles 0 y 1. Por tanto, si no superas la defensa te quedaras con el 6 que ya tenias.
+	</template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ uno ^ no ^ supero * tres^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ uno ^ fallo * tres^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ 1 ^ no ^ supero * tres^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ 1 ^ fallo * tres^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ uno ^ no ^ supero * 3^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ uno ^ fallo * 3^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ 1 ^ no ^ supero * 3^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ 1 ^ fallo * 3^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ uno ^ no ^ supero * tercer *</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* defensa ^ practica ^ uno ^ fallo * tercer *</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ 1 * defender * 3 * no * supero ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ uno * defender * 3 * no * supero ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ 1 * defender * tres * no * supero ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ uno * defender * tres * no * supero ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ 1 * defender * 3 * no * consigo ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ uno * defender * 3 * no * consigo ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ 1 * defender * tres * no * consigo ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ uno * defender * tres * no * consigo ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<!-- Pregunta 23: entregar practica 1 sin hacer L0-->
+
+<category>
+	<pattern>ENTREGAR PRACTICA UNO SIN NIVEL 0</pattern>
+	<template>
+		Si no entregas el nivel 0 o bien fallas en la defensa, obtienes un 0 y termina la evaluacion.
+	</template>
+</category>
+
+<category>
+	<pattern>* no hago ^ nivel 0 * practica 1 ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no * hacer ^ nivel 0 * practica 1 ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no hago ^ nivel 0 * primera practica^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no hago ^ nivel cero * practica 1 ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no * hacer ^ nivel cero * practica 1 ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no hago ^ nivel 0 * practica uno ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no * hacer ^ nivel 0 * practica uno ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no hago ^ nivel cero * practica uno ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* no * hacer ^ nivel cero * practica uno ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* practica 1 * hacer * nivel 0 ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* practica uno * hacer * nivel 0 ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* practica 1 * hacer * nivel cero ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<category>
+	<pattern>* practica uno * hacer * nivel cero ^</pattern>
+	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
+</category>
+
+<!-- Pregunta 24: no asistir a defensa-->
+
+<category>
+	<pattern>NO ASISTIR A DEFENSA</pattern>
+	<template>
+		Si no vas a la defensa de la practica, obtienes un 0 en la calificacion.
+	</template>
+</category>
+
+<category>
+	<pattern>* no * ir * defensa *</pattern>
+	<template><srai>NO ASISTIR A DEFENSA</srai></template>
+</category>
+
+<category>
+	<pattern>* no * asistir * defensa *</pattern>
+	<template><srai>NO ASISTIR A DEFENSA</srai></template>
+</category>
+
+<category>
+	<pattern>* no voy * defensa *</pattern>
+	<template><srai>NO ASISTIR A DEFENSA</srai></template>
+</category>
+
+<category>
+	<pattern>* me salto * defensa *</pattern>
+	<template><srai>NO ASISTIR A DEFENSA</srai></template>
+</category>
+
+<!-- Pregunta 25: cuantas pruebas teoricas a lo largo del curso -->
+
+<category>
+	<pattern>CUANTAS PRUEBAS TEORICAS</pattern>
+	<template>
+		A lo largo del curso se realizaran dos pruebas escritas, siendo la nota de teoria la media aritmetica entre ambas.
+	</template>
+</category>
+
+<category>
+	<pattern>^ cuantos * teoria ^</pattern>
+	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ teoria * cuantas ^</pattern>
+	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ cuantas * teoria ^</pattern>
+	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
+</category>
+
+
+<category>
+	<pattern>^ cuantos * teorica ^</pattern>
+	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ teorica * cuantas ^</pattern>
+	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ cuantas * teorica ^</pattern>
+	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ cuantas * teoricas ^</pattern>
+	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
+</category>
+
+<!-- Pregunta 26: que vale primera prueba teorica-->
+
+<category>
+	<pattern>QUE VALE PRIMERA PRUEBA TEORICA</pattern>
+	<template>
+		La primera prueba teorica vale igual que la segunda; un 25% de la nota final y un 50% de la nota de teoria
+	</template>
+</category>
+
+<!-- esta repetido (PREGUNTA 13)-->
+
+<!-- Pregunta 27: en que consiste examen ejercicios -->
+
+<category>
+	<pattern>EN QUE CONSISTE EXAMEN EJERCICIOS</pattern>
+	<template>
+		El examen de ejercicios se hara junto al examen final de teoria y consistira en ejercicios parecidos a los realizados en clase de practicas.
+	</template>
+</category>
+
+<category>
+	<pattern>* examen ^ ejercicios ^</pattern>
+	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
+</category>
+
+<category>
+	<pattern>* prueba ^ ejercicios ^</pattern>
+	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
+</category>
+
+<category>
+	<pattern>* examen ^ problemas ^</pattern>
+	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
+</category>
+
+<category> 
+	<pattern>* prueba ^ problemas ^</pattern>
+	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
+</category>
+
+<!-- Pregunta 28: que hacer si no estoy seguro de superar nivel 3-->
+
+<category>
+	<pattern>NO SEGURO DE SUPERAR NIVEL 3</pattern>
+	<template>
+		Si no te sientes seguro, intenta hacer el nivel 2, con el que podras llegar como maximo a 8 puntos. Toma esta decision con cuidado, ya que si fallas en la defensa del nivel 3 te quedaras con un 6.
+	</template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel 3 * practica 1 ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel 3 * practica 1 ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ indeciso * superar ^ nivel 3 * practica 1 ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel tres * practica 1 ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel tres * practica 1 ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ indeciso * superar ^ nivel tres * practica 1 ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel 3 * practica uno ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel 3 * practica uno ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ indeciso * superar ^ nivel 3 * practica uno ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel tres * practica uno ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel tres * practica uno ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ indeciso * superar ^ nivel tres * practica uno ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel tres * primera practica ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ no * superar ^ nivel tres * primera practica ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>^ indeciso * superar ^ nivel tres * primera practica ^</pattern>
+	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
+</category>
+
+<!-- Pregunta 29: programo bien en c++-->
+
+<category>
+	<pattern>PROGRAMO BIEN C++</pattern>
+	<template>
+		Me parece perfecto, pero el objetivo de la asignatura es que aprendas AIML, asi que si quieres aprobar, empieza ya! 
+		Tranquilo, si en el fondo no es tan malo ;)
+	</template>
+</category>
+
+<category>
+	<pattern>* programo ^ bien en c++ ^</pattern>
+	<template><srai>PROGRAMO BIEN C++</srai></template>
+</category>
+
+<category>
+	<pattern>* programar ^ bien en c plus plus ^</pattern>
+	<template><srai>PROGRAMO BIEN C++</srai></template>
+</category>
+
+<!-- Pregunta 30: agente c. defiende practica -->
+
+<category>
+	<pattern>AGENTE DEFIENDE PRACTICA</pattern>
+	<template>
+		Mientras tu agente pase el test de Turing y la profesora no se de cuenta, adelante! Eso si, yo no te he dicho nada de nada ;P
+	</template>
+</category>
+
+<category>
+	<pattern>* agentes conversacionales * defender * practica ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agente conversacional * defender * practica ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agentes conversacionales * defensa practicas ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agente conversacional * defender * practicas ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agentes conversacionales * defensa * practica ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agentes conversacionales * defensa * practicas ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agente conversacional * defensa * practica ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agentes conversacionales * defendieras * practica ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>* agente conversacional * defendieras * practica ^</pattern>
+	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
+</category>
 
 
 </aiml>
