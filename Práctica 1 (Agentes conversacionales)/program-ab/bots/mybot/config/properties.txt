@@ -1,5 +1,5 @@
 url:http://www.alicebot.org
-name:myBot
+name:C3PO
 email:myBot@gmail.com
 gender:male
 botmaster:Raul	

@@ -1,0 +1,56 @@
+<?xml version="1.0"
+encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Saludos -->
+<category>
+	<pattern>Hola</pattern>
+	<template>Hola, que tal?</template>
+</category>
+
+<category>
+	<pattern>* y tu ^</pattern>
+	<template>Genial!</template>
+</category>
+
+<!-- ........................... -->
+
+<!-- Nombre -->
+<category>
+	<pattern>como me llamo</pattern>
+	<template>Yo me llamo <bot name = "name"/>.</template>
+</category>
+
+<category>
+	<pattern>* llamas ^</pattern>
+	<template><srai>COMO ME LLAMO</srai></template>
+</category>
+
+<!-- Aprender nombre -->
+<category>
+	<pattern>^ me llamo *</pattern>
+	<template>
+		<think>
+			<set name="nombre"><star index="2"/></set>
+		</think>
+		Encantado, <get name="nombre"/>. <srai>COMO ME LLAMO</srai>
+	</template>
+</category>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aiml>

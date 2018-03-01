@@ -1,0 +1,651 @@
+<?xml version="1.0"
+encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Primera pregunta: aprobar prácticas -->
+
+<category>
+	<pattern>APROBAR PRACTICAS</pattern>
+	<template>Tienes que llegar como mínimo a un 3 sobre 10. Esto lo puedes conseguir mayormente haciendo las practicas, aprobando el examen final y participando en clase. Pero sobre todo NI SE TE OCURRA COPIARTE!!</template>
+</category>
+
+<category>
+	<pattern>* apruebo ^ practica ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* apruebo ^ practicas ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar ^ practicas ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar ^ practica ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* superar ^ practica ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* superar ^ practicas ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* no suspender ^ practica ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* no suspender ^ practicas ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<!-- Segunda pregunta: convocatoria ordinaria-->
+<category>
+	<pattern>EVALUACION ORDINARIA</pattern>
+	<template>
+		En cuanto a la parte teorica, se realizaran examenes durante el curso. En cuanto a las practicas, se valora la asistencia y participacion (10%) ademas de tres practicas y un examen de problemas que se hara en la fecha fijada para el examen final. La nota final de practicas sera la media de esas 4 pruebas (90%).
+	</template>
+</category>
+
+<category>
+	<pattern>* evalua * ordinaria ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* evaluar * ordinaria ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* puntua * ordinaria ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* puntuar * ordinaria ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* califica * ordinaria ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* calificar * ordinaria ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* evalua * junio ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* evaluar * junio ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* puntua * junio ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* puntuar * junio ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* califica * junio ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<category>
+	<pattern>* calificar * junio ^</pattern>
+	<template><srai>EVALUACION ORDINARIA</srai></template>
+</category>
+
+<!-- Tercera pregunta: examen de prácticas en convocatoria extraordinaria-->
+
+<category>
+	<pattern>EXAMEN PRACTICAS CONVOCATORIA EXTRAODINARIA</pattern>
+	<template>
+		El examen de la convocatoria extraordinaria consta de preguntas tanto teoricas como practicas.
+	</template>
+</category>
+
+<category>
+	<pattern>* examen * practicas * extraordinaria</pattern>
+	<template>
+		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>* examen * practica * extraordinaria</pattern>
+	<template>
+		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>* examen * practica * julio</pattern>
+	<template>
+		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>* examen * practicas * julio</pattern>
+	<template>
+		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
+	</template>
+</category>
+
+<!-- Cuarta pregunta: no asistir a clase regularmente -->
+
+<category>
+	<pattern>NO ASISTIR A CLASE</pattern>
+	<template>
+		En cuanto a teoria, la asistencia es obligatoria, por lo que tu nota no se vera influida por ello. En cuanto a las practicas, la asistencia y la participacion representa un 10% de la nota final, por lo que yo que tu intentaria asistir a clase.
+	</template>
+</category>
+
+<category>
+	<pattern>* no vengo a clase ^</pattern>
+	<template><srai>NO ASISTIR A CLASE</srai></template>
+</category>
+
+<category>
+	<pattern>* no voy a clase ^</pattern>
+	<template><srai>NO ASISTIR A CLASE</srai></template>
+</category>
+
+<category>
+	<pattern>* no asisto a clase ^</pattern>
+	<template><srai>NO ASISTIR A CLASE</srai></template>
+</category>
+
+<category>
+	<pattern>* no ^ ir a clase ^</pattern>
+	<template><srai>NO ASISTIR A CLASE</srai></template>
+</category>
+
+<!--- Quinta pregunta: nota minima para aprobar -->
+
+<category>
+	<pattern>NOTA MINIMA APROBAR</pattern>
+	<template>
+		Para aprobar deberas sacar al menos un 3 sobre 10 en cada parte (teoria y practicas).
+	</template>
+</category>
+
+<category>
+	<pattern>* sacar ^ nota minima * aprobar ^</pattern>
+	<template><srai>NOTA MINIMA APROBAR</srai></template>
+</category>
+
+<category>
+	<pattern>* conseguir ^ nota minima * aprobar ^</pattern>
+	<template><srai>NOTA MINIMA APROBAR</srai></template>
+</category>
+
+<category>
+	<pattern>* tener ^ nota minima * aprobar ^</pattern>
+	<template><srai>NOTA MINIMA APROBAR</srai></template>
+</category>
+
+<category>
+	<pattern>* peor nota que puedo sacar para aprobar ^</pattern>
+	<template><srai>NOTA MINIMA APROBAR</srai></template>
+</category>
+
+<!-- Sexta pregunta: practicas obligatorias -->
+
+<category>
+	<pattern>PRACTICAS OBLIGATORIAS</pattern>
+	<template>
+		Con la participacion en clase (10%) y el examen final de problemas (25%) podrias llegar a la nota minima (3/10). De todas formas, es jugarsela bastante. Si despues de todo AIML tampoco esta tan mal!
+	</template>
+</category>
+
+<category>
+	<pattern>* practicas obligatorias ^</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<category>
+	<pattern>* practicas * obligatorio ^</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<category>
+	<pattern>* obligado * practicas ^</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<category>
+	<pattern>* practicas * aprobar ^</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<category>
+	<pattern>* no hago ^ practicas ^</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar sin * practicas</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<category>
+	<pattern>* aprobar sin * practica</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<!-- Pregunta 7: cuanto vale cada practica con respecto a la nota final -->
+
+<category>
+	<pattern>CADA PRACTICA FINAL</pattern>
+	<template>
+		Cada practica cuenta un 12.5% de la nota final.
+	</template>
+</category>
+
+<category>
+	<pattern>cuanto * cada practica ^</pattern>
+	<template><srai>CADA PRACTICA FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* valor * practica ^</pattern>
+	<template><srai>CADA PRACTICA FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* vale * practica ^</pattern>
+	<template><srai>CADA PRACTICA FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* cuenta * practica ^</pattern>
+	<template><srai>CADA PRACTICA FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* representa * practica ^</pattern>
+	<template><srai>CADA PRACTICA FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* puntua * practica ^</pattern>
+	<template><srai>CADA PRACTICA FINAL</srai></template>
+</category>
+
+<!-- Pregunta 8: cuanto vale la participacion respecto a la nota final -->
+
+<category>
+	<pattern>PARTICIPACION FINAL</pattern>
+	<template>
+		La participacion vale un 5% de la nota final.
+	</template>
+</category>
+
+<category>
+	<pattern>* cuenta * participacion ^</pattern>
+	<template><srai>PARTICIPACION FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* vale * participacion ^</pattern>
+	<template><srai>PARTICIPACION FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* puntua * participacion ^</pattern>
+	<template><srai>PARTICIPACION FINAL</srai></template>
+</category>
+
+<category>
+	<pattern>* representa * participacion ^</pattern>
+	<template><srai>PARTICIPACION FINAL</srai></template>
+</category>
+
+<!-- Pregunta 9: conseguir puntos por participacion -->
+
+<category>
+	<pattern>PUNTOS PARTICIPACION</pattern>
+	<template>
+		El punto de participacion los puedes conseguir asistiendo a clase (por supuesto) y saliendo voluntario a resolver problemas.
+	</template>
+</category>
+
+<category>
+	<pattern>* consigo puntos * participacion</pattern>
+	<template><srai>PUNTOS PARTICIPACION</srai></template>
+</category>
+
+<category>
+	<pattern>* obtengo puntos * participacion</pattern>
+	<template><srai>PUNTOS PARTICIPACION</srai></template>
+</category>
+
+<category>
+	<pattern>* consigo nota * participacion</pattern>
+	<template><srai>PUNTOS PARTICIPACION</srai></template>
+</category>
+
+<category>
+	<pattern>* obtengo nota * participacion</pattern>
+	<template><srai>PUNTOS PARTICIPACION</srai></template>
+</category>
+
+<category>
+	<pattern>* puntuo * participacion</pattern>
+	<template><srai>PUNTOS PARTICIPACION</srai></template>
+</category>
+
+<category>
+	<pattern>* puntuar * participacion</pattern>
+	<template><srai>PUNTOS PARTICIPACION</srai></template>
+</category>
+
+<!--Pregunta 10: trabajos individuales -->
+
+<category>
+	<pattern>TRABAJOS INDIVIDUALES</pattern>
+	<template>
+		Si, las practicas se realizan de manera individual. Ten cuidado y no pases tu codigo a nadie porque si se detecta alguna copia ambos suspendeis. No te la juegues.
+	</template>
+</category>
+
+<category>
+	<pattern>* practicas ^ son individuales ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<category>
+	<pattern>* practicas ^  solo ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajos ^ son individuales ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajos ^  solo ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ son individuales ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^  solo ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajo ^ son individuales ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajo ^  solo ^</pattern>
+	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
+</category>
+
+<!--Pregunta 11: hacer practicas en grupo -->
+
+<category>
+	<pattern>PRACTICAS GRUPO</pattern>
+	<template>
+		Ni se te ocurra, porque saltara el sistema anti-copia y tanto tu como tu/s amigo/s ireis a la extraordinaria!
+	</template>
+</category>
+
+<category>
+	<pattern>* practicas ^ en grupo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajos ^ en grupo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajos ^ con amigos ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* practicas ^ con amigos ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* practicas ^ con ^ amigo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajos ^ con ^ amigo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ en grupo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajo ^ en grupo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajo ^ con amigos ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ con amigos ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ con ^ amigo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* trabajo ^ con ^ amigo ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<!-- Pregunta 12: entregar ejercicios relaciones problemas -->
+
+<category>
+	<pattern>ENTREGAR PROBLEMAS</pattern>
+	<template>
+		No, no es obligatorio pero si recomendable, ya que tienes que hacer el examen de problemas en junio.
+	</template>
+</category>
+
+<category>
+	<pattern>* obligado ^ entregar ^ problemas ^</pattern>
+	<template><srai>ENTREGAR PROBLEMAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ tengo ^ entregar ^ problemas ^</pattern>
+	<template><srai>ENTREGAR PROBLEMAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ debo ^ entregar ^ problemas ^</pattern>
+	<template><srai>ENTREGAR PROBLEMAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ hay que ^ entregar ^ problemas ^</pattern>
+	<template><srai>ENTREGAR PROBLEMAS</srai></template>
+</category>
+
+<category>
+	<pattern>* obligatorio ^ entregar ^ problemas ^</pattern>
+	<template><srai>ENTREGAR PROBLEMAS</srai></template>
+</category>
+
+<!-- Pregnta 13: cuanto vale el primer examen de teoria -->
+
+<category>
+	<pattern>PRIMER EXAMEN TEORIA</pattern>
+	<template>
+		El primer examen de teoria cuenta un 50% de la parte teorica, es decir, un 22.5% de la nota final.
+	</template>
+</category>
+
+<category>
+	<pattern>* cuenta ^ primer examen ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* cuenta ^ primera prueba ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* vale ^ primer examen ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* vale ^ primera prueba ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* representa ^ primer examen ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* representa ^ primera prueba ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* valor ^ primer examen ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* valor ^ primera prueba ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* cuenta ^ primer examen ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* cuenta ^ primera prueba ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* vale ^ primer examen ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* vale ^ primera prueba ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* representa ^ primer examen ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* representa ^ primera prueba ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* valor ^ primer examen ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* valor ^ primera prueba ^ teorica ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<!--Pregunta 14: recuperar una practica o examen -->
+
+<category>
+	<pattern>RECUPERAR PRACTICA</pattern>
+	<template>
+		No, lo siento pero no puedes. Esfuerzate mas en la siguiente o preparate para la convocatoria extraordinaria (julio).
+	</template>
+</category>
+
+<category>
+	<pattern>^ recuperar ^ practica ^</pattern>
+	<template><srai>RECUPERAR PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>^ recuperar ^ examen ^</pattern>
+	<template><srai>RECUPERAR PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>^ recuperacion ^</pattern>
+	<template><srai>RECUPERAR PRACTICA</srai></template>
+</category>
+
+<category>
+	<pattern>^ recuperar ^</pattern>
+	<template><srai>RECUPERAR PRACTICA</srai></template>
+</category>
+
+<!-- Pregunta 15: copiar -->
+
+<category>
+	<pattern>* copio ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<category>
+	<pattern>* copiar ^</pattern>
+	<template><srai>PRACTICAS GRUPO</srai></template>
+</category>
+
+<!-- Pregunta 16: me dejo copiar -->
+
+
+</aiml>
