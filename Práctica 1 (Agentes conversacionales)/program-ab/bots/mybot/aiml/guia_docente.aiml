@@ -1036,7 +1036,7 @@ encoding="UTF-8"?>
 <category>
 	<pattern>NO ASISTIR A DEFENSA</pattern>
 	<template>
-		Si no vas a la defensa de la practica, obtienes un 0 en la calificacion.
+		Si no vas a la defensa de la practica, obtienes un 0 en la calificacion. No obstante, intenta hablar con el profesor de practicas y presentar un justificante, quizas se pueda hacer algo.
 	</template>
 </category>
 
