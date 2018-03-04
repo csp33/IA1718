@@ -17,40 +17,66 @@ encoding="UTF-8"?>
 
 <!-- Nombre -->
 <category>
-	<pattern>como me llamo</pattern>
+	<pattern>COMO TE LLAMAS</pattern>
 	<template>Yo me llamo <bot name = "name"/>.</template>
 </category>
 
 <category>
-	<pattern>* llamas ^</pattern>
-	<template><srai>COMO ME LLAMO</srai></template>
+	<pattern>* tu nombre ^</pattern>
+	<template><srai>COMO TE LLAMAS</srai></template>
 </category>
 
 <!-- Aprender nombre -->
 <category>
-	<pattern>^ me llamo *</pattern>
+	<pattern>YO ME LLAMO *</pattern>
 	<template>
-		<think>
-			<set name="nombre"><star index="2"/></set>
-		</think>
-		Encantado, <get name="nombre"/>. <srai>COMO ME LLAMO</srai>
+		<condition name="nombre">
+			<li value="unknown">
+				<think>
+					<set name="nombre"><star index="1"/></set>
+				</think>
+				Encantado, <get name="nombre"/>. <srai>COMO TE LLAMAS</srai>
+			</li>
+			<li>
+				Un momento... No te llamabas <get name="nombre"/>?
+			</li>
+		</condition>
 	</template>
 </category>
 
+<category>
+	<pattern>^ soy * ^</pattern>
+	<template><srai>YO ME LLAMO <star index="2"/></srai></template>
+</category>
 
+<category>
+	<pattern>^ me llamo *</pattern>
+	<template><srai>YO ME LLAMO <star index="2"/></srai></template>
+</category>
 
+<category>
+	<pattern>COMO ME LLAMO</pattern>
+	<template>
+		<condition name="nombre">
+			<li value="unknown">
+				Aun no te has presentado ;) 
+			</li>
+			<li>
+				Te llamas <get name="nombre"/>.
+			</li>
+		</condition>
+	</template>
+</category>
 
+<category>
+	<pattern>^ mi nombre ^</pattern>
+	<template><srai>COMO ME LLAMO</srai></template>
+</category>
 
-
-
-
-
-
-
-
-
-
-
+<category>
+	<pattern>^ quien soy ^</pattern>
+	<template><srai>COMO ME LLAMO</srai></template>
+</category>
 
 
 </aiml>

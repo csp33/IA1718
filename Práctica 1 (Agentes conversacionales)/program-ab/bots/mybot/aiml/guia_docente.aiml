@@ -20,17 +20,17 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* aprobar ^ practicas ^</pattern>
+	<pattern>* aprobar las practicas ^</pattern>
 	<template><srai>APROBAR PRACTICAS</srai></template>
 </category>
 
 <category>
-	<pattern>* aprobar ^ practica ^</pattern>
+	<pattern>* aprobar ^ parte practica ^</pattern>
 	<template><srai>APROBAR PRACTICAS</srai></template>
 </category>
 
 <category>
-	<pattern>* superar ^ practica ^</pattern>
+	<pattern>* superar ^ parte practica ^</pattern>
 	<template><srai>APROBAR PRACTICAS</srai></template>
 </category>
 
@@ -40,7 +40,17 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* no suspender ^ practica ^</pattern>
+	<pattern>* supero ^ parte practica ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* supero ^ practicas ^</pattern>
+	<template><srai>APROBAR PRACTICAS</srai></template>
+</category>
+
+<category>
+	<pattern>* no suspender ^ parte practica ^</pattern>
 	<template><srai>APROBAR PRACTICAS</srai></template>
 </category>
 
@@ -169,7 +179,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* no voy a clase ^</pattern>
+	<pattern>* no voy ^ a clase ^</pattern>
 	<template><srai>NO ASISTIR A CLASE</srai></template>
 </category>
 
@@ -248,16 +258,6 @@ encoding="UTF-8"?>
 
 <category>
 	<pattern>* no hago ^ practicas ^</pattern>
-	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
-</category>
-
-<category>
-	<pattern>* aprobar sin * practicas ^</pattern>
-	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
-</category>
-
-<category>
-	<pattern>* aprobar sin * practica ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
@@ -525,7 +525,7 @@ encoding="UTF-8"?>
 	<template><srai>ENTREGAR PROBLEMAS</srai></template>
 </category>
 
-<!-- Pregnta 13: cuanto vale el primer examen de teoria -->
+<!-- Pregunta 13: cuanto vale el primer examen de teoria -->
 
 <category>
 	<pattern>PRIMER EXAMEN TEORIA</pattern>
@@ -540,6 +540,11 @@ encoding="UTF-8"?>
 </category>
 
 <category>
+	<pattern>* cuenta ^ primer parcial ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
 	<pattern>* cuenta ^ primera prueba ^ teoria ^</pattern>
 	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
 </category>
@@ -550,12 +555,22 @@ encoding="UTF-8"?>
 </category>
 
 <category>
+	<pattern>* vale ^ primer parcial ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
 	<pattern>* vale ^ primera prueba ^ teoria ^</pattern>
 	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
 </category>
 
 <category>
 	<pattern>* representa ^ primer examen ^ teoria ^</pattern>
+	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
+</category>
+
+<category>
+	<pattern>* representa ^ primer parcial ^ teoria ^</pattern>
 	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
 </category>
 
@@ -743,27 +758,27 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* vale * parte^</pattern>
+	<pattern>* vale * parte ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
 <category>
-	<pattern>* cuenta * parte^</pattern>
+	<pattern>* cuenta * parte ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
 <category>
-	<pattern>* representa * parte^</pattern>
+	<pattern>* representa * parte ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
 <category>
-	<pattern>* pondera * parte^</pattern>
+	<pattern>* pondera * parte ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
 <category>
-	<pattern>* suma * parte^</pattern>
+	<pattern>* suma * parte ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
@@ -842,19 +857,24 @@ encoding="UTF-8"?>
 		Debes llegar al 3 sobre 10 en cada parte (teoria y practicas) por separado.
 	</template>
 </category>
-
+<!--
 <category>
-	<pattern>* nota minima *</pattern>
+	<pattern>^ nota minima *</pattern>
 	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
 </category>
 
 <category>
-	<pattern>* minimo *</pattern>
+	<pattern>^ calificacion minima *</pattern>
+	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
+</category>
+-->
+<category>
+	<pattern>^ minimo *</pattern>
 	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
 </category>
 
 <category>
-	<pattern>* calificacion minima *</pattern>
+	<pattern>^ minima *</pattern>
 	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
 </category>
 
@@ -918,12 +938,17 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* practica ^ 1 * defender * 3 * no * supero ^</pattern>
+	<pattern>* practica ^ 1 ^ defender * 3 * no * supero ^</pattern>
 	<template><srai>NO SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>* practica ^ uno * defender * 3 * no * supero ^</pattern>
+	<pattern>* practica ^ 1 ^ no supero ^ nivel 3 ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
+<category>
+	<pattern>* practica ^ uno ^ defender * 3 * no * supero ^</pattern>
 	<template><srai>NO SUPERAR NIVEL 3</srai></template>
 </category>
 
@@ -1041,22 +1066,22 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* no * ir * defensa *</pattern>
+	<pattern>* no * ir * defensa * practica 1 ^</pattern>
 	<template><srai>NO ASISTIR A DEFENSA</srai></template>
 </category>
 
 <category>
-	<pattern>* no * asistir * defensa *</pattern>
+	<pattern>* no * asistir * defensa ^</pattern>
 	<template><srai>NO ASISTIR A DEFENSA</srai></template>
 </category>
 
 <category>
-	<pattern>* no voy * defensa *</pattern>
+	<pattern>* no voy * defensa ^</pattern>
 	<template><srai>NO ASISTIR A DEFENSA</srai></template>
 </category>
 
 <category>
-	<pattern>* me salto * defensa *</pattern>
+	<pattern>* me salto * defensa ^</pattern>
 	<template><srai>NO ASISTIR A DEFENSA</srai></template>
 </category>
 
@@ -1230,23 +1255,51 @@ encoding="UTF-8"?>
 </category>
 
 <!-- Pregunta 29: programo bien en c++-->
+<!--
+<category>
+	<pattern>PROGRAMO BIEN EN *</pattern>
+	<template>
+		Me parece perfecto que programes bien en <star index="1"/>, pero el objetivo de la asignatura es que aprendas AIML. En el fondo no esta tan mal, lo prometo ;)
+	</template>
+</category>
+-->
+<!--
+<category>
+	<pattern>PROGRAMO BIEN EN *</pattern>
+	<template>
+		<think>
+			<set var="lang"><star index="1"/></set>
+		</think>
+			Me parece perfecto que programes bien en <get var="lang"/>, pero el objetivo de la asignatura es que aprendas AIML. En el fondo no esta tan mal, lo prometo ;)
+	</template>
+</category>
+-->
 
 <category>
-	<pattern>PROGRAMO BIEN C++</pattern>
+	<pattern>PROGRAMO BIEN EN *</pattern>
 	<template>
-		Me parece perfecto, pero el objetivo de la asignatura es que aprendas AIML, asi que si quieres aprobar, empieza ya! 
-		Tranquilo, si en el fondo no es tan malo ;)
+		<think>
+			<set var="lang"><star/></set>
+		</think>
+		<condition var ="lang">
+			<li value="aiml">
+				Es la idea ;)
+			</li>
+			<li>
+				Me parece perfecto que programes bien en <get var="lang"/>, pero el objetivo de la asignatura es que aprendas AIML. En el fondo no esta tan mal, lo prometo ;)
+			</li>
+		</condition>
 	</template>
 </category>
 
 <category>
-	<pattern>* programo ^ bien en c++ ^</pattern>
-	<template><srai>PROGRAMO BIEN C++</srai></template>
+	<pattern>^ programo ^ en * ^</pattern>
+	<template><srai>PROGRAMO BIEN EN <star index="3"/></srai></template>
 </category>
 
 <category>
-	<pattern>* programar ^ bien en c plus plus ^</pattern>
-	<template><srai>PROGRAMO BIEN C++</srai></template>
+	<pattern>* programar ^ en * ^</pattern>
+	<template><srai>PROGRAMO BIEN EN <star index="3"/></srai></template>
 </category>
 
 <!-- Pregunta 30: agente c. defiende practica -->
