@@ -10,54 +10,17 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* apruebo ^ practica ^</pattern>
+	<pattern>* [aprobar apruebo super+] ^ practica+ ^</pattern>
 	<template><srai>APROBAR PRACTICAS</srai></template>
 </category>
 
+
 <category>
-	<pattern>* apruebo ^ practicas ^</pattern>
+	<pattern>* no suspender ^ practica+ ^</pattern>
 	<template><srai>APROBAR PRACTICAS</srai></template>
 </category>
 
-<category>
-	<pattern>* aprobar las practicas ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
 
-<category>
-	<pattern>* aprobar ^ parte practica ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* superar ^ parte practica ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* superar ^ practicas ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* supero ^ parte practica ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* supero ^ practicas ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* no suspender ^ parte practica ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* no suspender ^ practicas ^</pattern>
-	<template><srai>APROBAR PRACTICAS</srai></template>
-</category>
 
 <!-- Segunda pregunta: convocatoria ordinaria-->
 <category>
@@ -68,62 +31,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* evalua * ordinaria ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* evaluar * ordinaria ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* puntua * ordinaria ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* puntuar * ordinaria ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* califica * ordinaria ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* calificar * ordinaria ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* evalua * junio ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* evaluar * junio ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* puntua * junio ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* puntuar * junio ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* califica * junio ^</pattern>
-	<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* calificar * junio ^</pattern>
+	<pattern>* [evalua+ puntua+ califica+] * [ordinaria junio] ^</pattern>
 	<template><srai>EVALUACION ORDINARIA</srai></template>
 </category>
 
@@ -137,28 +45,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* examen * practicas * extraordinaria ^</pattern>
-	<template>
-		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
-	</template>
-</category>
-
-<category>
-	<pattern>* examen * practica * extraordinaria ^</pattern>
-	<template>
-		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
-	</template>
-</category>
-
-<category>
-	<pattern>* examen * practica * julio ^</pattern>
-	<template>
-		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
-	</template>
-</category>
-
-<category>
-	<pattern>* examen * practicas * julio ^</pattern>
+	<pattern>* examen * practica+ * [extraordinaria julio] ^</pattern>
 	<template>
 		<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>
 	</template>
@@ -174,27 +61,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* no vengo a clase ^</pattern>
-	<template><srai>NO ASISTIR A CLASE</srai></template>
-</category>
-
-<category>
-	<pattern>* no voy ^ a clase ^</pattern>
-	<template><srai>NO ASISTIR A CLASE</srai></template>
-</category>
-
-<category>
-	<pattern>* no asisto a clase ^</pattern>
-	<template><srai>NO ASISTIR A CLASE</srai></template>
-</category>
-
-<category>
-	<pattern>* no * asistir a clase ^</pattern>
-	<template><srai>NO ASISTIR A CLASE</srai></template>
-</category>
-
-<category>
-	<pattern>* no ^ ir a clase ^</pattern>
+	<pattern>* no [vengo voy asist+ ir] a [clase teori+ practica+] ^</pattern>
 	<template><srai>NO ASISTIR A CLASE</srai></template>
 </category>
 
@@ -208,17 +75,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* sacar ^ nota minima * aprobar ^</pattern>
-	<template><srai>NOTA MINIMA APROBAR</srai></template>
-</category>
-
-<category>
-	<pattern>* conseguir ^ nota minima * aprobar ^</pattern>
-	<template><srai>NOTA MINIMA APROBAR</srai></template>
-</category>
-
-<category>
-	<pattern>* tener ^ nota minima * aprobar ^</pattern>
+	<pattern>* [sacar conseguir tener obtener] ^ [nota calificacion] minima * aproba+ ^</pattern>
 	<template><srai>NOTA MINIMA APROBAR</srai></template>
 </category>
 
@@ -237,27 +94,32 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* practicas ^ obligatorias ^</pattern>
+	<pattern>* practica+ ^ obligatoria+ ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
 <category>
-	<pattern>* practicas * obligatorio ^</pattern>
+	<pattern>* obliga+ * practica+ ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
 <category>
-	<pattern>* obligado * practicas ^</pattern>
+	<pattern>* practica+ * aprobar ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
 <category>
-	<pattern>* practicas * aprobar ^</pattern>
+	<pattern>* no hago ^ practica+ ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
 <category>
-	<pattern>* no hago ^ practicas ^</pattern>
+	<pattern>* no quiero hacer ^ practica+ ^</pattern>
+	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
+</category>
+
+<category>
+	<pattern>* debo ^ practica+ ^</pattern>
 	<template><srai>PRACTICAS OBLIGATORIAS</srai></template>
 </category>
 
@@ -271,32 +133,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>cuanto * cada practica ^</pattern>
+	<pattern>^ cuanto * cada practica ^</pattern>
 	<template><srai>CADA PRACTICA FINAL</srai></template>
 </category>
 
 <category>
-	<pattern>* valor * practica ^</pattern>
-	<template><srai>CADA PRACTICA FINAL</srai></template>
-</category>
-
-<category>
-	<pattern>* vale * practica ^</pattern>
-	<template><srai>CADA PRACTICA FINAL</srai></template>
-</category>
-
-<category>
-	<pattern>* cuenta * practica ^</pattern>
-	<template><srai>CADA PRACTICA FINAL</srai></template>
-</category>
-
-<category>
-	<pattern>* representa * practica ^</pattern>
-	<template><srai>CADA PRACTICA FINAL</srai></template>
-</category>
-
-<category>
-	<pattern>* puntua * practica ^</pattern>
+	<pattern>* [val+ cuenta cont+ representa+ puntua+] * practica ^</pattern>
 	<template><srai>CADA PRACTICA FINAL</srai></template>
 </category>
 
@@ -310,22 +152,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* cuenta * participacion ^</pattern>
-	<template><srai>PARTICIPACION FINAL</srai></template>
-</category>
-
-<category>
-	<pattern>* vale * participacion ^</pattern>
-	<template><srai>PARTICIPACION FINAL</srai></template>
-</category>
-
-<category>
-	<pattern>* puntua * participacion ^</pattern>
-	<template><srai>PARTICIPACION FINAL</srai></template>
-</category>
-
-<category>
-	<pattern>* representa * participacion ^</pattern>
+	<pattern>* [cuenta contar vale+ puntua+ representa+] * participacion ^</pattern>
 	<template><srai>PARTICIPACION FINAL</srai></template>
 </category>
 
@@ -339,39 +166,20 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* consigo puntos * participacion</pattern>
+	<pattern>como ^ [consig+ obten+ conseg+] puntos * participacion</pattern>
 	<template><srai>PUNTOS PARTICIPACION</srai></template>
 </category>
 
 <category>
-	<pattern>* consiguen puntos * participacion</pattern>
+	<pattern>cual es la forma de [obten+ conseg+] puntos * participacion</pattern>
 	<template><srai>PUNTOS PARTICIPACION</srai></template>
 </category>
 
 <category>
-	<pattern>* obtengo puntos * participacion</pattern>
+	<pattern>* punt+ * participacion</pattern>
 	<template><srai>PUNTOS PARTICIPACION</srai></template>
 </category>
 
-<category>
-	<pattern>* consigo nota * participacion</pattern>
-	<template><srai>PUNTOS PARTICIPACION</srai></template>
-</category>
-
-<category>
-	<pattern>* obtengo nota * participacion</pattern>
-	<template><srai>PUNTOS PARTICIPACION</srai></template>
-</category>
-
-<category>
-	<pattern>* puntuo * participacion</pattern>
-	<template><srai>PUNTOS PARTICIPACION</srai></template>
-</category>
-
-<category>
-	<pattern>* puntuar * participacion</pattern>
-	<template><srai>PUNTOS PARTICIPACION</srai></template>
-</category>
 
 <!--Pregunta 10: trabajos individuales -->
 
@@ -383,44 +191,10 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* practicas ^ son individuales ^</pattern>
+	<pattern>* [practica+ trabajo+] ^ [individuales solo] ^</pattern>
 	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
 </category>
 
-<category>
-	<pattern>* practicas ^  solo ^</pattern>
-	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajos ^ son individuales ^</pattern>
-	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajos ^  solo ^</pattern>
-	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ son individuales ^</pattern>
-	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^  solo ^</pattern>
-	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajo ^ son individuales ^</pattern>
-	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajo ^  solo ^</pattern>
-	<template><srai>TRABAJOS INDIVIDUALES</srai></template>
-</category>
 
 <!--Pregunta 11: hacer practicas en grupo -->
 
@@ -432,62 +206,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* practicas ^ en grupo ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajos ^ en grupo ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajos ^ con amigos ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* practicas ^ con amigos ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* practicas ^ con ^ amigo ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajos ^ con ^ amigo ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ en grupo ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajo ^ en grupo ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajo ^ con amigos ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ con amigos ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ con ^ amigo ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* trabajo ^ con ^ amigo ^</pattern>
+	<pattern>* [practica+ trabajo+] * [grupo amigo+] ^</pattern>
 	<template><srai>PRACTICAS GRUPO</srai></template>
 </category>
 
@@ -501,27 +220,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* obligado ^ entregar ^ problemas ^</pattern>
-	<template><srai>ENTREGAR PROBLEMAS</srai></template>
-</category>
-
-<category>
-	<pattern>^ tengo ^ entregar ^ problemas ^</pattern>
-	<template><srai>ENTREGAR PROBLEMAS</srai></template>
-</category>
-
-<category>
-	<pattern>^ debo ^ entregar ^ problemas ^</pattern>
-	<template><srai>ENTREGAR PROBLEMAS</srai></template>
-</category>
-
-<category>
-	<pattern>^ hay que ^ entregar ^ problemas ^</pattern>
-	<template><srai>ENTREGAR PROBLEMAS</srai></template>
-</category>
-
-<category>
-	<pattern>* obligatorio ^ entregar ^ problemas ^</pattern>
+	<pattern>* [obliga+ tengo deb+ hay] ^ entrega+ ^ problemas ^</pattern>
 	<template><srai>ENTREGAR PROBLEMAS</srai></template>
 </category>
 
@@ -535,99 +234,10 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* cuenta ^ primer examen ^ teoria ^</pattern>
+	<pattern>* [cuenta val+ representa+ pondera+] ^ primer+ [examen parcial prueba]^ teori+ ^</pattern>
 	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
 </category>
 
-<category>
-	<pattern>* cuenta ^ primer parcial ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* cuenta ^ primera prueba ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* vale ^ primer examen ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* vale ^ primer parcial ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* vale ^ primera prueba ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* representa ^ primer examen ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* representa ^ primer parcial ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* representa ^ primera prueba ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* valor ^ primer examen ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* valor ^ primera prueba ^ teoria ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* cuenta ^ primer examen ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* cuenta ^ primera prueba ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* vale ^ primer examen ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* vale ^ primera prueba ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* representa ^ primer examen ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* representa ^ primera prueba ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* valor ^ primer examen ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* valor ^ primera prueba ^ teorica ^</pattern>
-	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
-</category>
 
 <!--Pregunta 14: recuperar una practica o examen -->
 
@@ -639,34 +249,14 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>^ recuperar ^ practica ^</pattern>
-	<template><srai>RECUPERAR PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>^ recuperar ^ examen ^</pattern>
-	<template><srai>RECUPERAR PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>^ recuperacion ^</pattern>
-	<template><srai>RECUPERAR PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>^ recuperar ^</pattern>
+	<pattern>^ recupera+ ^ practica+ ^</pattern>
 	<template><srai>RECUPERAR PRACTICA</srai></template>
 </category>
 
 <!-- Pregunta 15: copiar -->
 
 <category>
-	<pattern>* copio ^</pattern>
-	<template><srai>PRACTICAS GRUPO</srai></template>
-</category>
-
-<category>
-	<pattern>* copiar ^</pattern>
+	<pattern>* copi+ ^</pattern>
 	<template><srai>PRACTICAS GRUPO</srai></template>
 </category>
 
@@ -680,32 +270,17 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* dejo ^ copiar ^</pattern>
+	<pattern>* dejo ^ copi+ ^</pattern>
 	<template><srai>ME DEJO COPIAR</srai></template>
 </category>
 
 <category>
-	<pattern>* dejo que ^ me copien ^</pattern>
+	<pattern>* me copi+ ^</pattern>
 	<template><srai>ME DEJO COPIAR</srai></template>
 </category>
 
 <category>
-	<pattern>* me copia ^</pattern>
-	<template><srai>ME DEJO COPIAR</srai></template>
-</category>
-
-<category>
-	<pattern>* copia de mi ^</pattern>
-	<template><srai>ME DEJO COPIAR</srai></template>
-</category>
-
-<category>
-	<pattern>* me copian ^</pattern>
-	<template><srai>ME DEJO COPIAR</srai></template>
-</category>
-
-<category>
-	<pattern>* copian de mi ^</pattern>
+	<pattern>* copi+ de mi ^</pattern>
 	<template><srai>ME DEJO COPIAR</srai></template>
 </category>
 
@@ -719,32 +294,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* suspendo ^ ordinaria ^</pattern>
+	<pattern>* suspendo ^ [ordinaria junio] ^</pattern>
 	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
 </category>
 
 <category>
-	<pattern>* no apruebo ^ ordinaria ^</pattern>
-	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* no supero ^ ordinaria ^</pattern>
-	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* suspendo ^ junio ^</pattern>
-	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* no apruebo ^ junio ^</pattern>
-	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
-</category>
-
-<category>
-	<pattern>* no supero ^ junio ^</pattern>
+	<pattern>* no [supero apruebo] ^ [ordinaria junio] ^</pattern>
 	<template><srai>SUSPENDO CONVOCATORIA ORDINARIA</srai></template>
 </category>
 
@@ -758,29 +313,10 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* vale * parte ^</pattern>
+	<pattern>* [vale+ cuenta contar pondera+ suma+ representa+] * parte ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
-<category>
-	<pattern>* cuenta * parte ^</pattern>
-	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* representa * parte ^</pattern>
-	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* pondera * parte ^</pattern>
-	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
-</category>
-
-<category>
-	<pattern>* suma * parte ^</pattern>
-	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
-</category>
 
 <!-- Pregunta 19: horario tutorias practicas -->
 
@@ -792,22 +328,7 @@ encoding="UTF-8"?>
 </category> 
 
 <category>
-	<pattern>* tutorias * practicas ^</pattern>
-	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* tutoria * practicas ^</pattern>
-	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* tutorias * practica ^</pattern>
-	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
-</category>
-
-<category>
-	<pattern>* tutoria * practica ^</pattern>
+	<pattern>* tutoria+ * practica+ ^</pattern>
 	<template><srai>HORARIO TUTORIAS PRACTICAS</srai></template>
 </category>
 
@@ -821,32 +342,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* aprobar * no presento * practica ^</pattern>
-	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* aprobar * sin presentar * practica ^</pattern>
-	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* aprobar * no defiendo * practica ^</pattern>
-	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* aprobar * no defender * practica ^</pattern>
-	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* aprobar * no entregar * practica ^</pattern>
-	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* aprobar * no entrego * practica ^</pattern>
+	<pattern>* apr+ * [sin no] [entreg+ defend+ present+] * practica+ ^</pattern>
 	<template><srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai></template>
 </category>
 
@@ -857,26 +353,12 @@ encoding="UTF-8"?>
 		Debes llegar al 3 sobre 10 en cada parte (teoria y practicas) por separado.
 	</template>
 </category>
-<!--
+
 <category>
-	<pattern>^ nota minima *</pattern>
+	<pattern>^ minim+ *</pattern>
 	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
 </category>
 
-<category>
-	<pattern>^ calificacion minima *</pattern>
-	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
-</category>
--->
-<category>
-	<pattern>^ minimo *</pattern>
-	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
-</category>
-
-<category>
-	<pattern>^ minima *</pattern>
-	<template><srai>NOTA MINIMA PARA HACER MEDIA</srai></template>
-</category>
 
 <!-- Pregunta 22: puntuacion por defender L3 en p1 y no superar-->
 
@@ -888,97 +370,18 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* defensa ^ practica ^ uno ^ no ^ supero * tres^</pattern>
+	<pattern>* defensa ^ practica ^ [1 uno] ^ no ^ super+ * [tres 3] ^</pattern>
 	<template><srai>NO SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>* defensa ^ practica ^ uno ^ fallo * tres^</pattern>
+	<pattern>* defensa ^ practica ^ [1 uno primera] ^ fallo * [tercer tres 3] ^</pattern>
 	<template><srai>NO SUPERAR NIVEL 3</srai></template>
 </category>
 
-<category>
-	<pattern>* defensa ^ practica ^ 1 ^ no ^ supero * tres^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
 
 <category>
-	<pattern>* defensa ^ practica ^ 1 ^ fallo * tres^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* defensa ^ practica ^ uno ^ no ^ supero * 3^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* defensa ^ practica ^ uno ^ fallo * 3^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* defensa ^ practica ^ 1 ^ no ^ supero * 3^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* defensa ^ practica ^ 1 ^ fallo * 3^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* defensa ^ practica ^ uno ^ no ^ supero * tercer *</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* defensa ^ practica ^ uno ^ fallo * tercer *</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ 1 ^ defender * 3 * no * supero ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ 1 ^ no supero ^ nivel 3 ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ uno ^ defender * 3 * no * supero ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ 1 * defender * tres * no * supero ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ uno * defender * tres * no * supero ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ 1 * defender * 3 * no * consigo ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ uno * defender * 3 * no * consigo ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ 1 * defender * tres * no * consigo ^</pattern>
-	<template><srai>NO SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>* practica ^ uno * defender * tres * no * consigo ^</pattern>
+	<pattern>* practica ^ [1 uno] ^ defend+ * [tres 3] * no * [supero consigo logro] ^</pattern>
 	<template><srai>NO SUPERAR NIVEL 3</srai></template>
 </category>
 
@@ -992,67 +395,17 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* no hago ^ nivel 0 * practica 1 ^</pattern>
+	<pattern>* no [hacer hago] ^ [nivel parte] [cero 0] * practica [1 uno] ^</pattern>
 	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
 </category>
 
 <category>
-	<pattern>* no * hacer ^ nivel 0 * practica 1 ^</pattern>
+	<pattern>* practica [uno 1] * sin hacer * nivel [0 cero] ^</pattern>
 	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
 </category>
 
 <category>
-	<pattern>* no hago ^ nivel 0 * primera practica^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* no hago ^ nivel cero * practica 1 ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* no * hacer ^ nivel cero * practica 1 ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* no hago ^ nivel 0 * practica uno ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* no * hacer ^ nivel 0 * practica uno ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* no hago ^ nivel cero * practica uno ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* no * hacer ^ nivel cero * practica uno ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* practica 1 * hacer * nivel 0 ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* practica uno * hacer * nivel 0 ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* practica 1 * hacer * nivel cero ^</pattern>
-	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
-</category>
-
-<category>
-	<pattern>* practica uno * hacer * nivel cero ^</pattern>
+	<pattern>* practica [uno 1] * si no hago * nivel [0 cero] ^</pattern>
 	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
 </category>
 
@@ -1066,22 +419,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* no * ir * defensa * practica 1 ^</pattern>
+	<pattern>* no * [ir asistir voy] * defensa * practica [1 uno] ^</pattern>
 	<template><srai>NO ASISTIR A DEFENSA</srai></template>
 </category>
 
 <category>
-	<pattern>* no * asistir * defensa ^</pattern>
-	<template><srai>NO ASISTIR A DEFENSA</srai></template>
-</category>
-
-<category>
-	<pattern>* no voy * defensa ^</pattern>
-	<template><srai>NO ASISTIR A DEFENSA</srai></template>
-</category>
-
-<category>
-	<pattern>* me salto * defensa ^</pattern>
+	<pattern>* me salto * defensa * practica [1 uno] ^</pattern>
 	<template><srai>NO ASISTIR A DEFENSA</srai></template>
 </category>
 
@@ -1095,38 +438,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>^ cuantos * teoria ^</pattern>
+	<pattern>^ cuant+ * teori+ ^</pattern>
 	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
 </category>
 
 <category>
-	<pattern>^ teoria * cuantas ^</pattern>
-	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
-</category>
-
-<category>
-	<pattern>^ cuantas * teoria ^</pattern>
-	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
-</category>
-
-
-<category>
-	<pattern>^ cuantos * teorica ^</pattern>
-	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
-</category>
-
-<category>
-	<pattern>^ teorica * cuantas ^</pattern>
-	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
-</category>
-
-<category>
-	<pattern>^ cuantas * teorica ^</pattern>
-	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
-</category>
-
-<category>
-	<pattern>^ cuantas * teoricas ^</pattern>
+	<pattern>^ teori+ * cuant+ ^</pattern>
 	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
 </category>
 
@@ -1151,22 +468,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* examen ^ ejercicios ^</pattern>
-	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
-</category>
-
-<category>
-	<pattern>* prueba ^ ejercicios ^</pattern>
-	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
-</category>
-
-<category>
-	<pattern>* examen ^ problemas ^</pattern>
-	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
-</category>
-
-<category> 
-	<pattern>* prueba ^ problemas ^</pattern>
+	<pattern>* [ prueba examen] ^ [ejercicios problemas] ^</pattern>
 	<template><srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai></template>
 </category>
 
@@ -1180,100 +482,47 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>^ no * superar ^ nivel 3 * practica 1 ^</pattern>
+	<pattern>^ no * [pasar superar conseguir defender] ^ nivel [tres 3] * practica [uno 1] ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>^ no * superar ^ nivel 3 * practica 1 ^</pattern>
+	<pattern>^ no * [pasar superar conseguir defender] ^ nivel [tres 3] * primera practica ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>^ indeciso * superar ^ nivel 3 * practica 1 ^</pattern>
+	<pattern>^ no * [pasar superar conseguir defender] ^ tercer nivel * primera practica ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>^ no * superar ^ nivel tres * practica 1 ^</pattern>
+	<pattern>^ no * [pasar superar conseguir defender] ^ tercer nivel * practica [uno 1] ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>^ no * superar ^ nivel tres * practica 1 ^</pattern>
+	<pattern>^ indeciso * superar ^ nivel [tres 3] * practica [uno 1] ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>^ indeciso * superar ^ nivel tres * practica 1 ^</pattern>
+	<pattern>^ indeciso * superar ^ tercer nivel * practica [uno 1] ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>^ no * superar ^ nivel 3 * practica uno ^</pattern>
+	<pattern>^ indeciso * superar ^ nivel [tres 3] * primera practica ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <category>
-	<pattern>^ no * superar ^ nivel 3 * practica uno ^</pattern>
-	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>^ indeciso * superar ^ nivel 3 * practica uno ^</pattern>
-	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>^ no * superar ^ nivel tres * practica uno ^</pattern>
-	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>^ no * superar ^ nivel tres * practica uno ^</pattern>
-	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>^ indeciso * superar ^ nivel tres * practica uno ^</pattern>
-	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>^ no * superar ^ nivel tres * primera practica ^</pattern>
-	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>^ no * superar ^ nivel tres * primera practica ^</pattern>
-	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
-</category>
-
-<category>
-	<pattern>^ indeciso * superar ^ nivel tres * primera practica ^</pattern>
+	<pattern>^ indeciso * superar ^ tercer nivel * primera practica ^</pattern>
 	<template><srai>NO SEGURO DE SUPERAR NIVEL 3</srai></template>
 </category>
 
 <!-- Pregunta 29: programo bien en c++-->
-<!--
-<category>
-	<pattern>PROGRAMO BIEN EN *</pattern>
-	<template>
-		Me parece perfecto que programes bien en <star index="1"/>, pero el objetivo de la asignatura es que aprendas AIML. En el fondo no esta tan mal, lo prometo ;)
-	</template>
-</category>
--->
-<!--
-<category>
-	<pattern>PROGRAMO BIEN EN *</pattern>
-	<template>
-		<think>
-			<set var="lang"><star index="1"/></set>
-		</think>
-			Me parece perfecto que programes bien en <get var="lang"/>, pero el objetivo de la asignatura es que aprendas AIML. En el fondo no esta tan mal, lo prometo ;)
-	</template>
-</category>
--->
+
 
 <category>
 	<pattern>PROGRAMO BIEN EN *</pattern>
@@ -1293,12 +542,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>^ programo ^ en * ^</pattern>
-	<template><srai>PROGRAMO BIEN EN <star index="3"/></srai></template>
-</category>
-
-<category>
-	<pattern>* programar ^ en * ^</pattern>
+	<pattern>^ program+ ^ en * ^</pattern>
 	<template><srai>PROGRAMO BIEN EN <star index="3"/></srai></template>
 </category>
 
@@ -1312,47 +556,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* agentes conversacionales * defender * practica ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agente conversacional * defender * practica ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agentes conversacionales * defensa practicas ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agente conversacional * defender * practicas ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agentes conversacionales * defensa * practica ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agentes conversacionales * defensa * practicas ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agente conversacional * defensa * practica ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agentes conversacionales * defendieras * practica ^</pattern>
-	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
-</category>
-
-<category>
-	<pattern>* agente conversacional * defendieras * practica ^</pattern>
+	<pattern>* agente+ conversacional+ * defen+ * practica+ ^</pattern>
 	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
 </category>
 
