@@ -1,0 +1,50 @@
+<?xml version="1.0"
+encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+	<pattern> ^ fruta ^</pattern>
+	<template>
+		<think>
+			<set var="lista_frutas"><readset>frutas</readset></set>
+			<set var="num_frutas">
+				<srai>COUNT <get var="lista_frutas"/></srai>
+			</set>
+			<set var="pos">
+				<srai>RANDOM <get var="num_frutas"/></srai>
+			</set>
+			<set var="elegida">
+				<srai>SELECTITEM <get var="pos"/> IN <get var="lista_frutas"/></srai>
+			</set>
+		</think>
+		<get var="elegida"/>, por ejemplo
+	</template>
+</category>
+
+
+<category>
+	<pattern>Dime las frutas que conoces</pattern>
+	<template>
+		<think>
+			<set var="lista_frutas"><readset>frutas</readset></set>
+		</think>
+		Las frutas que conozco son: <get var="lista_frutas"/>
+	</template>
+</category>
+
+
+<!--...... Juego................-->
+
+<!-- Iniciar -->
+
+<category>
+	<pattern> ^ [juego jugar iniciar] ^ nivel [1 uno] ^</pattern>
+	<template>
+		<think>
+			<set name="pensada"><srai>FRUTA</srai></set>
+		</think>
+		Ya he pensado en una fruta.
+	</template>
+</category>
+
+</aiml>
