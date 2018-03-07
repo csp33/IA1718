@@ -25,6 +25,11 @@ encoding="UTF-8"?>
 				<srai>tam_grande</srai>
 			</li>
 		</random>
+		<think>
+			<set name="peq_preguntado">NO</set>
+			<set name="mediano_preguntado">NO</set>
+			<set name="grande_preguntado">NO</set>
+		</think>
 	</template>
 </category>
 
@@ -61,59 +66,103 @@ encoding="UTF-8"?>
 <category>
 	<pattern>tam_grande</pattern>
 	<template>
+		Es de tamanio grande?</template>
 		<think>
 			<set name="tamanio">grande</set>
 		</think>
-		Es de tamanio grande?</template>
 </category>
 
 <!-- Colores -->
 
 <category>
 	<pattern>color_rojo</pattern>
-	<template>Es de color rojo?</template>
+	<template>
+		Es de color rojo?
+		<think>
+			<set name="color">rojo</set>
+		</think>
+	</template>
 </category>
 
 <category>
 	<pattern>color_amarillo</pattern>
-	<template>Es de color amarillo?</template>
+	<template>
+		Es de color amarillo?
+		<think>
+			<set name="color">amarillo</set>
+		</think>
+	</template>
 </category>
 
 <category>
 	<pattern>color_verde</pattern>
-	<template>Es de color verde?</template>
+	<template>
+		Es de color verde?
+		<think>
+			<set name="color">verde</set>
+		</think>
+	</template>
 </category>
 
 <category>
 	<pattern>color_naranja</pattern>
-	<template>Es de color naranja?</template>
+	<template>
+		Es de color naranja?
+		<think>
+			<set name="color">naranja</set>
+		</think></template>
 </category>
 
 <category>
 	<pattern>color_marron</pattern>
-	<template>Es de color marron?</template>
+	<template>
+		Es de color marron?
+		<think>
+			<set name="color">marron</set>
+		</think>
+	</template>
 </category>
 
 <category>
 	<pattern>color_morado</pattern>
-	<template>Es de color morado?</template>
+	<template>
+		Es de color morado?
+	<think>
+			<set name="color">morado</set>
+		</think>
+	</template>
 </category>
 
 <!-- Vitaminas -->
 
 <category>
 	<pattern>vitamina_a</pattern>
-	<template>Tiene vitamina A?</template>
+	<template>
+		Tiene vitamina A?
+		<think>
+			<set name="vit_a">si</set>
+		</think>
+	</template>
 </category>
 
 <category>
 	<pattern>vitamina_b</pattern>
-	<template>Tiene vitamina C?</template>
+	<template>
+		Tiene vitamina C?
+		<think>
+			<set name="vit_b">si</set>
+		</think>
+	</template>
 </category>
 
 <category>
 	<pattern>vitamina_c</pattern>
-	<template>Tiene vitamina C?</template>
+	<template>
+		Tiene vitamina C?
+		<think>
+			<set name="vit_c">si</set>
+		</think>
+	</template>
 </category>
 
 <!--.....................................................-->
@@ -127,17 +176,155 @@ encoding="UTF-8"?>
 		Vale, es de tamanio <get name="tamanio"/>.
 	</template>
 </category>
-
+<!--
 <category>
 	<pattern>[no error fallaste]</pattern>
 	<that>^ es de tamanio *</that>
 	<template>
-		Vale, no es de tamanio <get name="tamanio"/>. 
+		El valor de tamanio es <get name="tamanio"/>
 		<think>
+			<condition name="tamanio">
+				<li value="pequenio">
+					<set name="peq_preguntado">SI</set>
+				</li>
+				<li value="mediano">
+					<set name="mediano_preguntado">SI</set>
+				</li>
+				<li>
+					<set name="grande_preguntado">SI</set>
+				</li> 
+			</condition>
+
+			<set var="actual"><get name="tamanio"/></set>
 			<set name="tamanio">unknown</set>
+
+			<condition var="actual">
+				<li value="pequenio">
+					<condition name="mediano_preguntado">
+						<li value="SI">
+							<set name="tamanio">GRANDE</set>
+						</li>
+						<li>
+							<srai>tam_mediano</srai>
+						</li>
+					</condition>
+					<condition name="grande_preguntado">
+						<li value="SI">
+							<set name="tamanio">MEDIANO</set>
+						</li>
+						<li>
+							<srai>tam_grande</srai>
+						</li>
+						z
+					</condition>
+				</li>
+				<li value="mediano">
+					<condition name="peq_preguntado">
+						<li value="SI">
+							<set name="tamanio">GRANDE</set>
+						</li>
+						<li>
+							<srai>tam_peq</srai>
+						</li>
+					</condition>
+				</li>
+			</condition>
+			<condition name="grande_preguntado">
+				<li value="SI">
+					<set name="tamanio">PEQUENIO</set>
+				</li>
+				<li>
+					<srai>tam_grande</srai>
+				</li>
+			</condition>
+			<condition name="peq_preguntado">
+				<li value="SI">
+					<set name="tamanio">MEDIANO</set>
+				</li>
+				<li>
+					<srai>tam_peq</srai>
+				</li>
+			</condition>
+			<condition name="mediano_preguntado">
+				<li value="SI">
+					<set name="tamanio">PEQUENIO</set>
+				</li>
+				<li>
+					<srai>tam_mediano</srai>
+				</li>
+			</condition>
 		</think>
+		Vale, no es de tamanio <get var="actual"/>. 
+		Por ahora el tamanio es <get name="tamanio"/>
 	</template>
 </category>
+
+-->
+<category>
+	<pattern>[no error fallaste]</pattern>
+	<that>^ es de tamanio *</that>
+	<template>
+		El valor de tamanio es <get name="tamanio"/>
+<!--	<think>  -->
+			<condition name="tamanio">
+				<li value="pequenio">
+					peq_preg si
+					<set name="peq_preguntado">SI</set>
+				</li>
+				<li value="mediano">
+					med_preg=si
+					<set name="mediano_preguntado">SI</set>
+				</li>
+				<li>
+					grande_preg=si
+					<set name="grande_preguntado">SI</set>
+				</li> 
+			</condition>
+
+			<set var="actual"><get name="tamanio"/></set>
+			<set name="tamanio">unknown</set>
+
+			<condition var="actual">
+				<li value="PEQUENIO">
+					<condition name="mediano_preguntado">
+						<li value="SI">
+							mediano_preg=si
+							<set name="tamanio">GRANDE</set>
+						</li>
+						<li>
+							<srai>tam_mediano</srai>
+						</li>
+					</condition>
+				</li>
+				<li value="MEDIANO">
+					<condition name="peq_preguntado">
+						<li value="SI">
+							peq_preg=si
+							<set name="tamanio">GRANDE</set>
+						</li>
+						<li>
+							<srai>tam_peq</srai>
+						</li>
+					</condition>
+				</li>
+				<li value="GRANDE">
+					<condition name="mediano_preguntado">
+						<li value="SI">
+							mediano_preg=si
+							<set name="tamanio">PEQUENIO</set>
+						</li>
+						<li>
+							<srai>tam_mediano</srai>
+						</li>
+					</condition>
+				</li>
+			</condition>
+<!--		</think>   -->
+		Vale, no es de tamanio <get var="actual"/>. 
+		Por ahora el tamanio es <get name="tamanio"/>
+	</template>
+</category>
+
 
 <!-- Respuestas color -->
 
@@ -145,10 +332,7 @@ encoding="UTF-8"?>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
 	<that>es de color *</that>
 	<template>
-		<think>
-			<set name="color"><star index="1"/></set>
-		</think>
-		Vale, es de color <star index="1"/>.
+		Vale, es de color <get name="tamanio"/>.
 	</template>
 </category>
 
@@ -156,10 +340,10 @@ encoding="UTF-8"?>
 	<pattern>[no error fallaste]</pattern>
 	<that>es de color *</that>
 	<template>
+		Vale, no es de color <get name="color"/>.
 		<think>
-			<set name="color"><star index="1"/></set>
+			<set name="color">preguntado</set>
 		</think>
-		Vale, no es de color <star index="1"/>.
 	</template>
 </category>
 
@@ -169,26 +353,61 @@ encoding="UTF-8"?>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
 	<that>tiene vitamina a</that>
 	<template>
-		<think>
-			<set name="color"><star index="1"/></set>
-		</think>
-		Vale, tiene vitamina <star index="1"/>.
+		Vale, tiene vitamina A.
 	</template>
 </category>
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>tiene vitamina *</that>
+	<that>tiene vitamina a</that>
 	<template>
+		Vale, no tiene vitamina A.
 		<think>
-			<set name="color"><star index="1"/></set>
+			<set name="vit_a">preguntado</set>
 		</think>
-		Vale, no tiene vitamina <star index="1"/>.
 	</template>
 </category>
 
+<!-- Respuestas vitamina b-->
 
+<category>
+	<pattern>[si correcto afirmativo efectivamente]</pattern>
+	<that>tiene vitamina b</that>
+	<template>
+		Vale, tiene vitamina B.
+	</template>
+</category>
 
+<category>
+	<pattern>[no error fallaste]</pattern>
+	<that>tiene vitamina b</that>
+	<template>
+		Vale, no tiene vitamina B.
+		<think>
+			<set name="vit_b">preguntado</set>
+		</think>
+	</template>
+</category>
 
+<!-- Respuestas vitamina c-->
+
+<category>
+	<pattern>[si correcto afirmativo efectivamente]</pattern>
+	<that>tiene vitamina c</that>
+	<template>
+		Vale, tiene vitamina C.
+	</template>
+</category>
+
+<category>
+	<pattern>[no error fallaste]</pattern>
+	<that>tiene vitamina c</that>
+	<template>
+		Vale, no tiene vitamina C.
+		<think>
+			<set name="vit_c">preguntado</set>
+		</think>
+	</template>
+</category>
 
 </aiml>
