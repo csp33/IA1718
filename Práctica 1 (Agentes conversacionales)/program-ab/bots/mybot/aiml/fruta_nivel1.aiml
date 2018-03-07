@@ -1,0 +1,309 @@
+<?xml version="1.0"
+encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+
+<!-- ...........................Predicados AUXILIARES............................................... -->
+
+<category>
+	<pattern>get_fruta</pattern>
+	<template>
+		<think>
+			<set var="lista_frutas"><readset>frutas</readset></set>
+			<set var="num_frutas">
+				<srai>COUNT <get var="lista_frutas"/></srai>
+			</set>
+			<set var="pos">
+				<srai>RANDOM <get var="num_frutas"/></srai>
+			</set>
+			<set var="elegida">
+				<srai>SELECTITEM <get var="pos"/> IN <get var="lista_frutas"/></srai>
+			</set>
+		</think>
+		<get var="elegida"/>
+	</template>
+</category>
+
+<!-- TEST: ELIJO FRESA SIEMPRE -->
+<category>
+	<pattern>test</pattern>
+	<template>
+		<think>
+			<set name="pensada">FRESA</set>
+		</think>
+		TEST: ELEGIDA LA  <get name="pensada"/>
+	</template>
+</category>
+
+
+<category>
+	<pattern>atributo * *</pattern>
+	<template>
+		Efectivamente, es de <star index="1"/> <star index="2"/>
+	</template>
+</category>
+
+<category>
+	<pattern>atributo * no *</pattern>
+	<template>
+		No! No es de <star index="1"/> <star index="2"/>
+	</template>
+</category>
+
+<category>
+	<pattern>no_hemos_empezado</pattern>
+	<template>
+		Todavia no he pensado en una fruta! Voy a ello! <srai>iniciar nivel 1</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>vitamina * si</pattern>
+	<template>
+		Efectivamente, es rica en vitamina <star/>.
+	</template>
+</category>
+
+<category>
+	<pattern>vitamina * no</pattern>
+	<template>
+		No! No es rica en vitamina <star/>.
+	</template>
+</category>
+
+<category>
+	<pattern>reset</pattern>
+	<template>
+		<think>
+			<set name="pensada">unknown</set> 
+		</think>
+	</template>
+</category>
+
+<!-- ................................................................................................................... -->
+
+<category>
+	<pattern>Dime una fruta</pattern>
+	<template>
+		<srai>get_fruta</srai>, por ejemplo.
+	</template>
+</category>
+
+
+<category>
+	<pattern>Dime las frutas que conoces</pattern>
+	<template>
+		<think>
+			<set var="lista_frutas"><readset>frutas</readset></set>
+		</think>
+		Las frutas que conozco son: <get var="lista_frutas"/>
+	</template>
+</category>
+
+<!--...... Juego................-->
+
+<!-- Iniciar -->
+
+<category>
+	<pattern> ^ [juego jugar iniciar] ^ nivel [1 uno] ^</pattern>
+	<template>
+		<think>
+			<set name="pensada"><srai>get_fruta</srai></set>
+		</think>
+		Ya he pensado en una fruta.
+	</template>
+</category>
+
+
+
+<!-- Color -->
+
+<category>
+	<pattern> ^ es de color *</pattern>
+	<template>
+		<condition name="pensada">
+			<li value="unknown">
+				<srai>no_hemos_empezado</srai>. <srai>es de color <star index="2"/></srai>
+			</li>
+			<li>
+				<think>
+					<set var="real"><map name="color"><get name="pensada"/></map></set>
+					<set var="preguntado"><star index="2"/></set>
+					<set var="iguales"><srai>COMPARE <get var="real"/> WITH <get var="preguntado"/></srai></set>
+				</think>
+				<condition var="iguales">
+					<li value="YES">
+						<srai>atributo color <star index="2"/></srai>
+					</li>
+					<li value="NO">
+						<srai>atributo color no <star index="2"/></srai>
+					</li>
+				</condition>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<!--Tamaño-->
+
+<category>
+	<pattern> ^ es de tamanio *</pattern>
+	<template>
+		<condition name="pensada">
+			<li value="unknown">
+				<srai>no_hemos_empezado</srai>. <srai>es de tamanio <star index="2"/></srai>
+			</li>
+			<li>
+				<think>
+					<set var="real"><map name="tamanio"><get name="pensada"/></map></set>
+					<set var="preguntado"><star index="2"/></set>
+					<set var="iguales"><srai>COMPARE <get var="real"/> WITH <get var="preguntado"/></srai></set>
+				</think>
+				<condition var="iguales">
+					<li value="YES">
+						<srai>atributo tamanio <star index="2"/></srai>
+					</li>
+					<li value="NO">
+						<srai>atributo tamanio no <star index="2"/></srai>
+					</li>
+				</condition>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<!--Sabor-->
+
+<category>
+	<pattern> ^ es de sabor *</pattern>
+	<template>
+		<condition name="pensada">
+			<li value="unknown">
+				<srai>no_hemos_empezado</srai>. <srai>es de sabor <star index="2"/></srai>
+			</li>
+			<li>
+				<think>
+					<set var="real"><map name="sabor"><get name="pensada"/></map></set>
+					<set var="preguntado"><star index="2"/></set>
+					<set var="iguales"><srai>COMPARE <get var="real"/> WITH <get var="preguntado"/></srai></set>
+				</think>
+				<condition var="iguales">
+					<li value="YES">
+						<srai>atributo sabor <star index="2"/></srai>
+					</li>
+					<li value="NO">
+						<srai>atributo sabor no <star index="2"/></srai>
+					</li>
+				</condition>
+			</li>
+		</condition>
+	</template>
+</category>
+
+
+<!--Vitamina A-->
+
+<category>
+	<pattern> ^ tiene vitamina a ^</pattern>
+	<template>
+		<condition name="pensada">
+			<li value="unknown">
+				<srai>no_hemos_empezado</srai>. <srai>tiene vitamina a</srai>
+			</li>
+			<li>
+				<think>
+					<set var="real"><map name="vit_a"><get name="pensada"/></map></set>
+				</think>
+				<condition var="real">
+					<li value="SI">
+						<srai>vitamina a si</srai>
+					</li>
+					<li value="NO">
+						<srai>vitamina a no</srai>
+					</li>
+				</condition>
+			</li>
+		</condition>
+	</template>
+</category>
+
+
+<!--Vitamina B-->
+
+<category>
+	<pattern> ^ tiene vitamina b ^</pattern>
+	<template>
+		<condition name="pensada">
+			<li value="unknown">
+				<srai>no_hemos_empezado</srai>. <srai>tiene vitamina b</srai>
+			</li>
+			<li>
+				<think>
+					<set var="real"><map name="vit_b"><get name="pensada"/></map></set>
+				</think>
+				<condition var="real">
+					<li value="SI">
+						<srai>vitamina b si</srai>
+					</li>
+					<li value="NO">
+						<srai>vitamina b no</srai>
+					</li>
+				</condition>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<!--Vitamina C-->
+
+<category>
+	<pattern> ^ tiene vitamina c ^</pattern>
+	<template>
+		<condition name="pensada">
+			<li value="unknown">
+				<srai>no_hemos_empezado</srai>. <srai>tiene vitamina c</srai>
+			</li>
+			<li>
+				<think>
+					<set var="real"><map name="vit_c"><get name="pensada"/></map></set>
+				</think>
+				<condition var="real">
+					<li value="SI">
+						<srai>vitamina c si</srai>
+					</li>
+					<li value="NO">
+						<srai>vitamina c no</srai>
+					</li>
+				</condition>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<!-- Adivinar -->
+
+<category>
+	<pattern>Es [el la un una] * ^</pattern>
+	<template>
+		<think>
+			<set var="acierto"><srai>COMPARE <get name="pensada"/> WITH <star index="1"/></srai></set>
+		</think>
+		<condition var="acierto">
+			<li value="YES">
+				Acertaste!
+				<srai>reset</srai>
+			</li>
+			<li>
+				Perdiste! Pensaba en <get name="pensada"/>
+				<srai>reset</srai>
+			</li>
+		</condition>
+	</template>
+</category>
+
+
+
+
+
+</aiml>
