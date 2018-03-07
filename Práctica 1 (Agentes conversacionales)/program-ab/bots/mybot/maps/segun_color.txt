@@ -1,0 +1,6 @@
+rojo: fresa manzana cereza
+amarillo: manzana kiwi pinia melocoton ciruela pera platano
+verde: manzana kiwi pinia mango higo pera aguacate
+naranja: naranja mandarina melocoton
+morado: higo ciruela
+marron: coco nuez

@@ -1,0 +1,16 @@
+fresa: rojo pequenio semiacido vit_a vit_b vit_c
+manzana: amarillo rojo verde mediano semiacido vit_b vit_c
+naranja: naranja mediano acido vit_b vit_c
+kiwi: verde amarillo pequenio acido vit_b vit_c
+mandarina: naranja pequenio acido vit_a
+pinia: amarillo verde grande acido vit_b vit_c
+mango: verde grande semiacido vit_a vit_b vit_c
+melocoton: amarillo naranja mediano semiacido vit_a vit_b
+higo: verde morado pequenio dulce vit_b vit_c
+ciruela: amarillo morado pequenio dulce vit_a vit_b vit_c
+pera: verde amarillo mediano dulce vit_b vit_c
+platano: amarillo mediano dulce vit_b vit_c
+coco: marron grande neutro vit_b vit_c
+aguacate: verde mediano neutro vit_b vit_c
+nuez: marron pequenio neutro vit_b
+cereza: rojo pequenio semiacido vit_a vit_c

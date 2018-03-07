@@ -10,26 +10,215 @@ encoding="UTF-8"?>
 	</template>
 </category>
 
+<!-- Descartar frutas -->
+<category>
+	<pattern>descartar_frutas</pattern>
+	<template>
+		<think>
+			<condition name="tamanio_adivinado">
+				<li value="SI">
+					<set name="posibles"><map name="segun_tamanio"><get name="tamanio"/></map></set>
+				</li>
+			</condition>
+			<condition name="color_adivinado">
+				<li value="SI">
+					<set var="lista_tamanios"><get name="posibles"/></set>
+					<set var="tam_copia"><get name="posibles"/></set>
+					<set var="lista_colores"><map name="segun_color"><get name="color"/></map></set>
+					<set name="posibles">0</set>
+					<set var="contador">0</set>
+					<set var="tope"><srai>COUNT <get var="lista_tamanios"/></srai></set>
+					<condition var="contador">
+						<li><value><get var="tope"/></value></li>
+						<li>
+							<set var="top"><srai> TOP <get var="lista_tamanios"/></srai></set>
+							<set var="lista_tamanios"><srai>REMAIN <get var="lista_tamanios"/></srai></set>
+							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_colores"/></srai></set>
+							<condition var="existe">
+								<li value="0">
+								</li>
+								<li> <!-- Existe-->
+							<condition name="posibles">
+										<li value="0">
+											<set name="posibles"><get var="top"/></set>
+										</li>
+										<li>
+											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+										</li>
+									</condition>
+								</li>
+							</condition>
+							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<loop/>
+						</li>
+						</condition>
+				</li>
+			</condition>
+			<condition name="sabor_adivinado">
+				<li value="SI">
+					<set var="lista_tamanios_colores"><get name="posibles"/></set>
+					<set var="lista_tamanios_colores_copia"><get name="posibles"/></set>
+					<set var="lista_sabores"><map name="segun_sabor"><get name="sabor"/></map></set>
+					<set name="posibles">0</set>
+					<set var="contador">0</set>
+					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores"/></srai></set>
+					<condition var="contador">
+						<li><value><get var="tope"/></value></li>
+						<li>
+							<set var="top"><srai> TOP <get var="lista_tamanios_colores"/></srai></set>
+							<set var="lista_tamanios_colores"><srai>REMAIN <get var="lista_tamanios_colores"/></srai></set>
+							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_sabores"/></srai></set>
+							<condition var="existe">
+								<li value="0">
+								</li>
+								<li> <!-- Existe-->
+									<condition name="posibles">
+										<li value="0">
+											<set name="posibles"><get var="top"/></set>
+										</li>
+										<li>
+											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+										</li>
+									</condition>
+								</li>
+							</condition>
+							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<loop/>
+						</li>
+						</condition>
+				</li>
+			</condition>
+			<condition name="vit_a">
+				<li value="SI">
+					<set var="lista_tamanios_colores_sabores"><get name="posibles"/></set>
+					<set var="lista_tamanios_colores_sabores_copia"><get name="posibles"/></set>
+					<set var="lista_vit_a"><readset>vitamina_a</readset></set>
+					<set name="posibles">0</set>
+					<set var="contador">0</set>
+					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores_sabores"/></srai></set>
+					<condition var="contador">
+						<li><value><get var="tope"/></value></li>
+						<li>
+							<set var="top"><srai> TOP <get var="lista_tamanios_colores_sabores"/></srai></set>
+							<set var="lista_tamanios_colores_sabores"><srai>REMAIN <get var="lista_tamanios_colores_sabores"/></srai></set>
+							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_vit_a"/></srai></set>
+							<condition var="existe">
+								<li value="0">
+								</li>
+								<li> <!-- Existe-->
+									<condition name="posibles">
+										<li value="0">
+											<set name="posibles"><get var="top"/></set>
+										</li>
+										<li>
+											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+										</li>
+									</condition>
+								</li>
+							</condition>
+							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<loop/>
+						</li>
+					</condition>
+				</li>	
+			</condition>	
+			<condition name="vit_b">
+				<li value="SI">
+					<set var="lista_tamanios_colores_sabores_vit_a"><get name="posibles"/></set>
+					<set var="lista_tamanios_colores_sabores_vit_a_copia"><get name="posibles"/></set>
+					<set var="lista_vit_a"><readset>vitamina_b</readset></set>
+					<set name="posibles">0</set>
+					<set var="contador">0</set>
+					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores_sabores_vit_a"/></srai></set>
+					<condition var="contador">
+						<li><value><get var="tope"/></value></li>
+						<li>
+							<set var="top"><srai> TOP <get var="lista_tamanios_colores_sabores_vit_a"/></srai></set>
+							<set var="lista_tamanios_colores_sabores_vit_a"><srai>REMAIN <get var="lista_tamanios_colores_sabores_vit_a"/></srai></set>
+							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_vit_a"/></srai></set>
+							<condition var="existe">
+								<li value="0">
+								</li>
+								<li> <!-- Existe-->
+									<condition name="posibles">
+										<li value="0">
+											<set name="posibles"><get var="top"/></set>
+										</li>
+										<li>
+											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+										</li>
+									</condition>
+								</li>
+							</condition>
+							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<loop/>
+						</li>
+					</condition>
+				</li>	
+			</condition>	
+			<condition name="vit_c">
+				<li value="SI">
+					<set var="lista_tamanios_colores_sabores_vit_a_vit_b"><get name="posibles"/></set>
+					<set var="lista_tamanios_colores_sabores_vit_a_vit_b_copia"><get name="posibles"/></set>
+					<set var="lista_vit_a"><readset>vitamina_c</readset></set>
+					<set name="posibles">0</set>
+					<set var="contador">0</set>
+					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores_sabores_vit_a_vit_b"/></srai></set>
+					<condition var="contador">
+						<li><value><get var="tope"/></value></li>
+						<li>
+							<set var="top"><srai> TOP <get var="lista_tamanios_colores_sabores_vit_a_vit_b"/></srai></set>
+							<set var="lista_tamanios_colores_sabores_vit_a_vit_b"><srai>REMAIN <get var="lista_tamanios_colores_sabores_vit_a_vit_b"/></srai></set>
+							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_vit_a"/></srai></set>
+							<condition var="existe">
+								<li value="0">
+								</li>
+								<li> <!-- Existe-->
+									<condition name="posibles">
+										<li value="0">
+											<set name="posibles"><get var="top"/></set>
+										</li>
+										<li>
+											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+										</li>
+									</condition>
+								</li>
+							</condition>
+							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<loop/>
+						</li>
+					</condition>
+				</li>	
+			</condition>			
+			<set name="restantes"><srai>COUNT <get name="posibles"/></srai></set>
+		</think> 
+		<condition name="restantes">
+			<li value="1">
+				<srai>adivinar</srai>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>adivinar</pattern>
+	<template>
+		Ya lo se! Tu fruta es <srai>TOP <get name="posibles"/></srai>
+	</template>
+</category>
+
+
 <!-- Iniciar juego -->
 <category>
 	<pattern>primera_pregunta</pattern>
 	<template>
-		<random>
-			<li>
-				<srai>tam_peq</srai>
-			</li>
-			<li>
-				<srai>tam_mediano</srai>
-			</li>
-			<li>
-				<srai>tam_grande</srai>
-			</li>
-		</random>
 		<think>
-			<set name="peq_preguntado">NO</set>
-			<set name="mediano_preguntado">NO</set>
-			<set name="grande_preguntado">NO</set>
+			<set name="posibles"><readset>frutas</readset></set>
+			<set name="sabores"><readset>sabores</readset></set>
+			<set name="colores"><readset>colores</readset></set>
+			<set name="tamanios"><readset>tamanios</readset></set>
 		</think>
+		<srai>pregunta_tamanio</srai>
 	</template>
 </category>
 
@@ -43,92 +232,103 @@ encoding="UTF-8"?>
 <!-- Tamaños -->
 
 <category>
-	<pattern>tam_peq</pattern>
+	<pattern>pregunta_tamanio</pattern>
 	<template>
-		Es de tamanio pequenio?
 		<think>
-			<set name="tamanio">pequenio</set>
+			<set var="a_preguntar"><srai>TOP <get name="tamanios"/></srai></set>
+			<set name="tamanios"><srai>REMAIN <get name="tamanios"/></srai></set>
+			<set var="numero_restantes"><srai>COUNT <get name="tamanios"/></srai></set>
 		</think>
+		<condition var="numero_restantes">
+			<li value="0">
+				<think>
+					<set name="tamanio"><get var="a_preguntar"/></set>
+					<set name="tamanio_adivinado">SI</set>
+				</think>
+				<srai>pregunta_color</srai>
+			</li>
+			<li>
+				<srai>tamanio <get var="a_preguntar"/></srai>
+			</li>
+		</condition>
 	</template>
 </category>
-
+-
 <category>
-	<pattern>tam_mediano</pattern>
+	<pattern>tamanio *</pattern>
 	<template>
-		Es de tamanio mediano?
-			<think>
-			<set name="tamanio">mediano</set>
+		Es de tamanio <star index="1"/>?
+		<think>
+			<set name="tamanio"><star index="1"/></set>
 		</think>
 	</template>
-</category>
-
-
-<category>
-	<pattern>tam_grande</pattern>
-	<template>
-		Es de tamanio grande?</template>
-		<think>
-			<set name="tamanio">grande</set>
-		</think>
 </category>
 
 <!-- Colores -->
 
 <category>
-	<pattern>color_rojo</pattern>
+	<pattern>pregunta_color</pattern>
 	<template>
-		Es de color rojo?
 		<think>
-			<set name="color">rojo</set>
+			<set var="a_preguntar"><srai>TOP <get name="colores"/></srai></set>
+			<set name="colores"><srai>REMAIN <get name="colores"/></srai></set>
+			<set var="numero_restantes"><srai>COUNT <get name="colores"/></srai></set>
 		</think>
+		<condition var="numero_restantes">
+			<li value="0">
+				<think>
+					<set name="color"><get var="a_preguntar"/></set>
+					<set name="color_adivinado">SI</set>
+				</think>
+				<srai>pregunta_sabor</srai>
+			</li>
+			<li>
+				<srai>color <get var="a_preguntar"/></srai>
+			</li>
+		</condition>
 	</template>
 </category>
 
 <category>
-	<pattern>color_amarillo</pattern>
+	<pattern>color *</pattern>
 	<template>
-		Es de color amarillo?
+		Es de color <star index="1"/>?
 		<think>
-			<set name="color">amarillo</set>
+			<set name="color"><star index="1"/></set>
 		</think>
 	</template>
 </category>
 
+<!-- Sabores -->
 <category>
-	<pattern>color_verde</pattern>
+	<pattern>pregunta_sabor</pattern>
 	<template>
-		Es de color verde?
 		<think>
-			<set name="color">verde</set>
+			<set var="a_preguntar"><srai>TOP <get name="sabores"/></srai></set>
+			<set name="sabores"><srai>REMAIN <get name="sabores"/></srai></set>
+			<set var="numero_restantes"><srai>COUNT <get name="sabores"/></srai></set>
 		</think>
+		<condition var="numero_restantes">
+			<li value="0">
+				<think>
+					<set name="sabor"><get var="a_preguntar"/></set>
+					<set name="sabor_adivinado">SI</set>
+				</think>
+				<srai>pregunta_vitamina</srai>
+			</li>
+			<li>
+				<srai>sabor <get var="a_preguntar"/></srai>
+			</li>
+		</condition>
 	</template>
 </category>
 
 <category>
-	<pattern>color_naranja</pattern>
+	<pattern>sabor *</pattern>
 	<template>
-		Es de color naranja?
+		Tiene sabor <star index="1"/>?
 		<think>
-			<set name="color">naranja</set>
-		</think></template>
-</category>
-
-<category>
-	<pattern>color_marron</pattern>
-	<template>
-		Es de color marron?
-		<think>
-			<set name="color">marron</set>
-		</think>
-	</template>
-</category>
-
-<category>
-	<pattern>color_morado</pattern>
-	<template>
-		Es de color morado?
-	<think>
-			<set name="color">morado</set>
+			<set name="sabor"><star index="1"/></set>
 		</think>
 	</template>
 </category>
@@ -138,9 +338,9 @@ encoding="UTF-8"?>
 <category>
 	<pattern>vitamina_a</pattern>
 	<template>
-		Tiene vitamina A?
+		Tiene vitamina a?
 		<think>
-			<set name="vit_a">si</set>
+			<set name="vit_a">SI</set>
 		</think>
 	</template>
 </category>
@@ -148,9 +348,9 @@ encoding="UTF-8"?>
 <category>
 	<pattern>vitamina_b</pattern>
 	<template>
-		Tiene vitamina C?
+		Tiene vitamina b?
 		<think>
-			<set name="vit_b">si</set>
+			<set name="vit_b">SI</set>
 		</think>
 	</template>
 </category>
@@ -158,9 +358,9 @@ encoding="UTF-8"?>
 <category>
 	<pattern>vitamina_c</pattern>
 	<template>
-		Tiene vitamina C?
+		Tiene vitamina c?
 		<think>
-			<set name="vit_c">si</set>
+			<set name="vit_c">SI</set>
 		</think>
 	</template>
 </category>
@@ -173,155 +373,22 @@ encoding="UTF-8"?>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
 	<that>^ es de tamanio *</that>
 	<template>
-		Vale, es de tamanio <get name="tamanio"/>.
-	</template>
-</category>
-<!--
-<category>
-	<pattern>[no error fallaste]</pattern>
-	<that>^ es de tamanio *</that>
-	<template>
-		El valor de tamanio es <get name="tamanio"/>
 		<think>
-			<condition name="tamanio">
-				<li value="pequenio">
-					<set name="peq_preguntado">SI</set>
-				</li>
-				<li value="mediano">
-					<set name="mediano_preguntado">SI</set>
-				</li>
-				<li>
-					<set name="grande_preguntado">SI</set>
-				</li> 
-			</condition>
-
-			<set var="actual"><get name="tamanio"/></set>
-			<set name="tamanio">unknown</set>
-
-			<condition var="actual">
-				<li value="pequenio">
-					<condition name="mediano_preguntado">
-						<li value="SI">
-							<set name="tamanio">GRANDE</set>
-						</li>
-						<li>
-							<srai>tam_mediano</srai>
-						</li>
-					</condition>
-					<condition name="grande_preguntado">
-						<li value="SI">
-							<set name="tamanio">MEDIANO</set>
-						</li>
-						<li>
-							<srai>tam_grande</srai>
-						</li>
-						z
-					</condition>
-				</li>
-				<li value="mediano">
-					<condition name="peq_preguntado">
-						<li value="SI">
-							<set name="tamanio">GRANDE</set>
-						</li>
-						<li>
-							<srai>tam_peq</srai>
-						</li>
-					</condition>
-				</li>
-			</condition>
-			<condition name="grande_preguntado">
-				<li value="SI">
-					<set name="tamanio">PEQUENIO</set>
-				</li>
-				<li>
-					<srai>tam_grande</srai>
-				</li>
-			</condition>
-			<condition name="peq_preguntado">
-				<li value="SI">
-					<set name="tamanio">MEDIANO</set>
-				</li>
-				<li>
-					<srai>tam_peq</srai>
-				</li>
-			</condition>
-			<condition name="mediano_preguntado">
-				<li value="SI">
-					<set name="tamanio">PEQUENIO</set>
-				</li>
-				<li>
-					<srai>tam_mediano</srai>
-				</li>
-			</condition>
+			<set name="tamanio_adivinado">SI</set>
 		</think>
-		Vale, no es de tamanio <get var="actual"/>. 
-		Por ahora el tamanio es <get name="tamanio"/>
-	</template>
+		<srai>descartar_frutas</srai>
+		<srai>pregunta_color</srai>	</template>
 </category>
 
--->
 <category>
 	<pattern>[no error fallaste]</pattern>
 	<that>^ es de tamanio *</that>
 	<template>
-		El valor de tamanio es <get name="tamanio"/>
-<!--	<think>  -->
-			<condition name="tamanio">
-				<li value="pequenio">
-					peq_preg si
-					<set name="peq_preguntado">SI</set>
-				</li>
-				<li value="mediano">
-					med_preg=si
-					<set name="mediano_preguntado">SI</set>
-				</li>
-				<li>
-					grande_preg=si
-					<set name="grande_preguntado">SI</set>
-				</li> 
-			</condition>
-
-			<set var="actual"><get name="tamanio"/></set>
-			<set name="tamanio">unknown</set>
-
-			<condition var="actual">
-				<li value="PEQUENIO">
-					<condition name="mediano_preguntado">
-						<li value="SI">
-							mediano_preg=si
-							<set name="tamanio">GRANDE</set>
-						</li>
-						<li>
-							<srai>tam_mediano</srai>
-						</li>
-					</condition>
-				</li>
-				<li value="MEDIANO">
-					<condition name="peq_preguntado">
-						<li value="SI">
-							peq_preg=si
-							<set name="tamanio">GRANDE</set>
-						</li>
-						<li>
-							<srai>tam_peq</srai>
-						</li>
-					</condition>
-				</li>
-				<li value="GRANDE">
-					<condition name="mediano_preguntado">
-						<li value="SI">
-							mediano_preg=si
-							<set name="tamanio">PEQUENIO</set>
-						</li>
-						<li>
-							<srai>tam_mediano</srai>
-						</li>
-					</condition>
-				</li>
-			</condition>
-<!--		</think>   -->
-		Vale, no es de tamanio <get var="actual"/>. 
-		Por ahora el tamanio es <get name="tamanio"/>
+		<think>
+			<set name="tamanio">no_decidido</set>
+		</think>
+		<srai>descartar_frutas</srai>
+		<srai>pregunta_tamanio</srai>
 	</template>
 </category>
 
@@ -330,20 +397,74 @@ encoding="UTF-8"?>
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
-	<that>es de color *</that>
+	<that>^ es de color *</that>
 	<template>
-		Vale, es de color <get name="tamanio"/>.
+		<think>
+			<set name="color_adivinado">SI</set>
+		</think>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>pregunta_sabor</srai>
+			</li>
+		</condition>
 	</template>
 </category>
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>es de color *</that>
+	<that>^ es de color *</that>
 	<template>
-		Vale, no es de color <get name="color"/>.
 		<think>
-			<set name="color">preguntado</set>
+			<set name="color">no_decidido</set>
 		</think>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>pregunta_color</srai>
+			</li>
+		</condition>	</template>
+</category>
+
+<!-- Respuestas sabor -->
+
+<category>
+	<pattern>[si correcto afirmativo efectivamente]</pattern>
+	<that>^ tiene sabor *</that>
+	<template>
+		<think>
+			<set name="sabor_adivinado">SI</set>
+		</think>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>vitamina_a</srai>
+			</li>
+		</condition>	
+	</template>
+</category>
+
+<category>
+	<pattern>[no error fallaste]</pattern>
+	<that>^ tiene sabor *</that>
+	<template>
+		<think>
+			<set name="sabor">no_decidido</set>
+		</think>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>pregunta_sabor</srai>
+			</li>
+		</condition>	
 	</template>
 </category>
 
@@ -351,62 +472,100 @@ encoding="UTF-8"?>
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
-	<that>tiene vitamina a</that>
+	<that>^ tiene vitamina a</that>
 	<template>
-		Vale, tiene vitamina A.
+		<think>
+			<set name="vit_a">SI</set>
+		</think>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>vitamina_b</srai>
+			</li>
+		</condition>	
 	</template>
 </category>
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>tiene vitamina a</that>
+	<that>^ tiene vitamina a</that>
 	<template>
-		Vale, no tiene vitamina A.
 		<think>
-			<set name="vit_a">preguntado</set>
+			<set name="vit_a">NO</set>
 		</think>
-	</template>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>vitamina_b</srai>
+			</li>
+		</condition>	</template>
 </category>
 
 <!-- Respuestas vitamina b-->
 
+
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
-	<that>tiene vitamina b</that>
+	<that>^ tiene vitamina B</that>
 	<template>
-		Vale, tiene vitamina B.
+		<think>
+			<set name="vit_B">SI</set>
+		</think>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>vitamina_c</srai>
+			</li>
+		</condition>	
 	</template>
 </category>
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>tiene vitamina b</that>
+	<that>^ tiene vitamina b</that>
 	<template>
-		Vale, no tiene vitamina B.
 		<think>
-			<set name="vit_b">preguntado</set>
+			<set name="vit_b">NO</set>
 		</think>
+		<srai>descartar_frutas</srai>
+		<condition name="restantes">
+			<li value="1">
+			</li>
+			<li>
+				<srai>vitamina_c</srai>
+			</li>
+		</condition>	
 	</template>
 </category>
 
 <!-- Respuestas vitamina c-->
 
+
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
-	<that>tiene vitamina c</that>
+	<that>^ tiene vitamina c</that>
 	<template>
-		Vale, tiene vitamina C.
+		<think>
+			<set name="vit_c">SI</set>
+		</think>
+		<srai>adivinar</srai>
 	</template>
 </category>
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>tiene vitamina c</that>
+	<that>^ tiene vitamina c</that>
 	<template>
-		Vale, no tiene vitamina C.
 		<think>
-			<set name="vit_c">preguntado</set>
+			<set name="vit_c">NO</set>
 		</think>
+			<srai>adivinar</srai>
 	</template>
 </category>
 
