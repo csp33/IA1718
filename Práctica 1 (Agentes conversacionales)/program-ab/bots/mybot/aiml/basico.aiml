@@ -13,6 +13,13 @@ encoding="UTF-8"?>
 	<template>Genial!</template>
 </category>
 
+<category>
+	<pattern>^ adios ^</pattern>
+	<template>
+		Nos vemos!
+	</template>
+</category>
+
 <!-- ........................... -->
 
 <!-- Nombre -->
@@ -78,5 +85,25 @@ encoding="UTF-8"?>
 	<template><srai>COMO ME LLAMO</srai></template>
 </category>
 
+<category>
+	<pattern>^ preguntar ^</pattern>
+	<template>
+		Claro! Pregunta, que para eso me han programado ;)
+	</template>
+</category>
+
+<category>
+	<pattern>^ pregunta ^</pattern>
+	<template>
+		Espera que lo miro...     <srai><star index="2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ pregunta</pattern>
+	<template>
+		Dime
+	</template>
+</category>
 
 </aiml>

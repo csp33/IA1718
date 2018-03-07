@@ -7,10 +7,10 @@ pinia:si
 mango:si
 melocoton:no
 higo:si
-ciruela:so
+ciruela:si
 pera: si
 platano:si
 coco:si
-aguacate:sid
+aguacate:si
 nuez:no
 cereza:si

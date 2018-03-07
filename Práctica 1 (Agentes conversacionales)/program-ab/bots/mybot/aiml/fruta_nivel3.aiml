@@ -1,0 +1,194 @@
+<?xml version="1.0"
+encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- TEST: -->
+<category>
+	<pattern>test3</pattern>
+	<template>
+		Piensa en la MANZANA.<srai>primera_pregunta</srai>
+	</template>
+</category>
+
+<!-- Iniciar juego -->
+<category>
+	<pattern>primera_pregunta</pattern>
+	<template>
+		<random>
+			<li>
+				<srai>tam_peq</srai>
+			</li>
+			<li>
+				<srai>tam_mediano</srai>
+			</li>
+			<li>
+				<srai>tam_grande</srai>
+			</li>
+		</random>
+	</template>
+</category>
+
+<category>
+	<pattern> ^ [juego jugar iniciar] ^ nivel [3 tres] ^</pattern>
+	<template>
+		Vale! Piensa en una fruta. <srai>primera_pregunta</srai>
+	</template>
+</category>
+
+<!-- Tamaños -->
+
+<category>
+	<pattern>tam_peq</pattern>
+	<template>
+		Es de tamanio pequenio?
+		<think>
+			<set name="tamanio">pequenio</set>
+		</think>
+	</template>
+</category>
+
+<category>
+	<pattern>tam_mediano</pattern>
+	<template>
+		Es de tamanio mediano?
+			<think>
+			<set name="tamanio">mediano</set>
+		</think>
+	</template>
+</category>
+
+
+<category>
+	<pattern>tam_grande</pattern>
+	<template>
+		<think>
+			<set name="tamanio">grande</set>
+		</think>
+		Es de tamanio grande?</template>
+</category>
+
+<!-- Colores -->
+
+<category>
+	<pattern>color_rojo</pattern>
+	<template>Es de color rojo?</template>
+</category>
+
+<category>
+	<pattern>color_amarillo</pattern>
+	<template>Es de color amarillo?</template>
+</category>
+
+<category>
+	<pattern>color_verde</pattern>
+	<template>Es de color verde?</template>
+</category>
+
+<category>
+	<pattern>color_naranja</pattern>
+	<template>Es de color naranja?</template>
+</category>
+
+<category>
+	<pattern>color_marron</pattern>
+	<template>Es de color marron?</template>
+</category>
+
+<category>
+	<pattern>color_morado</pattern>
+	<template>Es de color morado?</template>
+</category>
+
+<!-- Vitaminas -->
+
+<category>
+	<pattern>vitamina_a</pattern>
+	<template>Tiene vitamina A?</template>
+</category>
+
+<category>
+	<pattern>vitamina_b</pattern>
+	<template>Tiene vitamina C?</template>
+</category>
+
+<category>
+	<pattern>vitamina_c</pattern>
+	<template>Tiene vitamina C?</template>
+</category>
+
+<!--.....................................................-->
+
+<!-- Respuestas tamaño -->
+
+<category>
+	<pattern>[si correcto afirmativo efectivamente]</pattern>
+	<that>^ es de tamanio *</that>
+	<template>
+		Vale, es de tamanio <get name="tamanio"/>.
+	</template>
+</category>
+
+<category>
+	<pattern>[no error fallaste]</pattern>
+	<that>^ es de tamanio *</that>
+	<template>
+		Vale, no es de tamanio <get name="tamanio"/>. 
+		<think>
+			<set name="tamanio">unknown</set>
+		</think>
+	</template>
+</category>
+
+<!-- Respuestas color -->
+
+<category>
+	<pattern>[si correcto afirmativo efectivamente]</pattern>
+	<that>es de color *</that>
+	<template>
+		<think>
+			<set name="color"><star index="1"/></set>
+		</think>
+		Vale, es de color <star index="1"/>.
+	</template>
+</category>
+
+<category>
+	<pattern>[no error fallaste]</pattern>
+	<that>es de color *</that>
+	<template>
+		<think>
+			<set name="color"><star index="1"/></set>
+		</think>
+		Vale, no es de color <star index="1"/>.
+	</template>
+</category>
+
+<!-- Respuestas vitamina a-->
+
+<category>
+	<pattern>[si correcto afirmativo efectivamente]</pattern>
+	<that>tiene vitamina a</that>
+	<template>
+		<think>
+			<set name="color"><star index="1"/></set>
+		</think>
+		Vale, tiene vitamina <star index="1"/>.
+	</template>
+</category>
+
+<category>
+	<pattern>[no error fallaste]</pattern>
+	<that>tiene vitamina *</that>
+	<template>
+		<think>
+			<set name="color"><star index="1"/></set>
+		</think>
+		Vale, no tiene vitamina <star index="1"/>.
+	</template>
+</category>
+
+
+
+
+
+</aiml>

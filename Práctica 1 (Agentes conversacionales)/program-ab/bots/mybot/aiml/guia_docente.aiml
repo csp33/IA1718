@@ -61,9 +61,15 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* no [vengo voy asist+ ir] a [clase teori+ practica+] ^</pattern>
+	<pattern>* [vengo voy asist+ ir] a [clase teori+ practica+] ^</pattern>
 	<template><srai>NO ASISTIR A CLASE</srai></template>
 </category>
+
+<category>
+	<pattern>* obligatorio ^ [ir asistir] a [clase teori+ practica+] ^</pattern>
+	<template><srai>NO ASISTIR A CLASE</srai></template>
+</category>
+
 
 <!--- Quinta pregunta: nota minima para aprobar -->
 
@@ -138,7 +144,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* [val+ cuenta cont+ representa+ puntua+] * practica ^</pattern>
+	<pattern>* [valor puntuacion peso] * cada practica ^</pattern>
 	<template><srai>CADA PRACTICA FINAL</srai></template>
 </category>
 
@@ -234,7 +240,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* [cuenta val+ representa+ pondera+] ^ primer+ [examen parcial prueba]^ teori+ ^</pattern>
+	<pattern>* [cuenta val+ representa+ pondera+] ^ primer+ [examen parcial prueba] ^ teori+ ^</pattern>
 	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
 </category>
 
@@ -256,7 +262,7 @@ encoding="UTF-8"?>
 <!-- Pregunta 15: copiar -->
 
 <category>
-	<pattern>* copi+ ^</pattern>
+	<pattern>* copio ^</pattern>
 	<template><srai>PRACTICAS GRUPO</srai></template>
 </category>
 
@@ -275,12 +281,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* me copi+ ^</pattern>
+	<pattern>* me copia+ ^</pattern>
 	<template><srai>ME DEJO COPIAR</srai></template>
 </category>
 
 <category>
-	<pattern>* copi+ de mi ^</pattern>
+	<pattern>* copia+ de mi ^</pattern>
 	<template><srai>ME DEJO COPIAR</srai></template>
 </category>
 
@@ -313,7 +319,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* [vale+ cuenta contar pondera+ suma+ representa+] * parte ^</pattern>
+	<pattern>* [vale+ cuenta contar pondera+ suma+ representa+] * (parte) [practica+ teori+] ^ [practica+ teori+] ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
@@ -385,6 +391,11 @@ encoding="UTF-8"?>
 	<template><srai>NO SUPERAR NIVEL 3</srai></template>
 </category>
 
+<category>
+	<pattern>* [puntuacion nota ] ^ practica ^ [1 uno] ^ defend+ * [tres 3] ^ no * [supero consigo logro] ^</pattern>
+	<template><srai>NO SUPERAR NIVEL 3</srai></template>
+</category>
+
 <!-- Pregunta 23: entregar practica 1 sin hacer L0-->
 
 <category>
@@ -400,12 +411,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* practica [uno 1] * sin hacer * nivel [0 cero] ^</pattern>
+	<pattern>* practica [uno 1] ^ sin hacer * nivel [0 cero] ^</pattern>
 	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
 </category>
 
 <category>
-	<pattern>* practica [uno 1] * si no hago * nivel [0 cero] ^</pattern>
+	<pattern>* practica [uno 1] ^ si no hago * nivel [0 cero] ^</pattern>
 	<template><srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai></template>
 </category>
 
@@ -438,12 +449,12 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>^ cuant+ * teori+ ^</pattern>
+	<pattern>^ cuanta+ * teori+ ^</pattern>
 	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
 </category>
 
 <category>
-	<pattern>^ teori+ * cuant+ ^</pattern>
+	<pattern>^ teori+ * cuanta+ ^</pattern>
 	<template><srai>CUANTAS PRUEBAS TEORICAS</srai></template>
 </category>
 
@@ -546,7 +557,7 @@ encoding="UTF-8"?>
 	<template><srai>PROGRAMO BIEN EN <star index="3"/></srai></template>
 </category>
 
-<!-- Pregunta 30: agente c. defiende practica -->
+<!-- Pregunta 30: agente conversacional defiende practica -->
 
 <category>
 	<pattern>AGENTE DEFIENDE PRACTICA</pattern>
@@ -556,7 +567,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* agente+ conversacional+ * defen+ * practica+ ^</pattern>
+	<pattern>^ [gustan encanta+ amo idolatro adoro] * agente+ conversacional+ * defen+ *</pattern>
 	<template><srai>AGENTE DEFIENDE PRACTICA</srai></template>
 </category>
 

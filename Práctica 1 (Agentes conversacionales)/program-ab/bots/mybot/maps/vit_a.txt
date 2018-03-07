@@ -9,8 +9,8 @@ melocoton:si
 higo:no
 ciruela:si
 pera:no
-platano:
+platano:no
 coco:no
-aguacate:
+aguacate:no
 nuez:no
 cereza:si
