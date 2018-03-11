@@ -203,10 +203,105 @@ encoding="UTF-8"?>
 <category>
 	<pattern>adivinar</pattern>
 	<template>
-		Ya lo se! Tu fruta es <srai>TOP <get name="posibles"/></srai>
+		Ya lo se tu fruta es <srai>TOP <get name="posibles"/></srai>
 	</template>
 </category>
 
+<category>
+	<pattern>^ [no error fallaste] ^ es *</pattern>
+	<that>Ya lo se tu fruta es *</that>
+	<template>
+		<think>
+			<set var="lista_frutas"><readset>frutas</readset></set>
+			<set var="existe"><srai>FINDITEM <star index="3"/> IN <get var="lista_frutas"/></srai></set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					Yo no conozco esa fruta!! 
+				</li>
+				<li>
+					<srai>detectar_trampa <star index="3"/></srai>
+				</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>detectar_trampa *</pattern>
+	<template>
+		<think>
+			<set var="fruta_trampa"><star index="1"/></set>
+			<set var="color_trampa"><map name="color_varios"><get var="fruta_trampa"/></map></set>
+			<set var="tamanio_trampa"><map name="tamanio"><get var="fruta_trampa"/></map></set>
+			<set var="color_trampa"><map name="color"><get var="fruta_trampa"/></map></set>
+			<set var="vit_a_trampa"><map name="vit_a"><get var="fruta_trampa"/></map></set>
+			<set var="vit_b_trampa"><map name="vit_b"><get var="fruta_trampa"/></map></set>
+			<set var="vit_c_trampa"><map name="vit_c"><get var="fruta_trampa"/></map></set>
+		</think>
+		fruta_trampa vale <get var="fruta_trampa"/>
+		color_trampa vale <get var="color_trampa"/>
+		<condition name="color">
+			<li><value><get var="color_trampa"/></value></li>
+			<li>
+				Me mentiste! Dijiste que era de color <get var="color"/> y es de color <get name="color_trampa"/>
+			</li>
+		</condition>
+		<condition name="tamanio">
+			<li><value><get var="tamanio_trampa"/></value></li>
+			<li>
+				Me mentiste! Dijiste que era de tamanio <get var="tamanio"/> y es de tamanio <get name="tamanio_trampa"/>.
+			</li>
+		</condition>
+		<condition name="sabor">
+			<li><value><get var="sabor_trampa"/></value></li>
+			<li>
+				Me mentiste! Dijiste que era de sabor <get var="sabor"/> y es de sabor <get name="sabor_trampa"/>.
+			</li>
+		</condition>
+		<condition name="vit_a">
+			<li><value><get var="vit_a_trampa"/></value></li>
+			<li>
+				Me mentiste! Dijiste que <get name="vit_a"/> tenia Vitamina A pero en realidad <get var="vit_a_trampa"/> tiene.
+			</li>
+		</condition>
+		<condition name="vit_b">
+			<li><value><get var="vit_b_trampa"/></value></li>
+			<li>
+				Me mentiste! Dijiste que <get name="vit_b"/> tenia Vitamina B pero en realidad <get var="vit_b_trampa"/> tiene.
+			</li>
+		</condition>
+		<condition name="vit_c">
+			<li><value><get var="vit_c_trampa"/></value></li>
+			<li>
+				Me mentiste! Dijiste que <get name="vit_c"/> tenia Vitamina B pero en realidad <get var="vit_c_trampa"/> tiene.
+			</li>
+		</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>^ [si correcto acertaste efectivamente] ^</pattern>
+	<that>ya lo se ^</that>
+	<template>
+		Quieres jugar otra vez?
+	</template>
+</category>
+
+<category>
+	<pattern>^ [si vale venga vamos] ^</pattern>
+	<that>quieres jugar ^</that>
+	<template>
+		<srai>iniciar nivel 3</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ [no paso] ^</pattern>
+	<that>quieres jugar ^</that>
+	<template>
+		Vale ;)
+	</template>
+</category>	
 
 <!-- Iniciar juego -->
 <category>
