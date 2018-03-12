@@ -10,6 +10,49 @@ encoding="UTF-8"?>
 	</template>
 </category>
 
+<!-- Iniciar juego -->
+
+<category>
+	<pattern>^ iniciar nivel [3 tres] ^</pattern>
+	<template>
+		<srai>primera_pregunta</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ adivina ^ fruta ^ [pienso pensando] ^</pattern>
+	<template>
+		<srai>primera_pregunta</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ adivina mi fruta ^</pattern>
+	<template>
+		<srai>primera_pregunta</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> ^ [juego jugar iniciar] ^ nivel [3 tres] ^</pattern>
+	<template>
+		Vale! Piensa en una fruta. <srai>primera_pregunta</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>primera_pregunta</pattern>
+	<template>
+		<think>
+			<set name="posibles"><readset>frutas</readset></set>
+			<set name="sabores"><readset>sabores</readset></set>
+			<set name="colores"><readset>colores</readset></set>
+			<set name="tamanios"><readset>tamanios</readset></set>
+		</think>
+		<srai>pregunta_tamanio</srai>
+	</template>
+</category>
+
 <!-- Descartar frutas -->
 <category>
 	<pattern>descartar_frutas</pattern>
@@ -195,6 +238,7 @@ encoding="UTF-8"?>
 	</template>
 </category>
 
+<!-- Adivinar la fruta -->
 <category>
 	<pattern>adivinar</pattern>
 	<template>
@@ -202,6 +246,7 @@ encoding="UTF-8"?>
 	</template>
 </category>
 
+<!-- Aprender nueva fruta -->
 <category>
 	<pattern>^ [no error fallaste] ^ es *</pattern>
 	<that>Ya lo se tu fruta es *</that>
@@ -230,6 +275,7 @@ No la conozco <srai>aprender_fruta</srai>
 puedes hablarme sobre ella?
 	</template>
 </category>
+<!-- Entrada de datos de la nueva fruta -->
 
 <category>
 	<pattern>^ [si correcto vale venga vamos claro supuesto ] ^</pattern>
@@ -241,9 +287,17 @@ Cual es su color o colores?
 
 <category>
 	<pattern>^ [no negativo paso] ^</pattern>
-	<that>^ hablame sobre ella</that>
+	<that>^ hablarme sobre ella ^</that>
 	<template>
-		Las maquinas tambien tenemos sentimientos sabes?
+		Las maquinas tambien tenemos sentimientos sabes? En fin, jugamos otra?
+	</template>
+</category>
+
+<category>
+	<pattern>^ [si correcto vale venga vamos claro supuesto ] ^</pattern>
+	<that>* jugamos otra</that>
+	<template>
+		<srai>iniciar nivel 3</srai>
 	</template>
 </category>
 
@@ -370,7 +424,6 @@ Perfecto! Me la guardo para la proxima vez que juguemos;)
 	</template>
 </category>
 
-
 <category>
 	<pattern>aniadir_nueva_a_sets</pattern>
 	<template>
@@ -419,6 +472,8 @@ Perfecto! Me la guardo para la proxima vez que juguemos;)
 		</think>
 	</template>
 </category>
+
+<!-- Detección de trampas -->
 
 <category>
 	<pattern>detectar_trampa *</pattern>
@@ -471,6 +526,8 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	</template>
 </category>
 
+<!-- Fin del juego. Jugar otra vez ? -->
+
 <category>
 	<pattern>^ [si correcto acertaste efectivamente] ^</pattern>
 	<that>ya lo se ^</that>
@@ -495,26 +552,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	</template>
 </category>	
 
-<!-- Iniciar juego -->
-<category>
-	<pattern>primera_pregunta</pattern>
-	<template>
-		<think>
-			<set name="posibles"><readset>frutas</readset></set>
-			<set name="sabores"><readset>sabores</readset></set>
-			<set name="colores"><readset>colores</readset></set>
-			<set name="tamanios"><readset>tamanios</readset></set>
-		</think>
-		<srai>pregunta_tamanio</srai>
-	</template>
-</category>
-
-<category>
-	<pattern> ^ [juego jugar iniciar] ^ nivel [3 tres] ^</pattern>
-	<template>
-		Vale! Piensa en una fruta. <srai>primera_pregunta</srai>
-	</template>
-</category>
+<!--..........................................Preguntas..........................................-->
 
 <!-- Tamaños -->
 
@@ -587,6 +625,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 </category>
 
 <!-- Sabores -->
+
 <category>
 	<pattern>pregunta_sabor</pattern>
 	<template>
@@ -652,9 +691,9 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	</template>
 </category>
 
-<!--.....................................................-->
+<!--..........................................Respuestas..........................................-->
 
-<!-- Respuestas tamaño -->
+<!-- Tamaño -->
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
@@ -680,7 +719,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 </category>
 
 
-<!-- Respuestas color -->
+<!-- Color -->
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
@@ -717,7 +756,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 		</condition>	</template>
 </category>
 
-<!-- Respuestas sabor -->
+<!-- Sabor -->
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
@@ -755,7 +794,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	</template>
 </category>
 
-<!-- Respuestas vitamina a-->
+<!-- Vitamina A-->
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
@@ -792,7 +831,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 		</condition>	</template>
 </category>
 
-<!-- Respuestas vitamina b-->
+<!-- Vitamina B-->
 
 
 <category>
@@ -831,8 +870,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	</template>
 </category>
 
-<!-- Respuestas vitamina c-->
-
+<!-- Vitamina C-->
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>

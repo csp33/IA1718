@@ -1,4 +1,3 @@
 mediano
 grande
 pequenio
-rojo

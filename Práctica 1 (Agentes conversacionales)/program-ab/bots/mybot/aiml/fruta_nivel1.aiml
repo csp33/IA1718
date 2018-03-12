@@ -115,6 +115,12 @@ encoding="UTF-8"?>
 	</template>
 </category>
 
+<category>
+	<pattern>^ piensa ^ fruta ^</pattern>
+	<template>
+		<srai>iniciar nivel 1</srai>
+	</template>
+</category>
 
 
 <!-- Color -->
@@ -295,15 +301,29 @@ encoding="UTF-8"?>
 				<srai>reset</srai>
 			</li>
 			<li>
-				Perdiste! Pensaba en <get name="pensada"/>
-				<srai>reset</srai>
+				Perdiste! Pensaba en <get name="pensada"/>. Jugamos otra ?
 			</li>
 		</condition>
 	</template>
 </category>
 
+<!-- Otra partida -->
+<category>
+	<pattern>^ [si correcto vale venga vamos claro supuesto ] ^</pattern>
+	<that>^ otra ^</that>
+	<template>
+		<srai>iniciar nivel 1</srai>
+	</template>
+</category>
 
-
+<category>
+	<pattern>^ [no negativo paso] ^</pattern>
+	<that>^ otra ^</that>
+	<template>
+		Vale!
+		<srai>reset</srai>
+	</template>
+</category>
 
 
 </aiml>
