@@ -92,7 +92,7 @@ encoding="UTF-8"?>
 
 
 <category>
-	<pattern>Dime las frutas que conoces</pattern>
+	<pattern>* frutas ^ conoces ^</pattern>
 	<template>
 		<think>
 			<set var="lista_frutas"><readset>frutas</readset></set>

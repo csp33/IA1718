@@ -23,7 +23,6 @@ encoding="UTF-8"?>
 			<condition name="color_adivinado">
 				<li value="SI">
 					<set var="lista_tamanios"><get name="posibles"/></set>
-					<set var="tam_copia"><get name="posibles"/></set>
 					<set var="lista_colores"><map name="segun_color"><get name="color"/></map></set>
 					<set name="posibles">0</set>
 					<set var="contador">0</set>
@@ -38,7 +37,7 @@ encoding="UTF-8"?>
 								<li value="0">
 								</li>
 								<li> <!-- Existe-->
-							<condition name="posibles">
+									<condition name="posibles">
 										<li value="0">
 											<set name="posibles"><get var="top"/></set>
 										</li>
@@ -51,13 +50,12 @@ encoding="UTF-8"?>
 							<set var="contador"><map name="successor"><get var="contador"/></map></set>
 							<loop/>
 						</li>
-						</condition>
+					</condition>
 				</li>
 			</condition>
 			<condition name="sabor_adivinado">
 				<li value="SI">
 					<set var="lista_tamanios_colores"><get name="posibles"/></set>
-					<set var="lista_tamanios_colores_copia"><get name="posibles"/></set>
 					<set var="lista_sabores"><map name="segun_sabor"><get name="sabor"/></map></set>
 					<set name="posibles">0</set>
 					<set var="contador">0</set>
@@ -91,7 +89,6 @@ encoding="UTF-8"?>
 			<condition name="vit_a">
 				<li value="SI">
 					<set var="lista_tamanios_colores_sabores"><get name="posibles"/></set>
-					<set var="lista_tamanios_colores_sabores_copia"><get name="posibles"/></set>
 					<set var="lista_vit_a"><readset>vitamina_a</readset></set>
 					<set name="posibles">0</set>
 					<set var="contador">0</set>
@@ -125,7 +122,6 @@ encoding="UTF-8"?>
 			<condition name="vit_b">
 				<li value="SI">
 					<set var="lista_tamanios_colores_sabores_vit_a"><get name="posibles"/></set>
-					<set var="lista_tamanios_colores_sabores_vit_a_copia"><get name="posibles"/></set>
 					<set var="lista_vit_a"><readset>vitamina_b</readset></set>
 					<set name="posibles">0</set>
 					<set var="contador">0</set>
@@ -159,7 +155,6 @@ encoding="UTF-8"?>
 			<condition name="vit_c">
 				<li value="SI">
 					<set var="lista_tamanios_colores_sabores_vit_a_vit_b"><get name="posibles"/></set>
-					<set var="lista_tamanios_colores_sabores_vit_a_vit_b_copia"><get name="posibles"/></set>
 					<set var="lista_vit_a"><readset>vitamina_c</readset></set>
 					<set name="posibles">0</set>
 					<set var="contador">0</set>
@@ -203,7 +198,7 @@ encoding="UTF-8"?>
 <category>
 	<pattern>adivinar</pattern>
 	<template>
-		Ya lo se tu fruta es <srai>TOP <get name="posibles"/></srai>
+		Ya lo se tu fruta es <get name="posibles"/>
 	</template>
 </category>
 
@@ -217,7 +212,10 @@ encoding="UTF-8"?>
 			</think>
 			<condition var="existe">
 				<li value="0">
-					Yo no conozco esa fruta!! 
+					<think>
+						<set name="fruta_nueva"><star index="3"/></set>
+					</think>
+No la conozco <srai>aprender_fruta</srai>
 				</li>
 				<li>
 					<srai>detectar_trampa <star index="3"/></srai>
@@ -227,53 +225,247 @@ encoding="UTF-8"?>
 </category>
 
 <category>
+	<pattern>aprender_fruta</pattern>
+	<template>
+puedes hablarme sobre ella?
+	</template>
+</category>
+
+<category>
+	<pattern>^ [si correcto vale venga vamos claro supuesto ] ^</pattern>
+	<that>^ hablarme sobre ella ^</that>
+	<template>
+Cual es su color o colores?
+	</template>
+</category>
+
+<category>
+	<pattern>^ [no negativo paso] ^</pattern>
+	<that>^ hablame sobre ella</that>
+	<template>
+		Las maquinas tambien tenemos sentimientos sabes?
+	</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<that>Cual es su color o colores ^</that>
+	<template>
+		<think>
+			<set name="color_nueva"><star index="1"/></set>
+		</think>
+Vale y su tamanio?
+	</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<that>Vale y su tamanio ^</that>
+	<template>
+		<think>
+			<set name="tamanio_nueva"><star index="1"/></set>
+		</think>
+y que me dices de su sabor?
+</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<that>y que me dices de su sabor ^</that>
+	<template>
+		<think>
+			<set name="sabor_nueva"><star index="1"/></set>
+		</think>
+Es rica en vitamina A?
+</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<that>Es rica en vitamina A ^</that>
+	<template>
+		<think>
+			<set name="vit_a_nueva"><star index="1"/></set>
+		</think>
+Vale y en vitamina B?
+</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<that>Vale y en vitamina B ^</that>
+	<template>
+		<think>
+			<set name="vit_b_nueva"><star index="1"/></set>
+		</think>
+por ultimo que hay sobre la vitamina C?
+</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<that>por ultimo que hay sobre la vitamina C ^</that>
+	<template>
+		<think>
+			<set name="vit_c_nueva"><star index="1"/></set>
+			<!-- Ahora guardamos todos los datos en los sets -->
+			<srai>aniadir_nueva_a_sets</srai>
+			<!-- Y en los maps -->
+			<srai>aniadir_nueva_a_maps</srai>
+		</think>
+Perfecto! Me la guardo para la proxima vez que juguemos;)
+</template>
+</category>
+
+<category>
+	<pattern>aniadir_nueva_a_maps</pattern>
+	<template>
+		<think>
+			<addtomap>
+				<name>color_varios</name>
+				<key><get name="fruta_nueva"/></key>
+				<value><get name="color_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>sabor</name>
+				<key><get name="fruta_nueva"/></key>
+				<value><get name="sabor_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>tamanio</name>
+				<key><get name="fruta_nueva"/></key>
+				<value><get name="tamanio_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>segun_color</name>
+				<key><get name="color_nueva"/></key>
+				<value><get name="fruta_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>segun_sabor</name>
+				<key><get name="sabor_nueva"/></key>
+				<value><get name="fruta_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>segun_tamanio</name>
+				<key><get name="tamanio_nueva"/></key>
+				<value><get name="fruta_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>vit_a</name>
+				<key><get name="fruta_nueva"/></key>
+				<value><get name="vit_a_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>vit_b</name>
+				<key><get name="fruta_nueva"/></key>
+				<value><get name="vit_b_nueva"/></value>
+			</addtomap>
+			<addtomap>
+				<name>vit_c</name>
+				<key><get name="fruta_nueva"/></key>
+				<value><get name="vit_c_nueva"/></value>
+			</addtomap>
+		</think>
+	</template>
+</category>
+
+
+<category>
+	<pattern>aniadir_nueva_a_sets</pattern>
+	<template>
+		<think>
+			<addtoset>
+				<name>frutas</name>
+				<key><get name="fruta_nueva"/></key>
+			</addtoset>
+			<!-- Como es un set, si el valor no existiera no se añadiría. Por tanto, podemos aprender nuevos colores, sabores etc -->
+			<addtoset>
+				<name>colores</name>
+				<key><get name="color_nueva"/></key>
+			</addtoset>
+			<addtoset>
+				<name>sabores</name>
+				<key><get name="sabor_nueva"/></key>
+			</addtoset>
+			<addtoset>
+				<name>tamanios</name>
+				<key><get name="tamanio_nueva"/></key>
+			</addtoset>
+			<condition name="vit_a_nueva">
+				<li value="si">
+					<addtoset>
+						<name>vitamina_a</name>
+						<key><get name="fruta_nueva"/></key>
+				</addtoset>
+				</li>
+			</condition>
+			<condition name="vit_b_nueva">
+				<li value="si">
+					<addtoset>
+						<name>vitamina_b</name>
+						<key><get name="fruta_nueva"/></key>
+					</addtoset>
+				</li>
+			</condition>
+			<condition name="vit_c_nueva">
+				<li value="si">
+					<addtoset>
+						<name>vitamina_c</name>
+						<key><get name="fruta_nueva"/></key>
+					</addtoset>
+				</li>
+			</condition>
+		</think>
+	</template>
+</category>
+
+<category>
 	<pattern>detectar_trampa *</pattern>
 	<template>
 		<think>
 			<set var="fruta_trampa"><star index="1"/></set>
 			<set var="color_trampa"><map name="color_varios"><get var="fruta_trampa"/></map></set>
+			<set var="sabor_trampa"><map name="sabor"><get var="fruta_trampa"/></map></set>
 			<set var="tamanio_trampa"><map name="tamanio"><get var="fruta_trampa"/></map></set>
-			<set var="color_trampa"><map name="color"><get var="fruta_trampa"/></map></set>
 			<set var="vit_a_trampa"><map name="vit_a"><get var="fruta_trampa"/></map></set>
 			<set var="vit_b_trampa"><map name="vit_b"><get var="fruta_trampa"/></map></set>
 			<set var="vit_c_trampa"><map name="vit_c"><get var="fruta_trampa"/></map></set>
 		</think>
-		fruta_trampa vale <get var="fruta_trampa"/>
-		color_trampa vale <get var="color_trampa"/>
 		<condition name="color">
 			<li><value><get var="color_trampa"/></value></li>
 			<li>
-				Me mentiste! Dijiste que era de color <get var="color"/> y es de color <get name="color_trampa"/>
+Me mentiste! Dijiste que tu fruta era de color <get name="color"/> y <get var="fruta_trampa"/> es de color <get var="color_trampa"/>
 			</li>
 		</condition>
 		<condition name="tamanio">
 			<li><value><get var="tamanio_trampa"/></value></li>
 			<li>
-				Me mentiste! Dijiste que era de tamanio <get var="tamanio"/> y es de tamanio <get name="tamanio_trampa"/>.
+Me mentiste! Dijiste que tu fruta era de tamanio <get name="tamanio"/> y <get var="fruta_trampa"/> es de tamanio <get var="tamanio_trampa"/>.
 			</li>
 		</condition>
 		<condition name="sabor">
 			<li><value><get var="sabor_trampa"/></value></li>
 			<li>
-				Me mentiste! Dijiste que era de sabor <get var="sabor"/> y es de sabor <get name="sabor_trampa"/>.
+Me mentiste! Dijiste que tu fruta era de sabor <get name="sabor"/> y <get var="fruta_trampa"/> es de sabor <get var="sabor_trampa"/>.
 			</li>
 		</condition>
 		<condition name="vit_a">
 			<li><value><get var="vit_a_trampa"/></value></li>
 			<li>
-				Me mentiste! Dijiste que <get name="vit_a"/> tenia Vitamina A pero en realidad <get var="vit_a_trampa"/> tiene.
+Me mentiste! Dijiste que tu fruta <get name="vit_a"/> tenia Vitamina A pero <get var="fruta_trampa"/> en realidad <get var="vit_a_trampa"/> tiene.
 			</li>
 		</condition>
 		<condition name="vit_b">
 			<li><value><get var="vit_b_trampa"/></value></li>
 			<li>
-				Me mentiste! Dijiste que <get name="vit_b"/> tenia Vitamina B pero en realidad <get var="vit_b_trampa"/> tiene.
+Me mentiste! Dijiste que tu fruta <get name="vit_b"/> tenia Vitamina B pero <get var="fruta_trampa"/> en realidad <get var="vit_b_trampa"/> tiene.
 			</li>
 		</condition>
 		<condition name="vit_c">
 			<li><value><get var="vit_c_trampa"/></value></li>
 			<li>
-				Me mentiste! Dijiste que <get name="vit_c"/> tenia Vitamina B pero en realidad <get var="vit_c_trampa"/> tiene.
+Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get var="fruta_trampa"/> en realidad <get var="vit_c_trampa"/> tiene.
 			</li>
 		</condition>
 	</template>
@@ -567,7 +759,7 @@ encoding="UTF-8"?>
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
-	<that>^ tiene vitamina a</that>
+	<that>^ tiene vitamina a ^</that>
 	<template>
 		<think>
 			<set name="vit_a">SI</set>
