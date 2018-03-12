@@ -1,0 +1,86 @@
+0,APROBAR PRACTICAS,*,*,Tienes que llegar como mínimo a un 3 sobre 10. Esto lo puedes conseguir mayormente haciendo las practicas#Comma aprobando el examen final y participando en clase. Pero sobre todo NI SE TE OCURRA COPIARTE!!,guia_docente.aiml
+0,* [APROBAR APRUEBO SUPER+] ^ PRACTICA+ ^,*,*,<srai>APROBAR PRACTICAS</srai>,guia_docente.aiml
+0,* NO SUSPENDER ^ PRACTICA+ ^,*,*,<srai>APROBAR PRACTICAS</srai>,guia_docente.aiml
+0,EVALUACION ORDINARIA,*,*,En cuanto a la parte teorica#Comma se realizaran examenes durante el curso. En cuanto a las practicas#Comma se valora la asistencia y participacion (10%) ademas de tres practicas y un examen de problemas que se hara en la fecha fijada para el examen final. La nota final de practicas sera la media de esas 4 pruebas (90%).,guia_docente.aiml
+0,* [EVALUA+ PUNTUA+ CALIFICA+] * [ORDINARIA JUNIO] ^,*,*,<srai>EVALUACION ORDINARIA</srai>,guia_docente.aiml
+0,EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA,*,*,El examen de la convocatoria extraordinaria consta de preguntas tanto teoricas como practicas.,guia_docente.aiml
+0,* EXAMEN * PRACTICA+ * [EXTRAORDINARIA JULIO] ^,*,*,<srai>EXAMEN PRACTICAS CONVOCATORIA EXTRAORDINARIA</srai>,guia_docente.aiml
+0,NO ASISTIR A CLASE,*,*,En cuanto a teoria#Comma la asistencia no es obligatoria#Comma por lo que tu nota no se vera influida por ello. En cuanto a las practicas#Comma la asistencia y la participacion representa un 10% de la nota final#Comma por lo que yo que tu intentaria asistir a clase.,guia_docente.aiml
+0,* [VENGO VOY ASIST+ IR] A [CLASE TEORI+ PRACTICA+] ^,*,*,<srai>NO ASISTIR A CLASE</srai>,guia_docente.aiml
+0,* OBLIGATORIO ^ [IR ASISTIR] A [CLASE TEORI+ PRACTICA+] ^,*,*,<srai>NO ASISTIR A CLASE</srai>,guia_docente.aiml
+0,NOTA MINIMA APROBAR,*,*,Para aprobar deberas sacar al menos un 3 sobre 10 en cada parte (teoria y practicas).,guia_docente.aiml
+0,* [SACAR CONSEGUIR TENER OBTENER] ^ [NOTA CALIFICACION] MINIMA * APROBA+ ^,*,*,<srai>NOTA MINIMA APROBAR</srai>,guia_docente.aiml
+0,* PEOR NOTA QUE PUEDO SACAR PARA APROBAR ^,*,*,<srai>NOTA MINIMA APROBAR</srai>,guia_docente.aiml
+0,PRACTICAS OBLIGATORIAS,*,*,Con la participacion en clase (10%) y el examen final de problemas (25%) podrias llegar a la nota minima (3/10). De todas formas#Comma es jugarsela bastante. Si despues de todo AIML tampoco esta tan mal!,guia_docente.aiml
+0,* PRACTICA+ ^ OBLIGATORIA+ ^,*,*,<srai>PRACTICAS OBLIGATORIAS</srai>,guia_docente.aiml
+0,* OBLIGA+ * PRACTICA+ ^,*,*,<srai>PRACTICAS OBLIGATORIAS</srai>,guia_docente.aiml
+0,* PRACTICA+ * APROBAR ^,*,*,<srai>PRACTICAS OBLIGATORIAS</srai>,guia_docente.aiml
+0,* NO HAGO ^ PRACTICA+ ^,*,*,<srai>PRACTICAS OBLIGATORIAS</srai>,guia_docente.aiml
+0,* NO QUIERO HACER ^ PRACTICA+ ^,*,*,<srai>PRACTICAS OBLIGATORIAS</srai>,guia_docente.aiml
+0,* DEBO ^ PRACTICA+ ^,*,*,<srai>PRACTICAS OBLIGATORIAS</srai>,guia_docente.aiml
+0,CADA PRACTICA FINAL,*,*,Cada practica cuenta un 12.5% de la nota final.,guia_docente.aiml
+0,^ CUANTO * CADA PRACTICA ^,*,*,<srai>CADA PRACTICA FINAL</srai>,guia_docente.aiml
+0,* [VALOR PUNTUACION PESO] * CADA PRACTICA ^,*,*,<srai>CADA PRACTICA FINAL</srai>,guia_docente.aiml
+0,PARTICIPACION FINAL,*,*,La participacion vale un 5% de la nota final.,guia_docente.aiml
+0,* [CUENTA CONTAR VALE+ PUNTUA+ REPRESENTA+] * PARTICIPACION ^,*,*,<srai>PARTICIPACION FINAL</srai>,guia_docente.aiml
+0,PUNTOS PARTICIPACION,*,*,El punto de participacion los puedes conseguir asistiendo a clase (por supuesto) y saliendo voluntario a resolver problemas.,guia_docente.aiml
+0,COMO ^ [CONSIG+ OBTEN+ CONSEG+] PUNTOS * PARTICIPACION,*,*,<srai>PUNTOS PARTICIPACION</srai>,guia_docente.aiml
+0,CUAL ES LA FORMA DE [OBTEN+ CONSEG+] PUNTOS * PARTICIPACION,*,*,<srai>PUNTOS PARTICIPACION</srai>,guia_docente.aiml
+0,* PUNT+ * PARTICIPACION,*,*,<srai>PUNTOS PARTICIPACION</srai>,guia_docente.aiml
+0,TRABAJOS INDIVIDUALES,*,*,Si#Comma las practicas se realizan de manera individual. Ten cuidado y no pases tu codigo a nadie porque si se detecta alguna copia ambos suspendeis. No te la juegues.,guia_docente.aiml
+0,* [PRACTICA+ TRABAJO+] ^ [INDIVIDUALES SOLO] ^,*,*,<srai>TRABAJOS INDIVIDUALES</srai>,guia_docente.aiml
+0,PRACTICAS GRUPO,*,*,Ni se te ocurra#Comma porque saltara el sistema anti-copia y tanto tu como tu/s amigo/s ireis a la extraordinaria!,guia_docente.aiml
+0,* [PRACTICA+ TRABAJO+] * [GRUPO AMIGO+] ^,*,*,<srai>PRACTICAS GRUPO</srai>,guia_docente.aiml
+0,ENTREGAR PROBLEMAS,*,*,No#Comma no es obligatorio pero si recomendable#Comma ya que tienes que hacer el examen de problemas en junio.,guia_docente.aiml
+0,* [OBLIGA+ TENGO DEB+ HAY] ^ ENTREGA+ ^ PROBLEMAS ^,*,*,<srai>ENTREGAR PROBLEMAS</srai>,guia_docente.aiml
+0,PRIMER EXAMEN TEORIA,*,*,El primer examen de teoria cuenta un 50% de la parte teorica#Comma es decir#Comma un 25% de la nota final.,guia_docente.aiml
+0,* [CUENTA VAL+ REPRESENTA+ PONDERA+] ^ PRIMER+ [EXAMEN PARCIAL PRUEBA] ^ TEORI+ ^,*,*,<srai>PRIMER EXAMEN TEORIA</srai>,guia_docente.aiml
+0,RECUPERAR PRACTICA,*,*,No#Comma lo siento pero no puedes. Esfuerzate mas en la siguiente o preparate para la convocatoria extraordinaria (julio).,guia_docente.aiml
+0,^ RECUPERA+ ^ PRACTICA+ ^,*,*,<srai>RECUPERAR PRACTICA</srai>,guia_docente.aiml
+0,* COPIO ^,*,*,<srai>PRACTICAS GRUPO</srai>,guia_docente.aiml
+0,ME DEJO COPIAR,*,*,Tanto el que copia como el que se deja copiar obtienen el mismo castigo#Comma un suspenso. Por tanto#Comma no te la juegues y no pases tu codigo.,guia_docente.aiml
+0,* DEJO ^ COPI+ ^,*,*,<srai>ME DEJO COPIAR</srai>,guia_docente.aiml
+0,* ME COPIA+ ^,*,*,<srai>ME DEJO COPIAR</srai>,guia_docente.aiml
+0,* COPIA+ DE MI ^,*,*,<srai>ME DEJO COPIAR</srai>,guia_docente.aiml
+0,SUSPENDO CONVOCATORIA ORDINARIA,*,*,Tienes otra oportunidad#Comma la convocatoria extraordinaria de julio en la que haras un examen tanto de teoria como de practicas.,guia_docente.aiml
+0,* SUSPENDO ^ [ORDINARIA JUNIO] ^,*,*,<srai>SUSPENDO CONVOCATORIA ORDINARIA</srai>,guia_docente.aiml
+0,* NO [SUPERO APRUEBO] ^ [ORDINARIA JUNIO] ^,*,*,<srai>SUSPENDO CONVOCATORIA ORDINARIA</srai>,guia_docente.aiml
+0,CUANTO PRACTICA TEORIA,*,*,La parte practica y la teorica tienen el mismo peso#Comma un 50% de la nota final cada una.,guia_docente.aiml
+0,* [VALE+ CUENTA CONTAR PONDERA+ SUMA+ REPRESENTA+] * (PARTE) [PRACTICA+ TEORI+] ^ [PRACTICA+ TEORI+] ^,*,*,<srai>CUANTO PRACTICA TEORIA</srai>,guia_docente.aiml
+0,HORARIO TUTORIAS PRACTICAS,*,*,La profesora de practicas del grupo A2 es Rocio Celeste Romero Zaliz. Buscala en decsai y ahi tendras la informacion actualizada ;),guia_docente.aiml
+0,* TUTORIA+ * PRACTICA+ ^,*,*,<srai>HORARIO TUTORIAS PRACTICAS</srai>,guia_docente.aiml
+0,APROBAR SIN PRESENTAR UNA PRACTICA,*,*,Si#Comma puedes aprobar la asignatura sin problema#Comma ya que el unico requisito indispensable es llegar a un 3 sobre 10 en cada parte por separado.,guia_docente.aiml
+0,* APR+ * [SIN NO] [ENTREG+ DEFEND+ PRESENT+] * PRACTICA+ ^,*,*,<srai>APROBAR SIN PRESENTAR UNA PRACTICA</srai>,guia_docente.aiml
+0,NOTA MINIMA PARA HACER MEDIA,*,*,Debes llegar al 3 sobre 10 en cada parte (teoria y practicas) por separado.,guia_docente.aiml
+0,^ MINIM+ *,*,*,<srai>NOTA MINIMA PARA HACER MEDIA</srai>,guia_docente.aiml
+0,NO SUPERAR NIVEL 3,*,*,Si has llegado a la defensa del nivel 3 quiere decir que ya tienes un 6 por haber defendido los niveles 0 y 1. Por tanto#Comma si no superas la defensa te quedaras con el 6 que ya tenias.,guia_docente.aiml
+0,* DEFENSA ^ PRACTICA ^ [1 UNO] ^ NO ^ SUPER+ * [TRES 3] ^,*,*,<srai>NO SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,* DEFENSA ^ PRACTICA ^ [1 UNO PRIMERA] ^ FALLO * [TERCER TRES 3] ^,*,*,<srai>NO SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,* PRACTICA ^ [1 UNO] ^ DEFEND+ * [TRES 3] * NO * [SUPERO CONSIGO LOGRO] ^,*,*,<srai>NO SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,* [PUNTUACION NOTA ] ^ PRACTICA ^ [1 UNO] ^ DEFEND+ * [TRES 3] ^ NO * [SUPERO CONSIGO LOGRO] ^,*,*,<srai>NO SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,ENTREGAR PRACTICA UNO SIN NIVEL 0,*,*,Si no entregas el nivel 0 o bien fallas en la defensa#Comma obtienes un 0 y termina la evaluacion.,guia_docente.aiml
+0,* NO [HACER HAGO] ^ [NIVEL PARTE] [CERO 0] * PRACTICA [1 UNO] ^,*,*,<srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai>,guia_docente.aiml
+0,* PRACTICA [UNO 1] ^ SIN HACER * NIVEL [0 CERO] ^,*,*,<srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai>,guia_docente.aiml
+0,* PRACTICA [UNO 1] ^ SI NO HAGO * NIVEL [0 CERO] ^,*,*,<srai>ENTREGAR PRACTICA UNO SIN NIVEL 0</srai>,guia_docente.aiml
+0,NO ASISTIR A DEFENSA,*,*,Si no vas a la defensa de la practica#Comma obtienes un 0 en la calificacion. No obstante#Comma intenta hablar con el profesor de practicas y presentar un justificante#Comma quizas se pueda hacer algo.,guia_docente.aiml
+0,* NO * [IR ASISTIR VOY] * DEFENSA * PRACTICA [1 UNO] ^,*,*,<srai>NO ASISTIR A DEFENSA</srai>,guia_docente.aiml
+0,* ME SALTO * DEFENSA * PRACTICA [1 UNO] ^,*,*,<srai>NO ASISTIR A DEFENSA</srai>,guia_docente.aiml
+0,CUANTAS PRUEBAS TEORICAS,*,*,A lo largo del curso se realizaran dos pruebas escritas#Comma siendo la nota de teoria la media aritmetica entre ambas.,guia_docente.aiml
+0,^ CUANTA+ * TEORI+ ^,*,*,<srai>CUANTAS PRUEBAS TEORICAS</srai>,guia_docente.aiml
+0,^ TEORI+ * CUANTA+ ^,*,*,<srai>CUANTAS PRUEBAS TEORICAS</srai>,guia_docente.aiml
+0,QUE VALE PRIMERA PRUEBA TEORICA,*,*,La primera prueba teorica vale igual que la segunda; un 25% de la nota final y un 50% de la nota de teoria,guia_docente.aiml
+0,EN QUE CONSISTE EXAMEN EJERCICIOS,*,*,El examen de ejercicios se hara junto al examen final de teoria y consistira en ejercicios parecidos a los realizados en clase de practicas.,guia_docente.aiml
+0,* [ PRUEBA EXAMEN] ^ [EJERCICIOS PROBLEMAS] ^,*,*,<srai>EN QUE CONSISTE EXAMEN EJERCICIOS</srai>,guia_docente.aiml
+0,NO SEGURO DE SUPERAR NIVEL 3,*,*,Si no te sientes seguro#Comma intenta hacer el nivel 2#Comma con el que podras llegar como maximo a 8 puntos. Toma esta decision con cuidado#Comma ya que si fallas en la defensa del nivel 3 te quedaras con un 6.,guia_docente.aiml
+0,^ NO * [PASAR SUPERAR CONSEGUIR DEFENDER] ^ NIVEL [TRES 3] * PRACTICA [UNO 1] ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,^ NO * [PASAR SUPERAR CONSEGUIR DEFENDER] ^ NIVEL [TRES 3] * PRIMERA PRACTICA ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,^ NO * [PASAR SUPERAR CONSEGUIR DEFENDER] ^ TERCER NIVEL * PRIMERA PRACTICA ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,^ NO * [PASAR SUPERAR CONSEGUIR DEFENDER] ^ TERCER NIVEL * PRACTICA [UNO 1] ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,^ INDECISO * SUPERAR ^ NIVEL [TRES 3] * PRACTICA [UNO 1] ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,^ INDECISO * SUPERAR ^ TERCER NIVEL * PRACTICA [UNO 1] ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,^ INDECISO * SUPERAR ^ NIVEL [TRES 3] * PRIMERA PRACTICA ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,^ INDECISO * SUPERAR ^ TERCER NIVEL * PRIMERA PRACTICA ^,*,*,<srai>NO SEGURO DE SUPERAR NIVEL 3</srai>,guia_docente.aiml
+0,PROGRAMO BIEN EN *,*,*,<think>#Newline			<set var="lang"><star/></set>#Newline		</think>#Newline		<condition var="lang">#Newline			<li value="aiml">#Newline				Es la idea ;)#Newline			</li>#Newline			<li>#Newline				Me parece perfecto que programes bien en <get var="lang"/>#Comma pero el objetivo de la asignatura es que aprendas AIML. En el fondo no esta tan mal#Comma lo prometo ;)#Newline			</li>#Newline		</condition>,guia_docente.aiml
+0,^ PROGRAM+ ^ EN * ^,*,*,<srai>PROGRAMO BIEN EN <star index="3"/></srai>,guia_docente.aiml
+0,AGENTE DEFIENDE PRACTICA,*,*,Mientras tu agente pase el test de Turing y la profesora no se de cuenta#Comma adelante! Eso si#Comma yo no te he dicho nada de nada ;P,guia_docente.aiml
+0,^ [GUSTAN ENCANTA+ AMO IDOLATRO ADORO] * AGENTE+ CONVERSACIONAL+ * DEFEN+ *,*,*,<srai>AGENTE DEFIENDE PRACTICA</srai>,guia_docente.aiml
