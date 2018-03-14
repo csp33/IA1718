@@ -44,6 +44,7 @@ encoding="UTF-8"?>
 	<pattern>primera_pregunta</pattern>
 	<template>
 		<think>
+			<set name="nivel">3</set>
 			<set name="posibles"><readset>frutas</readset></set>
 			<set name="sabores"><readset>sabores</readset></set>
 			<set name="colores"><readset>colores</readset></set>
@@ -65,32 +66,28 @@ encoding="UTF-8"?>
 			</condition>
 			<condition name="color_adivinado">
 				<li value="SI">
-					<set var="lista_tamanios"><get name="posibles"/></set>
-					<set var="lista_colores"><map name="segun_color"><get name="color"/></map></set>
+					<set var="actuales"><get name="posibles"/></set>
 					<set name="posibles">0</set>
-					<set var="contador">0</set>
-					<set var="tope"><srai>COUNT <get var="lista_tamanios"/></srai></set>
-					<condition var="contador">
-						<li><value><get var="tope"/></value></li>
+					<set var="item"><srai>ITERATE <get var="actuales"/></srai></set>
+					<condition var="item">
+						<li value="end"></li>
 						<li>
-							<set var="top"><srai> TOP <get var="lista_tamanios"/></srai></set>
-							<set var="lista_tamanios"><srai>REMAIN <get var="lista_tamanios"/></srai></set>
-							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_colores"/></srai></set>
-							<condition var="existe">
-								<li value="0">
-								</li>
-								<li> <!-- Existe-->
+							<set var="color_item"><map name="color_varios"><get var="item"/></map></set>
+							<set var="es_de_ese_color"><srai>FINDITEM <get name="color"/> IN <get var="color_item"/> </srai></set>
+							<condition var="es_de_ese_color">
+								<li value="0"></li>
+								<li>
 									<condition name="posibles">
 										<li value="0">
-											<set name="posibles"><get var="top"/></set>
+											<set name="posibles"><get var="item"/></set>
 										</li>
 										<li>
-											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+											<set name="posibles"><get name="posibles"/> <get var="item"/></set>
 										</li>
 									</condition>
 								</li>
 							</condition>
-							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<set var="item"><srai>NEXT</srai></set>
 							<loop/>
 						</li>
 					</condition>
@@ -98,138 +95,172 @@ encoding="UTF-8"?>
 			</condition>
 			<condition name="sabor_adivinado">
 				<li value="SI">
-					<set var="lista_tamanios_colores"><get name="posibles"/></set>
-					<set var="lista_sabores"><map name="segun_sabor"><get name="sabor"/></map></set>
+					<set var="actuales"><get name="posibles"/></set>
 					<set name="posibles">0</set>
-					<set var="contador">0</set>
-					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores"/></srai></set>
-					<condition var="contador">
-						<li><value><get var="tope"/></value></li>
+					<set var="item"><srai>ITERATE <get var="actuales"/></srai></set>
+					<condition var="item">
+						<li value="end"></li>
 						<li>
-							<set var="top"><srai> TOP <get var="lista_tamanios_colores"/></srai></set>
-							<set var="lista_tamanios_colores"><srai>REMAIN <get var="lista_tamanios_colores"/></srai></set>
-							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_sabores"/></srai></set>
-							<condition var="existe">
-								<li value="0">
-								</li>
-								<li> <!-- Existe-->
+							<set var="sabor_item"><map name="sabor"><get var="item"/></map></set>
+							<condition var="sabor_item">
+								<li><value><get name="sabor"/></value>
 									<condition name="posibles">
 										<li value="0">
-											<set name="posibles"><get var="top"/></set>
+											<set name="posibles"><get var="item"/></set>
 										</li>
 										<li>
-											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+											<set name="posibles"><get name="posibles"/> <get var="item"/></set>
 										</li>
 									</condition>
 								</li>
 							</condition>
-							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+
+							<set var="item"><srai>NEXT</srai></set>
 							<loop/>
 						</li>
-						</condition>
+					</condition>
 				</li>
 			</condition>
-			<condition name="vit_a">
+			<condition name="vit_a_adivinada">
 				<li value="SI">
-					<set var="lista_tamanios_colores_sabores"><get name="posibles"/></set>
+					<set var="actuales"><get name="posibles"/></set>
 					<set var="lista_vit_a"><readset>vitamina_a</readset></set>
 					<set name="posibles">0</set>
-					<set var="contador">0</set>
-					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores_sabores"/></srai></set>
-					<condition var="contador">
-						<li><value><get var="tope"/></value></li>
+					<set var="item"><srai>ITERATE <get var="actuales"/></srai></set>
+					<condition var="item">
+						<li value="end"></li>
 						<li>
-							<set var="top"><srai> TOP <get var="lista_tamanios_colores_sabores"/></srai></set>
-							<set var="lista_tamanios_colores_sabores"><srai>REMAIN <get var="lista_tamanios_colores_sabores"/></srai></set>
-							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_vit_a"/></srai></set>
-							<condition var="existe">
+							<set var="la_tiene"><srai>FINDITEM <get var="item"/> IN <get var="lista_vit_a"/></srai></set>
+							<condition var="la_tiene">
 								<li value="0">
-								</li>
-								<li> <!-- Existe-->
-									<condition name="posibles">
-										<li value="0">
-											<set name="posibles"><get var="top"/></set>
+									<condition name="vit_a">
+										<li value="NO">
+											<condition name="posibles">
+											<li value="0">
+												<set name="posibles"><get var="item"/></set>
+											</li>
+											<li>
+											<set name="posibles"><get name="posibles"/> <get var="item"/></set>
+											</li>
+										</condition>
 										</li>
-										<li>
-											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+									</condition>
+								</li>
+								<li>
+									<condition name="vit_a">
+										<li value="SI">
+											<condition name="posibles">
+												<li value="0">
+													<set name="posibles"><get var="item"/></set>
+												</li>
+												<li>
+													<set name="posibles"><get name="posibles"/> <get var="item"/></set>
+												</li>
+											</condition>
 										</li>
 									</condition>
 								</li>
 							</condition>
-							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<set var="item"><srai>NEXT</srai></set>
 							<loop/>
 						</li>
 					</condition>
-				</li>	
+				</li>
 			</condition>	
-			<condition name="vit_b">
+			<condition name="vit_b_adivinada">
 				<li value="SI">
-					<set var="lista_tamanios_colores_sabores_vit_a"><get name="posibles"/></set>
-					<set var="lista_vit_a"><readset>vitamina_b</readset></set>
+					<set var="actuales"><get name="posibles"/></set>
+					<set var="lista_vit_b"><readset>vitamina_b</readset></set>
 					<set name="posibles">0</set>
-					<set var="contador">0</set>
-					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores_sabores_vit_a"/></srai></set>
-					<condition var="contador">
-						<li><value><get var="tope"/></value></li>
+					<set var="item"><srai>ITERATE <get var="actuales"/></srai></set>
+					<condition var="item">
+						<li value="end"></li>
 						<li>
-							<set var="top"><srai> TOP <get var="lista_tamanios_colores_sabores_vit_a"/></srai></set>
-							<set var="lista_tamanios_colores_sabores_vit_a"><srai>REMAIN <get var="lista_tamanios_colores_sabores_vit_a"/></srai></set>
-							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_vit_a"/></srai></set>
-							<condition var="existe">
+							<set var="la_tiene"><srai>FINDITEM <get var="item"/> IN <get var="lista_vit_b"/></srai></set>
+							<condition var="la_tiene">
 								<li value="0">
-								</li>
-								<li> <!-- Existe-->
-									<condition name="posibles">
-										<li value="0">
-											<set name="posibles"><get var="top"/></set>
+									<condition name="vit_b">
+										<li value="NO">
+											<condition name="posibles">
+											<li value="0">
+												<set name="posibles"><get var="item"/></set>
+											</li>
+											<li>
+											<set name="posibles"><get name="posibles"/> <get var="item"/></set>
+											</li>
+										</condition>
 										</li>
-										<li>
-											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+									</condition>
+								</li>
+								<li>
+									<condition name="vit_b">
+										<li value="SI">
+											<condition name="posibles">
+												<li value="0">
+													<set name="posibles"><get var="item"/></set>
+												</li>
+												<li>
+													<set name="posibles"><get name="posibles"/> <get var="item"/></set>
+												</li>
+											</condition>
 										</li>
 									</condition>
 								</li>
 							</condition>
-							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<set var="item"><srai>NEXT</srai></set>
 							<loop/>
 						</li>
 					</condition>
-				</li>	
+				</li>
 			</condition>	
-			<condition name="vit_c">
+			<condition name="vit_c_adivinada">
 				<li value="SI">
-					<set var="lista_tamanios_colores_sabores_vit_a_vit_b"><get name="posibles"/></set>
-					<set var="lista_vit_a"><readset>vitamina_c</readset></set>
+					<set var="actuales"><get name="posibles"/></set>
+					<set var="lista_vit_c"><readset>vitamina_c</readset></set>
 					<set name="posibles">0</set>
-					<set var="contador">0</set>
-					<set var="tope"><srai>COUNT <get var="lista_tamanios_colores_sabores_vit_a_vit_b"/></srai></set>
-					<condition var="contador">
-						<li><value><get var="tope"/></value></li>
+					<set var="item"><srai>ITERATE <get var="actuales"/></srai></set>
+					<condition var="item">
+						<li value="end"></li>
 						<li>
-							<set var="top"><srai> TOP <get var="lista_tamanios_colores_sabores_vit_a_vit_b"/></srai></set>
-							<set var="lista_tamanios_colores_sabores_vit_a_vit_b"><srai>REMAIN <get var="lista_tamanios_colores_sabores_vit_a_vit_b"/></srai></set>
-							<set var="existe"><srai>FINDITEM <get var="top"/> IN <get var="lista_vit_a"/></srai></set>
-							<condition var="existe">
+							<set var="la_tiene"><srai>FINDITEM <get var="item"/> IN <get var="lista_vit_c"/></srai></set>
+							<condition var="la_tiene">
 								<li value="0">
-								</li>
-								<li> <!-- Existe-->
-									<condition name="posibles">
-										<li value="0">
-											<set name="posibles"><get var="top"/></set>
+									<condition name="vit_c">
+										<li value="NO">
+											<condition name="posibles">
+											<li value="0">
+												<set name="posibles"><get var="item"/></set>
+											</li>
+											<li>
+											<set name="posibles"><get name="posibles"/> <get var="item"/></set>
+											</li>
+										</condition>
 										</li>
-										<li>
-											<srai> ADDITEM <get var="top"/> IN <get name="posibles"/></srai>
+									</condition>
+								</li>
+								<li>
+									<condition name="vit_c">
+										<li value="SI">
+											<condition name="posibles">
+												<li value="0">
+													<set name="posibles"><get var="item"/></set>
+												</li>
+												<li>
+													<set name="posibles"><get name="posibles"/> <get var="item"/></set>
+												</li>
+											</condition>
 										</li>
 									</condition>
 								</li>
 							</condition>
-							<set var="contador"><map name="successor"><get var="contador"/></map></set>
+							<set var="item"><srai>NEXT</srai></set>
 							<loop/>
 						</li>
 					</condition>
-				</li>	
+				</li>
 			</condition>			
 			<set name="restantes"><srai>COUNT <get name="posibles"/></srai></set>
-		</think> 
+		</think>
 		<condition name="restantes">
 			<li value="1">
 <srai>adivinar</srai>
@@ -242,7 +273,14 @@ encoding="UTF-8"?>
 <category>
 	<pattern>adivinar</pattern>
 	<template>
-		Ya lo se tu fruta es <get name="posibles"/>
+		<condition name="posibles">
+			<li value="0">
+				No conozco ninguna fruta con esas caracteristicas. Jugamos otra?
+			</li>
+			<li>
+				Ya lo se tu fruta es <get name="posibles"/>
+			</li>
+		</condition>
 	</template>
 </category>
 
@@ -293,6 +331,7 @@ Cual es su color o colores?
 	</template>
 </category>
 
+<!--
 <category>
 	<pattern>^ [si correcto vale venga vamos claro supuesto ] ^</pattern>
 	<that>* jugamos otra</that>
@@ -300,7 +339,7 @@ Cual es su color o colores?
 		<srai>iniciar nivel 3</srai>
 	</template>
 </category>
-
+-->
 <category>
 	<pattern>*</pattern>
 	<that>Cual es su color o colores ^</that>
@@ -481,16 +520,15 @@ Perfecto! Me la guardo para la proxima vez que juguemos;)
 		<think>
 			<set var="fruta_trampa"><star index="1"/></set>
 			<set var="color_trampa"><map name="color_varios"><get var="fruta_trampa"/></map></set>
+			<set var="verdad_color"><srai>FINDITEM <get name="color"/> IN <get var="color_trampa"/></srai></set>
 			<set var="sabor_trampa"><map name="sabor"><get var="fruta_trampa"/></map></set>
 			<set var="tamanio_trampa"><map name="tamanio"><get var="fruta_trampa"/></map></set>
 			<set var="vit_a_trampa"><map name="vit_a"><get var="fruta_trampa"/></map></set>
 			<set var="vit_b_trampa"><map name="vit_b"><get var="fruta_trampa"/></map></set>
 			<set var="vit_c_trampa"><map name="vit_c"><get var="fruta_trampa"/></map></set>
 		</think>
-		<condition name="color">
-			<li><value><get var="color_trampa"/></value></li>
-			<li value="unknown"></li>
-			<li>
+		<condition name="verdad_color">
+			<li value="0">
 Me mentiste! Dijiste que tu fruta era de color <get name="color"/> y <get var="fruta_trampa"/> es de color <get var="color_trampa"/>
 			</li>
 		</condition>
@@ -596,6 +634,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 </category>
 
 <!-- Colores -->
+
 
 <category>
 	<pattern>pregunta_color</pattern>
@@ -809,6 +848,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	<template>
 		<think>
 			<set name="vit_a">SI</set>
+			<set name="vit_a_adivinada">SI</set>
 		</think>
 		<srai>descartar_frutas</srai>
 		<condition name="restantes">
@@ -826,6 +866,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	<that>^ tiene vitamina a ^</that>
 	<template>
 		<think>
+			<set name="vit_a_adivinada">SI</set>
 			<set name="vit_a">NO</set>
 		</think>
 		<srai>descartar_frutas</srai>
@@ -847,6 +888,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	<template>
 		<think>
 			<set name="vit_B">SI</set>
+			<set name="vit_b_adivinada">SI</set>
 		</think>
 		<srai>descartar_frutas</srai>
 		<condition name="restantes">
@@ -864,6 +906,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	<that>^ tiene vitamina b ^</that>
 	<template>
 		<think>
+			<set name="vit_b_adivinada">SI</set>
 			<set name="vit_b">NO</set>
 		</think>
 		<srai>descartar_frutas</srai>
@@ -885,6 +928,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	<template>
 		<think>
 			<set name="vit_c">SI</set>
+			<set name="vit_c_adivinada">SI</set>
 		</think>
 		<srai>adivinar</srai>
 	</template>
@@ -896,9 +940,11 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 	<template>
 		<think>
 			<set name="vit_c">NO</set>
+			<set name="vit_c_adivinada">SI</set>
 		</think>
 			<srai>adivinar</srai>
 	</template>
 </category>
+
 
 </aiml>

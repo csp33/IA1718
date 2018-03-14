@@ -1,4 +1,4 @@
 semiacido: fresa manzana mango melocoton cereza
-acido: naranja kiwi pinia
+acido: naranja mandarina kiwi pinia
 dulce: higo ciruela pera platano
 neutro: coco aguacate nuez

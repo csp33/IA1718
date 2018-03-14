@@ -97,7 +97,7 @@ encoding="UTF-8"?>
 		<think>
 			<set var="lista_frutas"><readset>frutas</readset></set>
 		</think>
-		Las frutas que conozco son: <get var="lista_frutas"/>
+		Las frutas que conozco son: <get name="lista_frutas"/>
 	</template>
 </category>
 
@@ -109,6 +109,7 @@ encoding="UTF-8"?>
 	<pattern> ^ [juego jugar iniciar] ^ nivel [1 uno] ^</pattern>
 	<template>
 		<think>
+			<set name="nivel">1</set>
 			<set name="pensada"><srai>get_fruta</srai></set>
 		</think>
 		Ya he pensado en una fruta.
@@ -290,7 +291,7 @@ encoding="UTF-8"?>
 <!-- Adivinar -->
 
 <category>
-	<pattern>Es [el la un una] * ^</pattern>
+	<pattern>Es * ^</pattern>
 	<template>
 		<think>
 			<set var="acierto"><srai>COMPARE <get name="pensada"/> WITH <star index="1"/></srai></set>
@@ -301,7 +302,18 @@ encoding="UTF-8"?>
 				<srai>reset</srai>
 			</li>
 			<li>
-				Perdiste! Pensaba en <get name="pensada"/>. Jugamos otra ?
+				<think>
+					<set var="lista_frutas"><readset>frutas</readset></set>
+					<set var="es_fruta"><srai>FINDITEM <star index="1"/> IN <get var="lista_frutas"/></srai></set>
+				</think>
+					<condition var="es_fruta">
+						<li value="0">
+							Yo pensaba en <get name="pensada"/>. No conocia la fruta que me dices.<srai>aprender_fruta</srai>
+						</li>
+						<li>
+							Perdiste! Pensaba en <get name="pensada"/>.Jugamos otra?
+						</li>
+					</condition>
 			</li>
 		</condition>
 	</template>
@@ -312,7 +324,14 @@ encoding="UTF-8"?>
 	<pattern>^ [si correcto vale venga vamos claro supuesto ] ^</pattern>
 	<that>^ otra ^</that>
 	<template>
-		<srai>iniciar nivel 1</srai>
+		<condition name="nivel">
+			<li value="1">
+				<srai>iniciar nivel 1</srai>
+			</li>
+			<li>
+				<srai>iniciar nivel 3</srai>
+			</li>
+		</condition>
 	</template>
 </category>
 

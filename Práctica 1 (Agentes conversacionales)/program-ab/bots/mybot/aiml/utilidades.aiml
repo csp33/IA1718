@@ -304,8 +304,8 @@
   <think>
 	<set var="palabra"></set>
 	<set var="solucion"></set>
-	<set var="tmp"><rest><input/></rest></set>
-	<set var="tmp"> <explode><get var="tmp"/></explode> </set>
+	<set var="tmp"><star/></set>
+	<set var="tmp"><explode><get var="tmp"/></explode></set>
 	<set var="caracter"><first><get var="tmp"/></first></set>
 	<set var="tmp"><rest><get var="tmp"/></rest></set>
 	<condition var="caracter">
@@ -339,7 +339,7 @@
 <pattern> CODE * </pattern>
 <template> 
   <think>
-	<set var="tmp"><rest><input/></rest></set>
+	<set var="tmp"><star/></set>
 	<set var="solucion"><first><get var="tmp"/></first></set>
 	<set var="tmp"><rest><get var="tmp"/></rest></set>
 	<condition var="tmp">
