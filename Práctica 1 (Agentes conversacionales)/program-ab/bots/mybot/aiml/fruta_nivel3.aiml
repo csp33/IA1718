@@ -232,7 +232,7 @@ encoding="UTF-8"?>
 		</think> 
 		<condition name="restantes">
 			<li value="1">
-				<srai>adivinar</srai>
+<srai>adivinar</srai>
 			</li>
 		</condition>
 	</template>
@@ -489,17 +489,20 @@ Perfecto! Me la guardo para la proxima vez que juguemos;)
 		</think>
 		<condition name="color">
 			<li><value><get var="color_trampa"/></value></li>
+			<li value="unknown"></li>
 			<li>
 Me mentiste! Dijiste que tu fruta era de color <get name="color"/> y <get var="fruta_trampa"/> es de color <get var="color_trampa"/>
 			</li>
 		</condition>
 		<condition name="tamanio">
 			<li><value><get var="tamanio_trampa"/></value></li>
+			<li value="unknown"></li>
 			<li>
 Me mentiste! Dijiste que tu fruta era de tamanio <get name="tamanio"/> y <get var="fruta_trampa"/> es de tamanio <get var="tamanio_trampa"/>.
 			</li>
 		</condition>
 		<condition name="sabor">
+			<li value="unknown"></li>
 			<li><value><get var="sabor_trampa"/></value></li>
 			<li>
 Me mentiste! Dijiste que tu fruta era de sabor <get name="sabor"/> y <get var="fruta_trampa"/> es de sabor <get var="sabor_trampa"/>.
@@ -507,18 +510,21 @@ Me mentiste! Dijiste que tu fruta era de sabor <get name="sabor"/> y <get var="f
 		</condition>
 		<condition name="vit_a">
 			<li><value><get var="vit_a_trampa"/></value></li>
+			<li value="unknown"></li>
 			<li>
 Me mentiste! Dijiste que tu fruta <get name="vit_a"/> tenia Vitamina A pero <get var="fruta_trampa"/> en realidad <get var="vit_a_trampa"/> tiene.
 			</li>
 		</condition>
 		<condition name="vit_b">
 			<li><value><get var="vit_b_trampa"/></value></li>
+			<li value="unknown"></li>
 			<li>
 Me mentiste! Dijiste que tu fruta <get name="vit_b"/> tenia Vitamina B pero <get var="fruta_trampa"/> en realidad <get var="vit_b_trampa"/> tiene.
 			</li>
 		</condition>
 		<condition name="vit_c">
 			<li><value><get var="vit_c_trampa"/></value></li>
+			<li value="unknown"></li>
 			<li>
 Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get var="fruta_trampa"/> en realidad <get var="vit_c_trampa"/> tiene.
 			</li>
@@ -529,7 +535,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 <!-- Fin del juego. Jugar otra vez ? -->
 
 <category>
-	<pattern>^ [si correcto acertaste efectivamente] ^</pattern>
+	<pattern>^ [si correcto acertaste efectivamente exacto] ^</pattern>
 	<that>ya lo se ^</that>
 	<template>
 		Quieres jugar otra vez?
@@ -753,7 +759,8 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 			<li>
 				<srai>pregunta_color</srai>
 			</li>
-		</condition>	</template>
+		</condition>	
+	</template>
 </category>
 
 <!-- Sabor -->
@@ -816,7 +823,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>^ tiene vitamina a</that>
+	<that>^ tiene vitamina a ^</that>
 	<template>
 		<think>
 			<set name="vit_a">NO</set>
@@ -836,7 +843,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
-	<that>^ tiene vitamina B</that>
+	<that>^ tiene vitamina B ^</that>
 	<template>
 		<think>
 			<set name="vit_B">SI</set>
@@ -854,7 +861,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>^ tiene vitamina b</that>
+	<that>^ tiene vitamina b ^</that>
 	<template>
 		<think>
 			<set name="vit_b">NO</set>
@@ -874,7 +881,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 
 <category>
 	<pattern>[si correcto afirmativo efectivamente]</pattern>
-	<that>^ tiene vitamina c</that>
+	<that>^ tiene vitamina c ^</that>
 	<template>
 		<think>
 			<set name="vit_c">SI</set>
@@ -885,7 +892,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 
 <category>
 	<pattern>[no error fallaste]</pattern>
-	<that>^ tiene vitamina c</that>
+	<that>^ tiene vitamina c ^</that>
 	<template>
 		<think>
 			<set name="vit_c">NO</set>
