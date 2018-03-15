@@ -221,12 +221,17 @@ encoding="UTF-8"?>
 <category>
 	<pattern>ENTREGAR PROBLEMAS</pattern>
 	<template>
-		No, no es obligatorio pero si recomendable, ya que tienes que hacer el examen de problemas en junio.
+		No tienes que hacer las relaciones de problemas, pero es recomendable, ya que tienes que hacer el examen de problemas en junio.
 	</template>
 </category>
 
 <category>
-	<pattern>* [obliga+ tengo deb+ hay] ^ entrega+ ^ problemas ^</pattern>
+	<pattern>^ [obliga+ tengo deb+ hay] ^ [entrega+ hacer] ^ (relacion+) ^ problemas ^</pattern>
+	<template><srai>ENTREGAR PROBLEMAS</srai></template>
+</category>
+
+<category>
+	<pattern>^ no ^ [entreg+ hacer hag+] ^ (relacion+) ^ problemas ^</pattern>
 	<template><srai>ENTREGAR PROBLEMAS</srai></template>
 </category>
 
@@ -240,7 +245,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* [cuenta val+ representa+ pondera+] ^ primer+ [examen parcial prueba] ^ teori+ ^</pattern>
+	<pattern>^ [cuenta vale pondera representa] ^ prime+ [examen prueba] (teori+) ^</pattern>
 	<template><srai>PRIMER EXAMEN TEORIA</srai></template>
 </category>
 
@@ -319,7 +324,7 @@ encoding="UTF-8"?>
 </category>
 
 <category>
-	<pattern>* [vale+ cuenta contar pondera+ suma+ representa+] * (parte) [practica+ teori+] ^ [practica+ teori+] ^</pattern>
+	<pattern>^ [vale+ cuenta contar pondera+ suma+ representa+] * (parte) [practica+ teori+] ^ [practica+ teori+] ^</pattern>
 	<template><srai>CUANTO PRACTICA TEORIA</srai></template>
 </category>
 
