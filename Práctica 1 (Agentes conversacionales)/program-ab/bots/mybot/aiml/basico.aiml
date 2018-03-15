@@ -20,6 +20,21 @@ encoding="UTF-8"?>
 	</template>
 </category>
 
+<category>
+	<pattern>^ como estas ^</pattern>
+	<template>
+		Bien y tu?
+	</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<that>bien y tu ^</that>
+	<template>
+		OK!
+	</template>
+</category>
+
 <!-- ........................... -->
 
 <!-- Nombre -->

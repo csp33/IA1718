@@ -291,7 +291,7 @@ encoding="UTF-8"?>
 <!-- Adivinar -->
 
 <category>
-	<pattern>Es * ^</pattern>
+	<pattern>Es [el la] * ^</pattern>
 	<template>
 		<think>
 			<set var="acierto"><srai>COMPARE <get name="pensada"/> WITH <star index="1"/></srai></set>

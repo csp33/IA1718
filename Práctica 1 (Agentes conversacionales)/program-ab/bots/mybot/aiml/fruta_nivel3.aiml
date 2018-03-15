@@ -44,6 +44,18 @@ encoding="UTF-8"?>
 	<pattern>primera_pregunta</pattern>
 	<template>
 		<think>
+			<set name="color">"unknown"</set>
+			<set name="sabor">"unknown"</set>
+			<set name="tamanio">"unknown"</set>
+			<set name="vit_a">"unknown"</set>
+			<set name="vit_b">"unknown"</set>
+			<set name="vit_c">"unknown"</set>
+			<set name="color_adivinado">NO</set>
+			<set name="sabor_adivinado">NO</set>
+			<set name="tamanio_adivinado">NO</set>
+			<set name="vit_a_adivinada">NO</set>
+			<set name="vit_b_adivinada">NO</set>
+			<set name="vit_c_adivinada">NO</set>
 			<set name="nivel">3</set>
 			<set name="posibles"><readset>frutas</readset></set>
 			<set name="sabores"><readset>sabores</readset></set>
@@ -275,6 +287,9 @@ encoding="UTF-8"?>
 	<template>
 		<condition name="posibles">
 			<li value="0">
+				<think>
+					<set name="posibles"><readset>frutas</readset></set>
+				</think>
 				No conozco ninguna fruta con esas caracteristicas. Jugamos otra?
 			</li>
 			<li>
@@ -286,7 +301,7 @@ encoding="UTF-8"?>
 
 <!-- Aprender nueva fruta -->
 <category>
-	<pattern>^ [no error fallaste] ^ es *</pattern>
+	<pattern>^ [no error fallaste] ^ es [el la] *</pattern>
 	<that>Ya lo se tu fruta es *</that>
 	<template>
 		<think>
@@ -298,7 +313,7 @@ encoding="UTF-8"?>
 					<think>
 						<set name="fruta_nueva"><star index="3"/></set>
 					</think>
-No la conozco <srai>aprender_fruta</srai>
+No la conozco, <srai>aprender_fruta</srai>
 				</li>
 				<li>
 					<srai>detectar_trampa <star index="3"/></srai>
@@ -573,7 +588,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get
 <!-- Fin del juego. Jugar otra vez ? -->
 
 <category>
-	<pattern>^ [si correcto acertaste efectivamente exacto] ^</pattern>
+	<pattern>^ [ ea si correcto acertaste efectivamente exacto] ^</pattern>
 	<that>ya lo se ^</that>
 	<template>
 		Quieres jugar otra vez?
