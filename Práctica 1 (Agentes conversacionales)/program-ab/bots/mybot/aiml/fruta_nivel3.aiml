@@ -44,12 +44,6 @@ encoding="UTF-8"?>
 	<pattern>primera_pregunta</pattern>
 	<template>
 		<think>
-			<set name="color">"unknown"</set>
-			<set name="sabor">"unknown"</set>
-			<set name="tamanio">"unknown"</set>
-			<set name="vit_a">"unknown"</set>
-			<set name="vit_b">"unknown"</set>
-			<set name="vit_c">"unknown"</set>
 			<set name="color_adivinado">NO</set>
 			<set name="sabor_adivinado">NO</set>
 			<set name="tamanio_adivinado">NO</set>
@@ -542,7 +536,7 @@ Perfecto! Me la guardo para la proxima vez que juguemos;)
 			<set var="vit_b_trampa"><map name="vit_b"><get var="fruta_trampa"/></map></set>
 			<set var="vit_c_trampa"><map name="vit_c"><get var="fruta_trampa"/></map></set>
 		</think>
-		<condition name="verdad_color">
+		<condition var="verdad_color">
 			<li value="0">
 Me mentiste! Dijiste que tu fruta era de color <get name="color"/> y <get var="fruta_trampa"/> es de color <get var="color_trampa"/>
 			</li>
@@ -579,7 +573,7 @@ Me mentiste! Dijiste que tu fruta <get name="vit_b"/> tenia Vitamina B pero <get
 			<li><value><get var="vit_c_trampa"/></value></li>
 			<li value="unknown"></li>
 			<li>
-Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina B pero <get var="fruta_trampa"/> en realidad <get var="vit_c_trampa"/> tiene.
+Me mentiste! Dijiste que tu fruta <get name="vit_c"/> tenia Vitamina C pero <get var="fruta_trampa"/> en realidad <get var="vit_c_trampa"/> tiene.
 			</li>
 		</condition>
 	</template>
