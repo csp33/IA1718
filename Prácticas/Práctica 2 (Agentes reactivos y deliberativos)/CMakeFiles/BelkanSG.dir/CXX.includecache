@@ -27,8 +27,6 @@ comportamientos/comportamiento.hpp
 Comportamientos_Jugador/comportamientos/comportamiento.hpp
 list
 -
-set
--
 
 include/comportamientolib.hpp
 comportamientos/comportamiento.hpp
