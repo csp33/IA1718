@@ -4,11 +4,21 @@
 #include "comportamientos/comportamiento.hpp"
 
 #include <list>
+#include <set>
 
 struct estado {
   int fila;
   int columna;
   int orientacion;
+};
+
+struct estado2 {
+  estado status;
+  int distancia;
+};
+struct estadoConAntecesores {
+  estado status;
+  list<Action> antecesores;
 };
 
 class ComportamientoJugador : public Comportamiento {
@@ -42,6 +52,11 @@ public:
 
   ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
 
+
+  const set<char> PUEDO_PASAR = {'S', 'K', 'T'};
+  list<Action> busquedaEnProfundidad(const estado &origen, const estado &destino) ;
+  estadoConAntecesores calcularEstado(const estadoConAntecesores &actual, const Action &accion) ;
+
 private:
   // Declarar Variables de Estado
   int fil, col, brujula;
@@ -51,13 +66,11 @@ private:
   // Nuevas Variables de Estado
   Action ultimaAccion;
   bool hayPlan;
-  struct estado2 {
-    estado status;
-    int distancia;
-  };
   bool pathFinding(const estado &origen, const estado &destino, list<Action> &plan);
   void PintaPlan(list<Action> plan);
-  
+
+
+
 
 };
 

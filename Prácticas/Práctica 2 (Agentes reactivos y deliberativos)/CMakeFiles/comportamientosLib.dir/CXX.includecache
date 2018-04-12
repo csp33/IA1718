@@ -39,6 +39,8 @@ comportamientos/comportamiento.hpp
 /home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Comportamientos_Jugador/comportamientos/comportamiento.hpp
 list
 -
+set
+-
 
 /home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/comportamientos/comportamiento.cpp
 comportamientos/comportamiento.hpp

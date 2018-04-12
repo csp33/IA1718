@@ -25,23 +25,20 @@ void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	}
 	cout << endl;
 }
-/*
-void AniadirHijos(estado &estado, queue<estadoConAntecesores> &cerrados) {
-	for (Action accion : posiblesAcciones) {
-		estadoConAntecesores aux;
-		aux.status = actual.status;
-		aux.antecesores.push_back(accion);
-		cerrados.push_back(aux);
-	}
-}
 
-bool Contiene(const estadoConAntecesores &estado, const queue<estadoConAntecesores> &cola) {
-	int fila = estado.fila;
-	int col = estado.col;
-	for (estadoConAntecesores i : cola)
-		if (i.status.fila == fila && i.status.col == col)
-			return true;
-	return false;
+
+bool Contiene(const estadoConAntecesores &estado, queue<estadoConAntecesores> cola) {
+	int fila = estado.status.fila;
+	int col = estado.status.columna;
+	bool encontrado=false;
+	estadoConAntecesores temp;
+	for(int i=0;i<cola.size() && !encontrado;i++){
+		temp=cola.front();
+		cola.pop();
+		if(temp.status.fila==fila && temp.status.columna==col)
+			encontrado=true;
+	}
+	return encontrado;
 }
 
 estadoConAntecesores ComportamientoJugador::calcularEstado(const estadoConAntecesores &actual, const Action &accion) {
@@ -58,13 +55,11 @@ estadoConAntecesores ComportamientoJugador::calcularEstado(const estadoConAntece
 		case 3: col--; break;
 		}
 	}
-	resultado.antecerores.push_back(accion);
+	resultado.antecesores=actual.antecesores;
+	resultado.antecesores.push_back(accion);
 	return resultado;
 }
 
-bool ComportamientoJugador::puedoPasar(const estado &estado){
-	return estado.fila >= 0 && estado.fila<=99 &
-}
 
 list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado &origen, const estado &destino) {
 	queue<estadoConAntecesores> abiertos;	//Cola de abiertos
@@ -77,13 +72,12 @@ list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado &origen, 
 	while (!encontrado) {
 		actual = abiertos.front();		//Saco el primer elemento de abiertos
 		abiertos.pop();
-		if (actual.status.fil == destino.fil && actual.status.col == destino.col)
+		if (actual.status.fila == destino.fila && actual.status.columna == destino.columna)	//Si es el que buscaba
 			encontrado = true;
 		else {
 			cerrados.push(actual);		//Lo coloco en cerrados
-			if (puedoPasar() && actual.antecesores.front() == actFORWARD) {
-				//	AniadirHijos(actual, abiertos);	//Meto hijos al final de abiertos
-				estadoConAntecesores hijo_avanzar, hijo_gira_l, hijo_gira_r;
+			if (PUEDO_PASAR.count(mapaResultado[actual.status.fila-1][actual.status.columna]) && actual.antecesores.front() == actFORWARD) {
+				estadoConAntecesores hijo_avanzar, hijo_gira_l, hijo_gira_r;		//Añado sus hijos al final de la cola de abiertos.
 				hijo_avanzar = calcularEstado(actual, actFORWARD);
 				hijo_gira_r = calcularEstado(actual, actTURN_R);
 				hijo_gira_l = calcularEstado(actual, actTURN_L);
@@ -96,7 +90,13 @@ list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado &origen, 
 	}
 	return actual.antecesores;
 }
-*/
+
+bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
+	plan=busquedaEnProfundidad(origen,destino);
+
+
+}
+/*
 bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
 	bool visitado[99][99];	//True si he visitado
 	queue<estado2> q;
@@ -142,7 +142,7 @@ bool ComportamientoJugador::pathFinding(const estado & origen, const estado & de
 
 	return true;
 }
-
+*/
 Action ComportamientoJugador::think(Sensores sensores) {
 	if (sensores.mensajeF != -1) {
 		fil = sensores.mensajeF;
