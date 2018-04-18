@@ -13,6 +13,15 @@ struct estado {
   list<estado> anteriores;
 };
 
+struct estado2 {
+  estado status;
+  int distancia;
+};
+struct estadoConAntecesores {
+  estado status;
+  list<Action> antecesores;
+};
+
 class ComportamientoJugador : public Comportamiento {
 public:
   ComportamientoJugador(unsigned int size) : Comportamiento(size) {
@@ -41,24 +50,44 @@ public:
   Action think(Sensores sensores);
   int interact(Action accion, int valor);
   void VisualizaPlan(const estado &st, const list<Action> &plan);
+<<<<<<< HEAD
 
   ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
   list<estado> BFS(const estado &origen, const estado &destino);
+=======
+
+  ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
+
+
+  const set<char> PUEDO_PASAR = {'S', 'K', 'T'};
+  list<Action> busquedaEnProfundidad(const estado &origen, const estado &destino) ;
+  estadoConAntecesores calcularEstado(const estadoConAntecesores &actual, const Action &accion) ;
+>>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
 
 private:
   // Declarar Variables de Estado
   int fil, col, brujula;
   estado destino;
   list<Action> plan;
+<<<<<<< HEAD
 
   // Nuevas Variables de Estado
   Action ultimaAccion;
   bool hayPlan;
 
 
+=======
+>>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
 
+  // Nuevas Variables de Estado
+  Action ultimaAccion;
+  bool hayPlan;
   bool pathFinding(const estado &origen, const estado &destino, list<Action> &plan);
   void PintaPlan(list<Action> plan);
+
+
+
+
 };
 
 #endif
