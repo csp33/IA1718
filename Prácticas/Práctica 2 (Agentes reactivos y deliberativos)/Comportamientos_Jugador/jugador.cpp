@@ -27,6 +27,7 @@ void ComportamientoJugador::PintaPlan(list<Action> plan) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ostream &operator<<(ostream &flujo, const list<estado> &lista) {
 	for (list<estado>::const_iterator it = lista.begin(); it != lista.end(); ++it) {
 		flujo << "(" << it->fila << "," << it->columna << ")\t";
@@ -68,6 +69,8 @@ list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &dest
 	list<estado> vacia;
 	return vacia;
 =======
+=======
+>>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 
 bool Contiene(const estadoConAntecesores &estado, queue<estadoConAntecesores> cola) {
 	int fila = estado.status.fila;
@@ -131,7 +134,52 @@ list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado &origen, 
 		}
 	}
 	return actual.antecesores;
+<<<<<<< HEAD
 >>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+=======
+=======
+ostream &operator<<(ostream &flujo, const list<estado> &lista) {
+	for (list<estado>::const_iterator it = lista.begin(); it != lista.end(); ++it) {
+		flujo << "(" << it->fila << "," << it->columna << ")\t";
+	}
+	return flujo;
+}
+
+
+list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &destino) {
+	bool visitado[99][99];	//Matriz de visitados.
+	queue<estado> q;		// Cola de estados.
+	q.push(origen);			//Introducimos el origen
+	for (int i = 0; i < 99; i++)		//Inicializamos los visitados a false
+		for (int j = 0; j < 99; j++)
+			visitado[i][j] = false;
+	int dx[4] = {0, 0, 1 , -1};			//Para calcular la adyacencia
+	int dy[4] = {1, -1, 0, 0};
+	while (!q.empty()) {
+		estado actual = q.front();			//Sacamos un estado de la cola
+		q.pop();
+		if (actual.fila == destino.fila && actual.columna == destino.columna)	//Si hemos llegado, devolvemos los predecesores
+			return actual.anteriores;
+		visitado[actual.fila][actual.columna] = true;		//Configuramos como visitado
+		for (int i = 0; i < 4; i++) {
+			int nx = dx[i] + actual.fila;
+			int ny = dy[i] + actual.columna;
+			if (nx >= 0 && nx < 99 && ny >= 0 && ny < 99 && !visitado[nx][ny]		//Si puedo pasar por el adyacente, lo añado a la cola
+			        && (mapaResultado[nx][ny] == 'S' || mapaResultado[nx][ny] == 'T' ||  mapaResultado[nx][ny] == 'K')) {
+				estado adyacente;
+				adyacente.fila = nx;
+				adyacente.columna = ny;
+				adyacente.d = actual.d + 1;
+				cout << adyacente.anteriores;
+				adyacente.anteriores.push_back(actual);
+				q.push(adyacente);
+			}
+		}
+	}
+	list<estado> vacia;
+	return vacia;
+>>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+>>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 }
 bool ComportamientoJugador::pathFinding(const estado &origen, const estado &destino, list<Action> &plan) {
 	list<estado> lista = BFS(origen, destino);
@@ -140,6 +188,59 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 	cout << endl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
+	plan=busquedaEnProfundidad(origen,destino);
+
+
+}
+/*
+bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
+	bool visitado[99][99];	//True si he visitado
+	queue<estado2> q;
+	queue<estado> cola_estados;
+	estado2 inicio;
+	inicio.status = origen;
+	inicio.distancia = 0;
+	q.push(inicio);
+	cola_estados.push(inicio.status);
+	for (int i = 0; i < 99; i++)
+		for (int j = 0; j < 99; j++)
+			visitado[i][j] = false;
+	int dx[4] = {0, 0, 1, -1};
+	int dy[4] = {1, -1, 0, 0};
+	while (!q.empty()) {
+		estado2 actual = q.front();
+		q.pop();
+		if (actual.status.fila == destino.fila && actual.status.columna == destino.columna) {
+			cola_estados.push(actual.status);
+			cout << "(" << actual.status.fila << "," << actual.status.columna << ") ->";
+			return actual.distancia;
+		}
+		visitado[actual.status.fila][actual.status.columna] = true;
+		for (int i = 0; i < 4; i++) {
+			int nx = dx[i] + actual.status.fila;
+			int ny = dy[i] + actual.status.columna;
+			if (nx >= 0 && nx <= 99 && ny >= 0 && ny <= 99 && (mapaResultado[nx][ny] == 'S' || mapaResultado[nx][ny] == 'T' || mapaResultado[nx][ny] == 'K')) {
+				estado2 adyacente;
+				adyacente.status.columna = ny;
+				adyacente.status.fila = nx;
+				adyacente.distancia = actual.distancia + 1;
+				q.push(adyacente);
+				visitado[nx][ny] = true;
+			}
+		}
+	}
+	cout << "estados:" << endl;
+	for (int i = 0; i < cola_estados.size(); i++) {
+		cout << "(" << cola_estados.front().fila << "," << cola_estados.front().columna << ") ->";
+		cola_estados.pop();
+	}
+	cout << endl;
+
+=======
+>>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 	return true;
 
 }
@@ -227,6 +328,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 	// Descomentar para ver el plan en el mapa
 	VisualizaPlan(origen, plan);
 
+<<<<<<< HEAD
 =======
 bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
 	plan=busquedaEnProfundidad(origen,destino);
@@ -278,6 +380,9 @@ bool ComportamientoJugador::pathFinding(const estado & origen, const estado & de
 	cout << endl;
 
 >>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+=======
+>>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+>>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 	return true;
 }
 */
@@ -348,7 +453,11 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		sigAccion = actIDLE;
 	}
 
+<<<<<<< HEAD
 >>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+=======
+>>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+>>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 	ultimaAccion = sigAccion;
 	return sigAccion;
 }
@@ -363,10 +472,17 @@ void AnularMatriz(vector<vector<unsigned char> > &m) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ComportamientoJugador::VisualizaPlan(const estado &st, const list<Action> &plan) {
 =======
 void ComportamientoJugador::VisualizaPlan(const estado & st, const list<Action> &plan) {
 >>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+=======
+void ComportamientoJugador::VisualizaPlan(const estado & st, const list<Action> &plan) {
+=======
+void ComportamientoJugador::VisualizaPlan(const estado &st, const list<Action> &plan) {
+>>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+>>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 	AnularMatriz(mapaConPlan);
 	estado cst = st;
 
