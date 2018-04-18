@@ -26,8 +26,6 @@ void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	cout << endl;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ostream &operator<<(ostream &flujo, const list<estado> &lista) {
 	for (list<estado>::const_iterator it = lista.begin(); it != lista.end(); ++it) {
 		flujo << "(" << it->fila << "," << it->columna << ")\t";
@@ -35,78 +33,9 @@ ostream &operator<<(ostream &flujo, const list<estado> &lista) {
 	return flujo;
 }
 
+/*
 
-list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &destino) {
-	bool visitado[99][99];	//Matriz de visitados.
-	queue<estado> q;		// Cola de estados.
-	q.push(origen);			//Introducimos el origen
-	for (int i = 0; i < 99; i++)		//Inicializamos los visitados a false
-		for (int j = 0; j < 99; j++)
-			visitado[i][j] = false;
-	int dx[4] = {0, 0, 1 , -1};			//Para calcular la adyacencia
-	int dy[4] = {1, -1, 0, 0};
-	while (!q.empty()) {
-		estado actual = q.front();			//Sacamos un estado de la cola
-		q.pop();
-		if (actual.fila == destino.fila && actual.columna == destino.columna)	//Si hemos llegado, devolvemos los predecesores
-			return actual.anteriores;
-		visitado[actual.fila][actual.columna] = true;		//Configuramos como visitado
-		for (int i = 0; i < 4; i++) {
-			int nx = dx[i] + actual.fila;
-			int ny = dy[i] + actual.columna;
-			if (nx >= 0 && nx < 99 && ny >= 0 && ny < 99 && !visitado[nx][ny]		//Si puedo pasar por el adyacente, lo añado a la cola
-			        && (mapaResultado[nx][ny] == 'S' || mapaResultado[nx][ny] == 'T' ||  mapaResultado[nx][ny] == 'K')) {
-				estado adyacente;
-				adyacente.fila = nx;
-				adyacente.columna = ny;
-				adyacente.d = actual.d + 1;
-				cout << adyacente.anteriores;
-				adyacente.anteriores.push_back(actual);
-				q.push(adyacente);
-			}
-		}
-	}
-	list<estado> vacia;
-	return vacia;
-=======
-=======
->>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
-
-bool Contiene(const estadoConAntecesores &estado, queue<estadoConAntecesores> cola) {
-	int fila = estado.status.fila;
-	int col = estado.status.columna;
-	bool encontrado=false;
-	estadoConAntecesores temp;
-	for(int i=0;i<cola.size() && !encontrado;i++){
-		temp=cola.front();
-		cola.pop();
-		if(temp.status.fila==fila && temp.status.columna==col)
-			encontrado=true;
-	}
-	return encontrado;
-}
-
-estadoConAntecesores ComportamientoJugador::calcularEstado(const estadoConAntecesores &actual, const Action &accion) {
-	estadoConAntecesores resultado;
-	//Actualizo el estado.
-	switch (accion) {
-	case actTURN_R: resultado.status.orientacion = (resultado.status.orientacion + 1) % 4; break;
-	case actTURN_L: resultado.status.orientacion = (resultado.status.orientacion + 3) % 4; break;
-	case actFORWARD:
-		switch (resultado.status.orientacion) {
-		case 0: fil--; break;
-		case 1: col++; break;
-		case 2: fil++; break;
-		case 3: col--; break;
-		}
-	}
-	resultado.antecesores=actual.antecesores;
-	resultado.antecesores.push_back(accion);
-	return resultado;
-}
-
-
-list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado &origen, const estado &destino) {
+list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado & origen, const estado & destino) {
 	queue<estadoConAntecesores> abiertos;	//Cola de abiertos
 	queue<estadoConAntecesores> cerrados;	//Cola de cerrados (ya visitados)
 	bool encontrado = false;	//Variable que indica si hemos encontrado el camino
@@ -121,7 +50,7 @@ list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado &origen, 
 			encontrado = true;
 		else {
 			cerrados.push(actual);		//Lo coloco en cerrados
-			if (PUEDO_PASAR.count(mapaResultado[actual.status.fila-1][actual.status.columna]) && actual.antecesores.front() == actFORWARD) {
+			if (PUEDO_PASAR.count(mapaResultado[actual.status.fila - 1][actual.status.columna]) && actual.antecesores.front() == actFORWARD) {
 				estadoConAntecesores hijo_avanzar, hijo_gira_l, hijo_gira_r;		//Añado sus hijos al final de la cola de abiertos.
 				hijo_avanzar = calcularEstado(actual, actFORWARD);
 				hijo_gira_r = calcularEstado(actual, actTURN_R);
@@ -134,19 +63,12 @@ list<Action> ComportamientoJugador::busquedaEnProfundidad(const estado &origen, 
 		}
 	}
 	return actual.antecesores;
-<<<<<<< HEAD
->>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
-=======
-=======
-ostream &operator<<(ostream &flujo, const list<estado> &lista) {
-	for (list<estado>::const_iterator it = lista.begin(); it != lista.end(); ++it) {
-		flujo << "(" << it->fila << "," << it->columna << ")\t";
-	}
-	return flujo;
 }
+*/
 
 
-list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &destino) {
+
+list<estado> ComportamientoJugador::BFS(const estado & origen, const estado & destino) {
 	bool visitado[99][99];	//Matriz de visitados.
 	queue<estado> q;		// Cola de estados.
 	q.push(origen);			//Introducimos el origen
@@ -178,22 +100,12 @@ list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &dest
 	}
 	list<estado> vacia;
 	return vacia;
->>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
->>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 }
-bool ComportamientoJugador::pathFinding(const estado &origen, const estado &destino, list<Action> &plan) {
+bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
 	list<estado> lista = BFS(origen, destino);
 	int i = 0;
 	cout << lista;
 	cout << endl;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
-	plan=busquedaEnProfundidad(origen,destino);
-
-
 }
 /*
 bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
@@ -328,7 +240,6 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 	// Descomentar para ver el plan en el mapa
 	VisualizaPlan(origen, plan);
 
-<<<<<<< HEAD
 =======
 bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
 	plan=busquedaEnProfundidad(origen,destino);
@@ -379,10 +290,6 @@ bool ComportamientoJugador::pathFinding(const estado & origen, const estado & de
 	}
 	cout << endl;
 
->>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
-=======
->>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
->>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 	return true;
 }
 */
@@ -406,8 +313,6 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		cout << "fil: " << fil << "  col: " << col << " Or: " << brujula << endl;
 	}
 
-
-
 	// Determinar si ha cambiado el destino desde la ultima planificacion
 	if (hayPlan and (sensores.destinoF != destino.fila or sensores.destinoC != destino.columna)) {
 		cout << "El destino ha cambiado\n";
@@ -425,7 +330,6 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		destino.columna = sensores.destinoC;
 
 		hayPlan = pathFinding(origen, destino, plan);
-<<<<<<< HEAD
 	}
 
 
@@ -438,26 +342,6 @@ Action ComportamientoJugador::think(Sensores sensores) {
 	else {
 		sigAccion = actIDLE;
 	}
-
-=======
-	}
-
-
-	// Ejecutar el plan
-	Action sigAccion;
-	if (hayPlan and plan.size() > 0) {
-		sigAccion = plan.front();
-		plan.erase(plan.begin());
-	}
-	else {
-		sigAccion = actIDLE;
-	}
-
-<<<<<<< HEAD
->>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
-=======
->>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
->>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 	ultimaAccion = sigAccion;
 	return sigAccion;
 }
@@ -471,18 +355,7 @@ void AnularMatriz(vector<vector<unsigned char> > &m) {
 	}
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-void ComportamientoJugador::VisualizaPlan(const estado &st, const list<Action> &plan) {
-=======
 void ComportamientoJugador::VisualizaPlan(const estado & st, const list<Action> &plan) {
->>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
-=======
-void ComportamientoJugador::VisualizaPlan(const estado & st, const list<Action> &plan) {
-=======
-void ComportamientoJugador::VisualizaPlan(const estado &st, const list<Action> &plan) {
->>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
->>>>>>> 22226a4c2795dbcd5ff5ad7918f85accc93854ce
 	AnularMatriz(mapaConPlan);
 	estado cst = st;
 

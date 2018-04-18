@@ -6,37 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/entidad.cpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/entidad.cpp
 motorlib/entidad.hpp
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/entidad.hpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/entidad.hpp
 
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/mapa.cpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/mapa.cpp
 motorlib/mapa.hpp
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/mapa.hpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/mapa.hpp
 
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/monitor.cpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/monitor.cpp
 motorlib/monitor.hpp
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/monitor.hpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/monitor.hpp
 fstream
 -
 
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motor_grafico.cpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motor_grafico.cpp
 motorlib.hpp
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib.hpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib.hpp
 glui/glui.h
 -
 dirent.h
 -
 
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motor_juego.cpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motor_juego.cpp
 motorlib.hpp
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib.hpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib.hpp
 unistd.h
 -
 
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/util.cpp
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/util.cpp
 motorlib/util.h
-/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/util.h
+/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/motorlib/motorlib/util.h
 
 Comportamientos_Jugador/aldeano.hpp
 chrono
@@ -52,6 +52,8 @@ Comportamientos_Jugador/jugador.hpp
 comportamientos/comportamiento.hpp
 Comportamientos_Jugador/comportamientos/comportamiento.hpp
 list
+-
+set
 -
 
 include/comportamientolib.hpp
