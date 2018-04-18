@@ -69,9 +69,15 @@ CMakeFiles/BelkanSG.dir/all: CMakeFiles/modelosBelkanLib.dir/all
 CMakeFiles/BelkanSG.dir/all: CMakeFiles/obj3DLib.dir/all
 CMakeFiles/BelkanSG.dir/all: CMakeFiles/comportamientosLib.dir/all
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 CMakeFiles/BelkanSG.dir/all: CMakeFiles/motorLib.dir/all
 >>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+=======
+CMakeFiles/BelkanSG.dir/all: CMakeFiles/motorLib.dir/all
+=======
+>>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+>>>>>>> 29563c389ff75137da14d5d37dc87c69d752193b
 	$(MAKE) -f CMakeFiles/BelkanSG.dir/build.make CMakeFiles/BelkanSG.dir/depend
 	$(MAKE) -f CMakeFiles/BelkanSG.dir/build.make CMakeFiles/BelkanSG.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/CMakeFiles" --progress-num=3,4 "Built target BelkanSG"
@@ -151,9 +157,15 @@ CMakeFiles/Belkan.dir/all: CMakeFiles/modelosBelkanLib.dir/all
 CMakeFiles/Belkan.dir/all: CMakeFiles/obj3DLib.dir/all
 CMakeFiles/Belkan.dir/all: CMakeFiles/comportamientosLib.dir/all
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 CMakeFiles/Belkan.dir/all: CMakeFiles/motorLib.dir/all
 >>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+=======
+CMakeFiles/Belkan.dir/all: CMakeFiles/motorLib.dir/all
+=======
+>>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+>>>>>>> 29563c389ff75137da14d5d37dc87c69d752193b
 	$(MAKE) -f CMakeFiles/Belkan.dir/build.make CMakeFiles/Belkan.dir/depend
 	$(MAKE) -f CMakeFiles/Belkan.dir/build.make CMakeFiles/Belkan.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/CMakeFiles" --progress-num=1,2 "Built target Belkan"

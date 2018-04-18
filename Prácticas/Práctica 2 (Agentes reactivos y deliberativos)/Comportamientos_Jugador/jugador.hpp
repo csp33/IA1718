@@ -51,6 +51,13 @@ public:
   int interact(Action accion, int valor);
   void VisualizaPlan(const estado &st, const list<Action> &plan);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+  ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
+  list<estado> BFS(const estado &origen, const estado &destino);
+=======
+>>>>>>> 29563c389ff75137da14d5d37dc87c69d752193b
 
   ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
 
@@ -58,11 +65,15 @@ public:
   const set<char> PUEDO_PASAR = {'S', 'K', 'T'};
   list<Action> busquedaEnProfundidad(const estado &origen, const estado &destino) ;
   estadoConAntecesores calcularEstado(const estadoConAntecesores &actual, const Action &accion) ;
+<<<<<<< HEAD
 =======
 
   ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
   list<estado> BFS(const estado &origen, const estado &destino);
 >>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+=======
+>>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+>>>>>>> 29563c389ff75137da14d5d37dc87c69d752193b
 
 private:
   // Declarar Variables de Estado
@@ -70,14 +81,22 @@ private:
   estado destino;
   list<Action> plan;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 29563c389ff75137da14d5d37dc87c69d752193b
 
   // Nuevas Variables de Estado
   Action ultimaAccion;
   bool hayPlan;
 
 
+<<<<<<< HEAD
 >>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
+=======
+=======
+>>>>>>> ea9780c0d8f8668f36ea0b33286dbf06f77b465a
+>>>>>>> 29563c389ff75137da14d5d37dc87c69d752193b
 
   // Nuevas Variables de Estado
   Action ultimaAccion;
