@@ -1,4 +1,4 @@
-# Install script for directory: /home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)
+# Install script for directory: /home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
