@@ -26,6 +26,13 @@ void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	cout << endl;
 }
 
+ostream &operator<<(ostream &flujo, const list<estado> &lista) {
+	for (list<estado>::const_iterator it = lista.begin(); it != lista.end(); ++it) {
+		flujo << "(" << it->fila << "," << it->columna << ")\t";
+	}
+	return flujo;
+}
+
 
 list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &destino) {
 	bool visitado[99][99];	//Matriz de visitados.
@@ -51,6 +58,7 @@ list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &dest
 				adyacente.fila = nx;
 				adyacente.columna = ny;
 				adyacente.d = actual.d + 1;
+				cout << adyacente.anteriores;
 				adyacente.anteriores.push_back(actual);
 				q.push(adyacente);
 			}
@@ -60,12 +68,10 @@ list<estado> ComportamientoJugador::BFS(const estado &origen, const estado &dest
 	return vacia;
 }
 bool ComportamientoJugador::pathFinding(const estado &origen, const estado &destino, list<Action> &plan) {
-	list<estado> lista=BFS(origen,destino);
-	for(list<estado>::iterator it=lista.begin();it != lista.end(); ++it){
-		cout<<"distancia "<<it->d<<endl;
-		cout<<"("<<it->fila<<","<<it->columna<<")\t";
-	}
-	cout<<endl;
+	list<estado> lista = BFS(origen, destino);
+	int i = 0;
+	cout << lista;
+	cout << endl;
 
 	return true;
 
