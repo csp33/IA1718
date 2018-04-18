@@ -48,6 +48,9 @@ public:
 
   const set<char> PUEDO_PASAR = {'S', 'K', 'T'};
 
+  list<Action> calcularListaAcciones(const list<estado> &lista);
+
+
 
 private:
   // Declarar Variables de Estado
