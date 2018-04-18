@@ -4,12 +4,13 @@
 #include "comportamientos/comportamiento.hpp"
 
 #include <list>
-#include <set>
 
 struct estado {
   int fila;
   int columna;
   int orientacion;
+  int d;
+  list<estado> anteriores;
 };
 
 struct estado2 {
@@ -49,6 +50,7 @@ public:
   Action think(Sensores sensores);
   int interact(Action accion, int valor);
   void VisualizaPlan(const estado &st, const list<Action> &plan);
+<<<<<<< HEAD
 
   ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
 
@@ -56,12 +58,26 @@ public:
   const set<char> PUEDO_PASAR = {'S', 'K', 'T'};
   list<Action> busquedaEnProfundidad(const estado &origen, const estado &destino) ;
   estadoConAntecesores calcularEstado(const estadoConAntecesores &actual, const Action &accion) ;
+=======
+
+  ComportamientoJugador * clone() {return new ComportamientoJugador(*this);}
+  list<estado> BFS(const estado &origen, const estado &destino);
+>>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
 
 private:
   // Declarar Variables de Estado
   int fil, col, brujula;
   estado destino;
   list<Action> plan;
+<<<<<<< HEAD
+=======
+
+  // Nuevas Variables de Estado
+  Action ultimaAccion;
+  bool hayPlan;
+
+
+>>>>>>> a394d72e8e5b6881c024c10e5d0f48a9d21992bc
 
   // Nuevas Variables de Estado
   Action ultimaAccion;
