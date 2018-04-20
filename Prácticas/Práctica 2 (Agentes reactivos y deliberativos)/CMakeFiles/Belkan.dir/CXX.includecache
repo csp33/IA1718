@@ -27,6 +27,10 @@ list
 -
 set
 -
+queue
+-
+stack
+-
 
 include/comportamientolib.hpp
 comportamientos/comportamiento.hpp

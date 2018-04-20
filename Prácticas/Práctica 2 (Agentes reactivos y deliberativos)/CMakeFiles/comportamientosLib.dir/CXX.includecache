@@ -31,8 +31,6 @@ iostream
 -
 cmath
 -
-queue
--
 
 /home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Comportamientos_Jugador/jugador.hpp
 comportamientos/comportamiento.hpp
@@ -40,6 +38,10 @@ comportamientos/comportamiento.hpp
 list
 -
 set
+-
+queue
+-
+stack
 -
 
 /home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/src/comportamientos/comportamiento.cpp

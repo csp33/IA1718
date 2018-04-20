@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <cmath>
-#include<queue>
 
 void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	auto it = plan.begin();
@@ -26,277 +25,177 @@ void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	cout << endl;
 }
 
+/**********************************************/
+// Para hacer pruebas
 ostream &operator<<(ostream &flujo, const list<estado> &lista) {
 	for (list<estado>::const_iterator it = lista.begin(); it != lista.end(); ++it) {
 		flujo << " -> (" << it->fila << "," << it->columna << ")";
 	}
 	return flujo;
 }
+/**********************************************/
 
-/**Funciona (a saber por qué)
-list<estado> ComportamientoJugador::BFS(const estado & origen, const estado & destino) {
-	bool visitado[99][99];	//Matriz de visitados.
-	queue<estado> q;		// Cola de estados.
-	q.push(origen);			//Introducimos el origen
-	for (int i = 0; i < 99; i++)		//Inicializamos los visitados a false
-		for (int j = 0; j < 99; j++)
+void ComportamientoJugador::InicializarCerrados() {
+	for (int i = 0; i < TAM; i++)		//Inicializamos los visitados a false
+		for (int j = 0; j < TAM; j++)
 			visitado[i][j] = false;
-	int dx[4] = {0, 0, 1 , -1};			//Para calcular la adyacencia
-	int dy[4] = {1, -1, 0, 0};
-	while (!q.empty()) {
-		estado actual = q.front();			//Sacamos un estado de la cola
-		q.pop();
-		if (actual.fila == destino.fila && actual.columna == destino.columna) {	//Si hemos llegado, devolvemos los pasos que hemos seguido
-			actual.anteriores.push_back(actual);
-			return actual.anteriores;
-		}
-		visitado[actual.fila][actual.columna] = true;		//Configuramos como visitado
-		for (int i = 0; i < 4; i++) {
-			int nx = dx[i] + actual.fila;
-			int ny = dy[i] + actual.columna;
-			if (!visitado[nx][ny]	&& PUEDO_PASAR.count(mapaResultado[nx][ny])){	//Si puedo pasar por el adyacente, lo añado a la cola
-				estado adyacente;
-				adyacente.fila = nx;
-				adyacente.columna = ny;
-				//ESTABLECER ORIENTACIÓN DE ADYACENTE
-				switch (i) {
-				case 0: adyacente.orientacion = actual.orientacion; break;	//Adyacente de enfrente. Misma orientación
-				case 1:	adyacente.orientacion = actual.orientacion + 3 % 4; break;	//Adyacente de la izquierda.
-				case 2:	adyacente.orientacion = actual.orientacion + 2 % 4; break;	//Adyacente de abajo
-				case 3:	adyacente.orientacion = actual.orientacion + 1 % 4; break;	//Adyacente de la derecha
-				}
-				adyacente.d = actual.d + 1;
-				for (list<estado>::const_iterator it = actual.anteriores.begin(); it != actual.anteriores.end(); ++it)
-					adyacente.anteriores.push_back(*it);
-				adyacente.anteriores.push_back(actual);
-				q.push(adyacente);
-			}
-		}
-	}
-	list<estado> vacia;
-	return vacia;
 }
 
-list<Action> ComportamientoJugador::calcularListaAcciones(const list<estado> &lista) {
-	list<Action> resultado;
-	list<estado>::const_iterator it_anterior = lista.begin();
-	list<estado>::const_iterator it_siguiente = it_anterior++;
-	for (it_anterior = lista.begin(); it_siguiente != lista.end() ; ++it_anterior,++it_siguiente) {
-		//Tres casos: avanzo, giro izquierda o giro derecha
-		if (it_anterior->fila > it_siguiente->fila)	{	//Me he movido a la derecha
-			switch (it_anterior->orientacion) {
-			case 0: 		//Estoy mirando al norte
-				resultado.push_back(actTURN_L);
-				break;
-			case 1:			//Este
-				break;
-			case 2:			//Sur
-				resultado.push_back(actTURN_R);
-				break;
-			case 3:			//Oeste
-				resultado.push_back(actTURN_R);
-				resultado.push_back(actTURN_R);
-				break;
+estado ComportamientoJugador::CrearAdyacente(int f, int c, int o, const estado &actual) {
+	estado adyacente;
+	adyacente.fila = f;
+	adyacente.columna = c;
+	adyacente.orientacion = o;
+	for (list<estado>::const_iterator it = actual.anteriores.begin(); it != actual.anteriores.end(); ++it)
+		adyacente.anteriores.push_back(*it);
+	adyacente.anteriores.push_back(actual);
+	return adyacente;
+}
+
+bool ComportamientoJugador::Contiene(int fila, int columna, queue<estado> q) {
+	bool encontrado = false;
+	for (int i = 0; i < q.size() && !encontrado; i++) {
+		estado actual = q.front();
+		q.pop();
+		if (actual.fila == fila && actual.columna == columna)
+			encontrado = true;
+	}
+	return encontrado;
+}
+
+bool ComportamientoJugador::EsViable(int fila, int columna/*, queue<estado> q*/) {
+	//No está en abiertos ni en cerrados y puedo pasar
+	return /*!Contiene(fila, columna, q) &&*/ !visitado[fila][columna] && PUEDO_PASAR.count(mapaResultado[fila][columna]);
+}
+
+/**Redefino los operadores para que solo comparen fila y columna**/
+bool operator==(const estado &uno, const estado &otro) {
+	return uno.fila == otro.fila && uno.columna == otro.columna;
+}
+
+bool operator!=(const estado &uno, const estado &otro) {
+	return !(uno == otro);
+}
+
+/**Prueba: operadores de comparación para almacenar los abiertos en un set y que la búsqueda sea logarítmica*/
+bool operator<(const estado &uno,const estado &otro){
+	return uno.fila<otro.fila;
+}
+/****************************************************************/
+
+list<estado> ComportamientoJugador::BusquedaEnAnchura(const estado & origen, const estado & destino) {
+	queue<estado> abiertos;				// Cola de abiertos.
+	abiertos.push(origen);				//Introducimos el origen
+	InicializarCerrados();				// Ponemos los visitados (cerrados) a false.
+	int dx[4] = { -1, 0, 1 , 0};		//Para calcular la adyacencia (i=0 -> DELANTE i=1 -> DERECHA i=2 -> ATRÁS i=3 -> IZQUIERDA)
+	int dy[4] = {0, 1, 0, -1};
+	bool encontrado = false;			// Variable que indica si hemos encontrado el camino.
+	list<estado> resultado;				//Resultado a devolver
+
+	while (!abiertos.empty() && !encontrado) {			//Mientras queden estados por comprobar o no encontremos el destino
+		estado actual = abiertos.front();			//Sacamos un estado de la cola
+		abiertos.pop();
+		if ( actual == destino) {	//Si hemos llegado, devolvemos los pasos que hemos seguido
+			resultado = actual.anteriores;
+			resultado.push_back(actual);
+			encontrado = true;
+		}
+		else {
+			visitado[actual.fila][actual.columna] = true;		//Configuramos como visitado
+			for (int i = 0; i < 4; i++) {						//Adjustamos adyacentes
+				int fila_ady = dx[i] + actual.fila;
+				int col_ady = dy[i] + actual.columna;
+				if (EsViable(fila_ady, col_ady/*,abiertos*/)) {	//Si puedo pasar por el adyacente, lo añado a la cola de abiertos
+					estado adyacente = CrearAdyacente(fila_ady, col_ady, i, actual);
+					abiertos.push(adyacente);
+				}
 			}
 		}
-		else if (it_anterior->fila < it_siguiente->fila)	{	//Me he movido a la izquierda
-			switch (it_anterior->orientacion) {
-			case 0: 		//Estoy mirando al norte
-				resultado.push_back(actTURN_R);
-				break;
-			case 1:			//Este
-				resultado.push_back(actTURN_R);
-				resultado.push_back(actTURN_R);
-				break;
-			case 2:			//Sur
-				resultado.push_back(actTURN_L);
-				break;
-			case 3:			//Oeste
-				break;
-			}
-		}
-		else if (it_anterior->columna > it_siguiente->columna) {	//Me he movido hacia abajo
-			switch (it_anterior->orientacion) {
-			case 0: 		//Estoy mirando al norte
-				resultado.push_back(actTURN_R);
-				resultado.push_back(actTURN_R);
-				break;
-			case 1:			//Este
-				resultado.push_back(actTURN_L);
-				break;
-			case 2:			//Sur
-				break;
-			case 3:			//Oeste
-				resultado.push_back(actTURN_R);
-				break;
-			}
-		}
-		else {		//He ido hacia arriba
-			switch (it_anterior->orientacion) {
-			case 0: 		//Estoy mirando al norte
-				break;
-			case 1:			//Este
-				resultado.push_back(actTURN_R);
-				break;
-			case 2:			//Sur
-				resultado.push_back(actTURN_L);
-				resultado.push_back(actTURN_L);
-				break;
-			case 3:			//Oeste
-				resultado.push_back(actTURN_L);
-				break;
-			}
-		}
-		resultado.push_back(actFORWARD);
 	}
 	return resultado;
 }
-**/
-
-list<estado> ComportamientoJugador::BFS(const estado & origen, const estado & destino) {
-	bool visitado[99][99];	//Matriz de visitados.
-	queue<estado> q;		// Cola de estados.
-	q.push(origen);			//Introducimos el origen
-	for (int i = 0; i < 99; i++)		//Inicializamos los visitados a false
-		for (int j = 0; j < 99; j++)
-			visitado[i][j] = false;
-	int dx[4] = { -1, 0, 1 , 0};			//Para calcular la adyacencia
-	int dy[4] = {0, 1, 0, -1};
-	while (!q.empty()) {
-		estado actual = q.front();			//Sacamos un estado de la cola
-		q.pop();
-		if (actual.fila == destino.fila && actual.columna == destino.columna) {	//Si hemos llegado, devolvemos los pasos que hemos seguido
-			actual.anteriores.push_back(actual);
-			return actual.anteriores;
-		}
-		visitado[actual.fila][actual.columna] = true;		//Configuramos como visitado
-		for (int i = 0; i < 4; i++) {
-			int nx = dx[i] + actual.fila;
-			int ny = dy[i] + actual.columna;
-			if (!visitado[nx][ny] && PUEDO_PASAR.count(mapaResultado[nx][ny])) {	//Si puedo pasar por el adyacente, lo añado a la cola
-				estado adyacente;
-				adyacente.fila = nx;
-				adyacente.columna = ny;
-				adyacente.orientacion = i;
-				adyacente.d = actual.d + 1;
-				for (list<estado>::const_iterator it = actual.anteriores.begin(); it != actual.anteriores.end(); ++it)
-					adyacente.anteriores.push_back(*it);
-				adyacente.anteriores.push_back(actual);
-				q.push(adyacente);
-			}
-		}
-	}
-	list<estado> vacia;
-	return vacia;
-}
 
 list<Action> ComportamientoJugador::calcularListaAcciones(const list<estado> &lista) {
 	list<Action> resultado;
-	list<estado>::const_iterator it_anterior ;
+	list<estado>::const_iterator it_anterior;
 	list<estado>::const_iterator it_siguiente;
-	for (it_siguiente = it_anterior = lista.begin(); it_siguiente != lista.end() ; ++it_anterior) {
+	for (it_siguiente = it_anterior = lista.begin(); it_siguiente != lista.end() ; ++it_anterior) {		//Dos iteradores: anterior y siguiente.
 		++it_siguiente;
 		//Cuatro  casos: avanzo, giro izquierda , giro derecha o retrocedo
-		//cerr << "----------------------------------------------" << endl;
-		//cerr << "Anterior: (" << it_anterior->fila << "," << it_anterior->columna << "). O=" << it_anterior->orientacion << endl;
-		//cerr << "siguiente: (" << it_siguiente->fila << "," << it_siguiente->columna << "). O=" << it_siguiente->orientacion << endl;
-
-		if (it_anterior->fila > it_siguiente->fila)	{	//Me he movido ARRIBA
+		if (it_anterior->fila > it_siguiente->fila)	{	//Me he movido hacia ARRIBA
 			switch (it_anterior->orientacion) {
 			case 0: 		//Estoy mirando al norte
-				//cerr << "He ido hacia arriba y miro al norte." << endl;
 				break;
 			case 1:			//Este
-				//cerr << "He ido hacia arriba y miro al este. Giro izq" << endl;
 				resultado.push_back(actTURN_L);
 				break;
 			case 2:			//Sur
-				//cerr << "He ido hacia arriba y miro al sur. Media vuelta" << endl;
 				resultado.push_back(actTURN_R);
 				resultado.push_back(actTURN_R);
 				break;
 			case 3:			//Oeste
-				//cerr << "He ido hacia arriba y miro al oeste. Giro der" << endl;
 				resultado.push_back(actTURN_R);
 				break;
 			}
 		}
-		else if (it_anterior->fila < it_siguiente->fila)	{	//Me he movido ABAJO
+		else if (it_anterior->fila < it_siguiente->fila)	{	//Me he movido hacia ABAJO
 			switch (it_anterior->orientacion) {
 			case 0: 		//Estoy mirando al norte
-				//cerr << "He ido hacia abajo y miro al norte. Media vuelta" << endl;
 				resultado.push_back(actTURN_R);
 				resultado.push_back(actTURN_R);
 				break;
 			case 1:			//Este
-				//cerr << "He ido hacia abajo y miro al este. Giro der" << endl;
 				resultado.push_back(actTURN_R);
 				break;
 			case 2:			//Sur
-				//cerr << "He ido hacia abajo y miro al sur." << endl;
 				break;
 			case 3:			//Oeste
-				//cerr << "He ido hacia abajo y miro al oeste. Giro izq" << endl;
 				resultado.push_back(actTURN_L);
 				break;
 			}
 		}
-		else if (it_anterior->columna > it_siguiente->columna) {	//Me he movido IZQUIERDA
+		else if (it_anterior->columna > it_siguiente->columna) {	//Me he movido hacia la IZQUIERDA
 			switch (it_anterior->orientacion) {
 			case 0: 		//Estoy mirando al norte
-				//cerr << "He ido hacia izquierda y miro al norte. Giro izq" << endl;
 				resultado.push_back(actTURN_L);
 				break;
 			case 1:			//Este
-				//cerr << "He ido hacia izquierda y miro al este. Media vuelta" << endl;
 				resultado.push_back(actTURN_R);
 				resultado.push_back(actTURN_R);
 				break;
 			case 2:			//Sur
-				//cerr << "He ido hacia izquierda y miro al sur. Giro der" << endl;
 				resultado.push_back(actTURN_R);
 				break;
 			case 3:			//Oeste
-				//cerr << "He ido hacia izquierda y miro al oeste." << endl;
 				break;
 			}
 		}
-		else {		//He ido DERECHA
+		else {		//Me he movido hacia la DERECHA
 			switch (it_anterior->orientacion) {
 			case 0: 		//Estoy mirando al norte
-				//cerr << "He ido hacia derecha y miro al norte. Giro der" << endl;
 				resultado.push_back(actTURN_R);
 				break;
 			case 1:			//Este
-				//cerr << "He ido hacia derecha y miro al este." << endl;
 				break;
 			case 2:			//Sur
-				//cerr << "He ido hacia derecha y miro al sur. Giro izq" << endl;
 				resultado.push_back(actTURN_L);
 				break;
 			case 3:			//Oeste
-				//cerr << "He ido hacia derecha y miro al oeste. Media vuelta" << endl;
 				resultado.push_back(actTURN_R);
 				resultado.push_back(actTURN_R);
 				break;
 			}
 		}
 		resultado.push_back(actFORWARD);
-		//cerr << "----------------------------------------------" << endl;
 	}
 	return resultado;
 }
 
 bool ComportamientoJugador::pathFinding(const estado & origen, const estado & destino, list<Action> &plan) {
 	plan.clear();
-	list<estado> lista = BFS(origen, destino);
-	//cerr << "Posición origen: (" << origen.fila << "," << origen.columna << "). O=" << origen.orientacion << endl;
-	//cerr << "Posición destino: (" << destino.fila << "," << destino.columna << "). O=" << destino.orientacion << endl;
-	//cerr << "Los estados por los que hay que pasar son:" << endl;
-	//cerr << lista << endl;
+	list<estado> lista = BusquedaEnAnchura(origen, destino);
 	plan = calcularListaAcciones(lista);
-	//cerr << "La lista de acciones es:" << endl;
-	//VisualizaPlan(origen, plan);
+	VisualizaPlan(origen, plan);
 	return !lista.empty();	//True si no está vacía
 }
 
@@ -327,7 +226,7 @@ Action ComportamientoJugador::think(Sensores sensores) {
 	}
 
 	// Determinar si tengo que construir un plan
-	if (!hayPlan || sensores.colision) {	//No hay plan o he chocado. Recalculo.
+	if (!hayPlan || sensores.colision || plan.empty()) {	//No hay plan o he chocado. Recalculo.
 		estado origen;
 		origen.fila = fil;
 		origen.columna = col;
