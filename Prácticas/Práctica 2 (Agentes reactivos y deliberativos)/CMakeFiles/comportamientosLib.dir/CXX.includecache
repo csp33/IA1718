@@ -31,6 +31,12 @@ iostream
 -
 cmath
 -
+ctime
+-
+cstdlib
+-
+chrono
+-
 
 /home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Comportamientos_Jugador/jugador.hpp
 comportamientos/comportamiento.hpp
