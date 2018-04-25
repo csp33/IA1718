@@ -30,6 +30,7 @@ public:
     ultimaAccion = actIDLE;
     hayPlan = false;
     Reservar();
+    primeraVez=true;
   }
   ComportamientoJugador(std::vector< std::vector< unsigned char> > mapaR) : Comportamiento(mapaR) {
     // Inicializar Variables de Estado
@@ -41,8 +42,9 @@ public:
     ultimaAccion = actIDLE;
     hayPlan = false;
     Reservar();
-
+    primeraVez=true;
   }
+  
   ComportamientoJugador(const ComportamientoJugador & comport) : Comportamiento(comport) {}
   ~ComportamientoJugador() {
     Liberar();
@@ -80,6 +82,7 @@ private:
   // Nuevas Variables de Estado
   Action ultimaAccion;
   bool hayPlan;
+  bool primeraVez;
   bool pathFinding(const estado & origen, const estado & destino, list<Action> &plan);
   void PintaPlan(list<Action> plan);
 

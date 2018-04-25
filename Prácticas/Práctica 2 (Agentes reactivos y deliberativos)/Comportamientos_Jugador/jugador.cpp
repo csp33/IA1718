@@ -308,9 +308,12 @@ bool ComportamientoJugador::pathFinding(const estado & origen, const estado & de
 	return false;
 }
 
+
+
 /**********************************************/
 Action ComportamientoJugador::think(Sensores sensores) {
-	if (sensores.mensajeF != -1 /* and es la primera vez que entro*/) {
+	if (sensores.mensajeF != -1 && primeraVez) {
+		primeraVez = false;
 		fil = sensores.mensajeF;
 		col = sensores.mensajeC;
 	}
@@ -337,14 +340,15 @@ Action ComportamientoJugador::think(Sensores sensores) {
 	}
 
 	// Determinar si tengo que construir un plan
-	if (!hayPlan) {	//No hay plan o tengo un aldeano enfrente. Recalculo.
+	if (!hayPlan) {
+		//Capto origen y destino.
 		estado origen;
 		origen.fila = fil;
 		origen.columna = col;
 		origen.orientacion = brujula;
-
 		destino.fila = sensores.destinoF;
 		destino.columna = sensores.destinoC;
+
 		cout << "Calculando plan..." << endl;
 		hayPlan = pathFinding(origen, destino, plan);
 		PintaPlan(plan);
@@ -359,9 +363,10 @@ Action ComportamientoJugador::think(Sensores sensores) {
 	if (hayPlan and plan.size() > 0) {
 		sigAccion = plan.front();
 		plan.erase(plan.begin());
-		int f_aux = fil;
-		int c_aux = col;
+
 		if (sigAccion == actFORWARD and sensores.superficie[2] == 'a') {
+			int f_aux = fil;
+			int c_aux = col;
 
 			estado origen;
 			origen.fila = fil;
@@ -371,7 +376,7 @@ Action ComportamientoJugador::think(Sensores sensores) {
 			destino.fila = sensores.destinoF;
 			destino.columna = sensores.destinoC;
 
-			//Switch en función de la orientación: 0->fil-1 etc.
+			//Calculo la posición del aldeano.
 			switch (brujula) {
 			case 0:
 				f_aux--;
@@ -386,19 +391,20 @@ Action ComportamientoJugador::think(Sensores sensores) {
 				c_aux--;
 				break;
 			}
-			cout << "muro en (" << f_aux << "," << c_aux << ")" << endl;
+			// Arreglo temporal: pongo un muro en el lugar del aldeano para que no sea transitable y no tener que modificar pathFinding()
 			char aux = mapaResultado[f_aux][c_aux];
 			mapaResultado[f_aux][c_aux] = 'M';
+
 			cout << "Recalculando ruta..." << endl;
-			cout << "Calculando plan..." << endl;
+
 			hayPlan = pathFinding(origen, destino, plan);
+			
 			mapaResultado[f_aux][c_aux] = aux;
 
 			PintaPlan(plan);
 			cout << "Plan calculado." << endl;
-			if (!hayPlan)
-				cout << "El objetivo es inalcanzable o tengo un maldito aldeano delante." << endl;
-			if (!plan.empty()) {
+
+			if (!plan.empty()) {			//Si el plan no está vacío, saco la primera acción. En caso contrario, espero.
 				sigAccion = plan.front();
 				plan.erase(plan.begin());
 			}
