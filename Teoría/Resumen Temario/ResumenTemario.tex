@@ -219,8 +219,8 @@ Los agentes reactivos seleccionan las acciones sobre la base de las percepciones
 
 Las representaciones del mundo pueden ser fundamentalmente de dos tipos:
 \begin{itemize}
-	\item \textbf{Icónicas}. Es una representación parcial del mundo, lo que nuestro agente es capaz de percibir.
-	\item \textbf{Basadas en características}. Representación total del mundo.
+	\item \textbf{Basadas en características}. Es una representación parcial del mundo, lo que nuestro agente es capaz de percibir.
+	\item \textbf{Icónicas}. Representación total del mundo.
 \end{itemize}
 
 \paragraph{Diseño de un agente reactivo}
@@ -257,7 +257,7 @@ Consiste en implementar los sistemas de producción por medio de circuitos elect
 
 Las funciones booleanas que se pueden implementar mediante una unidad lógica con umbral (ULU) se denominan \emph{funciones linealmente separables}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{redes.png}
 \caption{Unidad lógica con umbral (ULU).}
@@ -267,7 +267,7 @@ Las funciones booleanas que se pueden implementar mediante una unidad lógica co
 
 Consiste en hacer que el comportamiento global del agente descanse sobre un conjunto de módulos de comportamiento. Cada uno de ellos recibirá información directamente de las entradas sensoriales. Si estas entradas cumplen una precondición específica de cada módulo, se ejecutará un programa específico. Además, un módulo de comportamiento puede ser subsumido en otro.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{subsuncion.png}
 \caption{Arquitectura de subsunción.}
@@ -301,16 +301,170 @@ La búsqueda en el espacio de estados consiste en resolver el problema mediante 
 
 Una estructura de \textbf{grafo dirigido} nos puede ser muy útil para buscar sencuencias de acciones que nos lleven al objetivo final. Un nodo representa un estado del sistema y una arista una posible acción. Esta estructura se denomina \textbf{grafo de estados}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{grafo_estados.png}
 \caption{Grafo de estados.}
 \end{figure}
 
+\subsection{Descripción de un problema.}
+
+Un problema queda definido por los siguientes elementos:
+\begin{itemize}
+	\item Un estado inicial $e_i$
+	\item Un estado final $e_f$
+	\item Una lista de posibles acciones $a_i$
+	\item El costo de estas acciones $c_i$
+\end{itemize}
+
+\subsection{Procedimiento de búsqueda.}
+
+El procedimiento que tiene que seguir un algoritmo de búsqueda es el siguiente:
+\begin{enumerate}
+	\item $DATOS \leftarrow$ base de datos inicial.
+	\item Mientras que $DATOS$ no satisfaga la condición final:
+		\begin{enumerate}
+			\item Seleccionar un $A \in ACCIONES$ que sea aplicable a $DATOS$.
+			\item $DATOS \leftarrow$ resultado de aplicar $A$ a $DATOS$
+		\end{enumerate}
+		\item Fin.
+\end{enumerate}
+
+\subsection{Estrategias de control.}
+
+\subsubsection{Estrategias irrevocables.}
+
+En estas estrategias, el grafo explícito está formado por un único nodo en cada momento. Este nodo incluye la descripción completa del sistema. El algoritmo es el siguiente:
+
+\begin{enumerate}
+	\item Se selecciona una acción $A$.
+	\item Se aplica sobre $E$ para obtener $E^{\prime}=A(E)$.
+	\item $E \leftarrow E^{\prime}$.
+\end{enumerate}
 
 
+\subsubsection{Estategias tentativas.}
+
+Pueden ser de dos tipos:
+
+\begin{itemize}
+	\item Estrategias retroactivas.
+	\item Búsqueda en grafos.
+\end{itemize}
+
+\paragraph{Estrategias retroactivas.}
+
+Se basan en guardar en memoria únicamente un hijo de cada estado, manteniendo el camino desde el estado inicial al actual. Por tanto, el grafo explícito es realmente una lista. El proceso se detiene cuando llegamos al objetivo y no deseamos encontrar más soluciones o bien cuando ya no podemos aplicar más operadores al nodo raiz.\\
+
+La vuelta atrás se produce si se cumple alguna de estas condiciones:
+
+\begin{itemize}
+	\item Encontramos una solución pero deseamos encontrar otra alternativa.
+	\item Llegamos a un límite en el nivel de profundidad explorado o en el tiempo de exploración de una misma rama.
+	\item Generamos un estado que ya existía en el camino.
+	\item No existen reglas aplicables al último nodo de la lista (último nodo del gráfico explícito).
+\end{itemize}
+
+\paragraph{Búsqueda en grafos.}
+
+En memoria guardaremos todos los estados (nodos que hayamos generado hasta el momento). De esta forma, la búsqueda se realizaría de la siguiente forma:
+
+\begin{enumerate}
+	\item Seleccionar un estado $E$ del grafo.
+	\item Seleccionar un operador $A$ aplicable sobre $E$.
+	\item Aplicar $A$ para obtener un nodo $A(E)$.
+	\item Añadir el arco $E \rightarrow A(E)$ al grafo.
+	\item Repetir.
+\end{enumerate}
+
+\subsection{Medidas del comportamiento de un sistema de búsqueda.}
+
+\begin{itemize}
+	\item \textbf{Completitud}. Hay garantía de encontrar la solución en el caso de que exista.
+	\item \textbf{Optimalidad}. Hay garantía de encontrar la solución óptima.
+	\item \textbf{Complejidad en el tiempo}. Tiempo que requiere para encontrar la solución.
+	\item \textbf{Complejidad en el espacio}. Memoria que requiere para realizar la búsqueda.
+\end{itemize}
+
+\subsection{Búsqueda sin información.}
 
 
+\subsubsection{Búsqueda en anchura.}
 
+\begin{enumerate}
+	\item Creamos una cola de nodos $abiertos$ (por visitar).
+	\item Creamos un set de nodos $cerrados$ (ya visitados).
+	\item Metemos el nodo de origen en $abiertos$.
+	\item Mientras que haya elementos el $abiertos$ y no encontremos solución:
+		\begin{enumerate}
+			\item Sacamos el primer elemento de abiertos.
+			\item Si es solución, la devolvemos.
+			\item En caso contrario, metemos el nodo en cerrados y calculamos sus nodos hijos.
+			\item Si el hijo no está ni en abiertos ni en cerrados y es viable, lo metemos en abiertos.
+		\end{enumerate}		
+	\item Fin	
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{anchura.png}
+\caption{Búsqueda en anchura.}
+\end{figure}
+
+\paragraph{Características}
+\begin{itemize}
+	\item \textbf{Completitud}. Encuentra la solución si existe y el factor de ramificación es finito en cada nodo.
+	\item \textbf{Optimalidad}. Si todos los operadores tienen el mismo coste, encuentra la solución óptima.
+	\item \textbf{Complejidad en el tiempo}. Buena si las metas son cercanas.
+	\item \textbf{Complejidad en el espacio}. Consume memoria exponencialmente.
+\end{itemize}
+
+\subsubsection{Búsqueda en profundidad.}
+
+Es igual que la búsqueda en anchura, sólo tenemos que sustituir la cola (FIFO) por una pila (LIFO).\\
+
+En cada paso se genera un solo sucesor, es decir, cada vez que obtenemos un hijo, se le aplica un operador obteniendo un sucesor nuevo (y así sucesivamente). Para evitar que este proceso sea infinito, establecemos una profundidad límite a partir de la cual se dejarán de generar sucesores.\\
+
+Como podemos ver, solo tenemos que almacenar la parte del árbol que contiene el camino que está siendo explorado, por lo que el consumo de memoria crece de forma lineal. Sin embargo, si encontramos el objetivo, no podremos asegurar que sea el situado a menor profundidad.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{profundidad.png}
+\caption{Búsqueda en profundidad.}
+\end{figure}
+
+\paragraph{Características}
+\begin{itemize}
+	\item \textbf{Completitud}. No asegura encontrar solución.
+	\item \textbf{Optimalidad}. No asegura encontrar la solución óptima.
+	\item \textbf{Eficiencia}. Buena si las metas están lejos o hay problemas de memoria.
+	\item No es un buen algoritmo cuando hay ciclos.
+\end{itemize}
+
+
+\subsubsection{Búsqueda con costo uniforme.}
+
+Igual que la búsqueda en anchura sustituyendo la cola por una cola con prioridad con el costo del camino como factor de prioridad. Es decir, elegimos siempre el nodo que tenga menor coste. Es un algoritmo voraz (\textit{Greedy}).
+
+
+\subsubsection{Descenso iterativo.}
+
+Consiste en realizar varias búsquedas en profundidad aumentando cada vez la profundidad límite hasta que encontremos el objetivo. De esta forma garantizamos que el objetivo encontrado es el más cercano al nodo inicial.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.65]{descenso_iterativo.png}
+\caption{Descenso iterativo.}
+\end{figure}
+
+\subsubsection{Búsqueda bidireccional.}
+
+Consiste en realizar búsquedas desde los dos extremos: desde el inicio intentando encontrar el destino y desde el destino intentando encontrar el inicio.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{bidireccional.png}
+\caption{Búsqueda bidireccional.}
+\end{figure}
 
 \end{document}

@@ -1,0 +1,38 @@
+\select@language {spanish}
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Tema 1. Introducci\IeC {\'o}n.}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}\IeC {\textquestiondown }Qu\IeC {\'e} es la IA?}{3}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Comportamiento humano. Test de Turing.}{3}{subsubsection.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.2}Pensar como un humano: modelo cognitivo.}{4}{subsubsection.1.1.2}
+\contentsline {subsubsection}{\numberline {1.1.3}Pensamiento racional: ''leyes del pensamiento''.}{4}{subsubsection.1.1.3}
+\contentsline {subsubsection}{\numberline {1.1.4}Actuar de forma racional: agente racional.}{4}{subsubsection.1.1.4}
+\contentsline {section}{\numberline {2}Tema 2. Agentes.}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Sistemas multiagente.}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Arquitecturas de agentes.}{6}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Arquitecturas deliberativas.}{6}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Arquitecturas reactivas.}{7}{subsubsection.2.2.2}
+\contentsline {paragraph}{Dise\IeC {\~n}o de un agente reactivo}{7}{section*.6}
+\contentsline {paragraph}{Representaci\IeC {\'o}n e implementaci\IeC {\'o}n de funciones para seleccionar acciones.\\}{8}{section*.8}
+\contentsline {subparagraph}{Sistemas de producci\IeC {\'o}n}{8}{section*.9}
+\contentsline {subparagraph}{Redes}{8}{section*.10}
+\contentsline {subparagraph}{Arquitectura de subsunci\IeC {\'o}n}{8}{section*.12}
+\contentsline {paragraph}{Agentes reactivos con memoria}{8}{section*.14}
+\contentsline {section}{\numberline {3}Tema 3. B\IeC {\'u}squeda en espacios de estados.}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Dise\IeC {\~n}o de un agente deliberativo.}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}La b\IeC {\'u}squeda en un espacio de estados.}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Descripci\IeC {\'o}n de un problema.}{9}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Procedimiento de b\IeC {\'u}squeda.}{10}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Estrategias de control.}{10}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Estrategias irrevocables.}{10}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Estategias tentativas.}{10}{subsubsection.3.5.2}
+\contentsline {paragraph}{Estrategias retroactivas.}{10}{section*.16}
+\contentsline {paragraph}{B\IeC {\'u}squeda en grafos.}{11}{section*.17}
+\contentsline {subsection}{\numberline {3.6}Medidas del comportamiento de un sistema de b\IeC {\'u}squeda.}{11}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}B\IeC {\'u}squeda sin informaci\IeC {\'o}n.}{11}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}B\IeC {\'u}squeda en anchura.}{11}{subsubsection.3.7.1}
+\contentsline {paragraph}{Caracter\IeC {\'\i }sticas}{12}{section*.19}
+\contentsline {subsubsection}{\numberline {3.7.2}B\IeC {\'u}squeda en profundidad.}{12}{subsubsection.3.7.2}
+\contentsline {paragraph}{Caracter\IeC {\'\i }sticas}{12}{section*.21}
+\contentsline {subsubsection}{\numberline {3.7.3}B\IeC {\'u}squeda con costo uniforme.}{13}{subsubsection.3.7.3}
+\contentsline {subsubsection}{\numberline {3.7.4}Descenso iterativo.}{13}{subsubsection.3.7.4}
+\contentsline {subsubsection}{\numberline {3.7.5}B\IeC {\'u}squeda bidireccional.}{13}{subsubsection.3.7.5}

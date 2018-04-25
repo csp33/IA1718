@@ -87,7 +87,7 @@ bool ComportamientoJugador::Contiene(int fila, int columna, queue<estado> q) {
 }
 
 bool ComportamientoJugador::EsViable(int fila, int columna) {
-	//No está en abiertos ni en cerrados y puedo pasar. 
+	//No está en abiertos ni en cerrados y puedo pasar.
 	return !m_abiertos[fila][columna] && !m_cerrados[fila][columna] && PUEDO_PASAR.count(mapaResultado[fila][columna]);
 }
 
@@ -127,10 +127,9 @@ Búsqueda en anchura. Pseudocódigo:
 
 list<estado> ComportamientoJugador::BusquedaEnAnchura(const estado & origen, const estado & destino) {
 	queue<estado> abiertos;				// Cola de abiertos.
-	int generados = 0;
 	abiertos.push(origen);				//Introducimos el origen
-	m_abiertos[origen.fila][origen.columna] = true;
 	InicializarMatrices();				// Ponemos las matrices a false.
+	m_abiertos[origen.fila][origen.columna] = true;
 	int dx[4] = { -1, 0, 1 , 0};		//Para calcular la adyacencia (i=0 -> DELANTE i=1 -> DERECHA i=2 -> ATRÁS i=3 -> IZQUIERDA)
 	int dy[4] = {0, 1, 0, -1};
 	bool encontrado = false;			// Variable que indica si hemos encontrado el camino.
