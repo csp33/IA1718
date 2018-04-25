@@ -127,6 +127,7 @@ Búsqueda en anchura. Pseudocódigo:
 
 list<estado> ComportamientoJugador::BusquedaEnAnchura(const estado & origen, const estado & destino) {
 	queue<estado> abiertos;				// Cola de abiertos.
+	int generados = 0;
 	abiertos.push(origen);				//Introducimos el origen
 	m_abiertos[origen.fila][origen.columna] = true;
 	InicializarMatrices();				// Ponemos las matrices a false.
@@ -165,7 +166,7 @@ list<Action> ComportamientoJugador::calcularListaAcciones(const list<estado> &li
 	list<Action> resultado;
 	list<estado>::const_iterator it_anterior;
 	list<estado>::const_iterator it_siguiente;
-	for (it_siguiente = it_anterior = lista.begin(); *it_siguiente != lista.back() ; ++it_anterior) {		//Dos iteradores: anterior y siguiente.
+	for (it_siguiente = it_anterior = lista.begin(); it_siguiente != lista.end() ; ++it_anterior) {		//Dos iteradores: anterior y siguiente.
 		++it_siguiente;
 		//Cuatro  casos: avanzo, giro izquierda , giro derecha o retrocedo
 		if (it_anterior->fila > it_siguiente->fila)	{	//Me he movido hacia ARRIBA
@@ -310,7 +311,7 @@ bool ComportamientoJugador::pathFinding(const estado & origen, const estado & de
 
 /**********************************************/
 Action ComportamientoJugador::think(Sensores sensores) {
-	if (sensores.mensajeF != -1 /* and es la primera vez que entro*/) {
+	if (sensores.mensajeF != -1) {
 		fil = sensores.mensajeF;
 		col = sensores.mensajeC;
 	}
@@ -327,7 +328,6 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		case 3: col--; break;
 		}
 		cout << "fil: " << fil << "  col: " << col << " Or: " << brujula << endl;
-		break;
 	}
 
 	// Determinar si ha cambiado el destino desde la ultima planificacion
@@ -359,10 +359,7 @@ Action ComportamientoJugador::think(Sensores sensores) {
 	if (hayPlan and plan.size() > 0) {
 		sigAccion = plan.front();
 		plan.erase(plan.begin());
-		int f_aux = fil;
-		int c_aux = col;
 		if (sigAccion == actFORWARD and sensores.superficie[2] == 'a') {
-
 			estado origen;
 			origen.fila = fil;
 			origen.columna = col;
@@ -370,41 +367,12 @@ Action ComportamientoJugador::think(Sensores sensores) {
 
 			destino.fila = sensores.destinoF;
 			destino.columna = sensores.destinoC;
-
-			//Switch en función de la orientación: 0->fil-1 etc.
-			switch (brujula) {
-			case 0:
-				f_aux--;
-				break;
-			case 1:
-				c_aux++;
-				break;
-			case 2:
-				f_aux++;
-				break;
-			case 3:
-				c_aux--;
-				break;
-			}
-			cout << "muro en (" << f_aux << "," << c_aux << ")" << endl;
-			char aux = mapaResultado[f_aux][c_aux];
-			mapaResultado[f_aux][c_aux] = 'M';
-			cout << "Recalculando ruta..." << endl;
 			cout << "Calculando plan..." << endl;
 			hayPlan = pathFinding(origen, destino, plan);
-			mapaResultado[f_aux][c_aux] = aux;
-
 			PintaPlan(plan);
 			cout << "Plan calculado." << endl;
 			if (!hayPlan)
-				cout << "El objetivo es inalcanzable o tengo un maldito aldeano delante." << endl;
-			if (!plan.empty()) {
-				sigAccion = plan.front();
-				plan.erase(plan.begin());
-			}
-			else {
-				sigAccion = actIDLE;
-			}
+				cout << "El objetivo es inalcanzable." << endl;
 		}
 	}
 	else {
