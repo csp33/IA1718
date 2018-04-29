@@ -1,0 +1,9 @@
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/rebuild_cache.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/edit_cache.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/BelkanSG.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/GLUILib.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/Belkan.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/obj3DLib.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/modelosBelkanLib.dir
+/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir
