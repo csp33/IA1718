@@ -19,7 +19,7 @@ Action ComportamientoAldeano::think(Sensores sensores) {
 	case 0: accion = actIDLE; break;
 	case 1: accion = actTURN_L; break;
 	case 2: accion = actTURN_R; break;
-	case 3: case 4: case 5: case 6: case 7: 
+	case 3: case 4: case 5: case 6: case 7:
 		if (sensores.terreno[2] != 'j') accion = actFORWARD;
 		break;
   }

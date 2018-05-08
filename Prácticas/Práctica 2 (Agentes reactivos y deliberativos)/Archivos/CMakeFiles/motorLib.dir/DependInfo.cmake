@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/entidad.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/entidad.cpp.o"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/mapa.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/mapa.cpp.o"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/monitor.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/monitor.cpp.o"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/motor_grafico.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/motor_grafico.cpp.o"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/motor_juego.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/motor_juego.cpp.o"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/util.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/util.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/entidad.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/entidad.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/mapa.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/mapa.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/monitor.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/monitor.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/motor_grafico.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/motor_grafico.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/motor_juego.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/motor_juego.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/motorlib/util.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/motorLib.dir/src/motorlib/util.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -20,9 +20,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/obj3DLib.dir/DependInfo.cmake"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/GLUILib.dir/DependInfo.cmake"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/DependInfo.cmake"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/obj3DLib.dir/DependInfo.cmake"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/GLUILib.dir/DependInfo.cmake"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

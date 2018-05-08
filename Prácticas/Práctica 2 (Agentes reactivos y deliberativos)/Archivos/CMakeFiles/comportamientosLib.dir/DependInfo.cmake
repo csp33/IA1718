@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/Comportamientos_Jugador/aldeano.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/Comportamientos_Jugador/jugador.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
-  "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/comportamientos/comportamiento.cpp" "/home/csp98/Escritorio/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/Comportamientos_Jugador/aldeano.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/Comportamientos_Jugador/jugador.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
+  "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/src/comportamientos/comportamiento.cpp" "/home/csp98/Desktop/IA/Prácticas/Práctica 2 (Agentes reactivos y deliberativos)/Archivos/CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
