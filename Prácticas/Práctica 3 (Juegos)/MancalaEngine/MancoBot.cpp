@@ -29,39 +29,84 @@ string MancoBot::getName() {
   return NOMBRE; // Sustituir por el nombre del bot
 }
 
-list<GameState> MancoBot::calcularSucesores(const GameState &estado) const {
-  list<GameState> resultado;
-  for (auto it = POSIBLES_MOVIMIENTOS.begin(); it != POSIBLES_MOVIMIENTOS.end();
-       ++it)
-    resultado.push_back(estado.simulateMove(*it));
+int MancoBot::CalcularHeuristica(const GameState &estado) const {
+  int resultado;
+  if (estado.getWinner() == estado.getCurrentPlayer()) // Gana el juego.
+    resultado = 9999999;
+  else // Calculo las semillas en mi granero
+    resultado = estado.getScore(estado.getCurrentPlayer());
   return resultado;
 }
 
-Move MancoBot::CalcularMovimiento(const GameState &estado) const {
-  /********TODO********************/
-  return M_NONE;
+list<nodo> MancoBot::calcularSucesores(const GameState &estado) const {
+  list<nodo> resultado;
+  nodo nuevo;
+  for (auto it = POSIBLES_MOVIMIENTOS.begin(); it != POSIBLES_MOVIMIENTOS.end();
+       ++it) {
+    nuevo.estado = estado.simulateMove(*it);
+    nuevo.movimiento = *it;
+    if (nuevo.estado.isValidState())
+      resultado.push_back(nuevo);
+  }
+  return resultado;
 }
 
-bool MancoBot::CriterioPoda(int alpha,
-                            int beta) const { // True si hay que podar
+bool MancoBot::CriterioPoda(int alpha, int beta) const { // True si podamos
   return alpha >= beta;
 }
 
 int MancoBot::CalcularValorMiniMax(const GameState &estado) const {
-  /* ¿Parámetro estado o movimiento?*/
-  /********TODO********************/
-  return 0;
+  int resultado;
+  list<nodo> sucesores = calcularSucesores(estado);
+  if (sucesores.empty()) // Caso base: nodo terminal
+    resultado = CalcularHeuristica(estado);
+  else {
+    // Calculo valores minimax de los hijos
+    if (estado.getCurrentPlayer() == J1) { // Estoy en un nodo MAX
+      //
+    } else { // Estoy en un nodo min
+      //
+    }
+  }
+  return resultado;
 }
 
-Move MancoBot::Maximizador(const list<GameState> &sucesores, int profundidad,
-                           int alpha, int beta) const {
-  Move resultado = CalcularMovimiento(sucesores.front());
+Move MancoBot::MiniMaxAB(const GameState &estado, int &alpha, int &beta,
+                         const Player &p) const {
+  Move movimiento = M_NONE;
+  // TODO
+  return movimiento;
+}
+
+/*****
+Opciones:
+  1) Tipo de dato nodo (estado+movimiento que lo llevó a él)
+  2) Tipo de dato nodo (heurística (solo en terminales) + movimiento + estado)
+**/
+
+Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
+
+  Move movimiento;
+  int alpha = numeric_limits<int>::min();
+  int beta = numeric_limits<int>::max();
+  movimiento = MiniMaxAB(state, alpha, beta, state.getCurrentPlayer());
+  // OJO: Recordatorio. NO USAR cin NI cout.
+  // Para salidas por consola (debug) utilizar cerr. Ejemplo:
+  // cerr<< "Lo que quiero mostrar"<<endl;
+
+  return movimiento;
+}
+
+/*
+Move MancoBot::Maximizador(const list<nodo> &sucesores, int profundidad,
+                           int &alpha, int beta) const {
+  Move resultado = sucesores.front().movimiento;
   Move sucesor;
   int valor_minimax;
   for (auto it = next(sucesores.begin());
        it != sucesores.end() && !CriterioPoda(alpha, beta); ++it) {
-    sucesor = MiniMax(*it, profundidad - 1, alpha, beta);
-    valor_minimax = CalcularValorMiniMax(*it /* ¿o sucesor?*/);
+    sucesor = MiniMax(it->estado, profundidad - 1, alpha, beta);
+    valor_minimax = CalcularValorMiniMax(it->estado);
     if (valor_minimax > alpha) {
       alpha = valor_minimax;
       resultado = sucesor;
@@ -70,17 +115,28 @@ Move MancoBot::Maximizador(const list<GameState> &sucesores, int profundidad,
   return resultado;
 }
 
-Move MancoBot::Minimizador(const list<GameState> &sucesores, int profundidad,
-                           int alpha, int beta) const {
-  /********TODO********************/
-  return M_NONE;
+Move MancoBot::Minimizador(const list<nodo> &sucesores, int profundidad,
+                           int alpha, int &beta) const {
+  Move resultado = sucesores.front().movimiento;
+  Move sucesor;
+  int valor_minimax;
+  for (auto it = next(sucesores.begin());
+       it != sucesores.end() && !CriterioPoda(alpha, beta); ++it) {
+    sucesor = MiniMax(it->estado, profundidad - 1, alpha, beta);
+    valor_minimax = CalcularValorMiniMax(it->estado);
+    if (valor_minimax < beta) {
+      beta = valor_minimax;
+      resultado = sucesor;
+    }
+  }
+  return resultado;
 }
 
 Move MancoBot::MiniMax(const GameState &estado, int profundidad, int alpha,
                        int beta) const {
   Move resultado = M_NONE;      // Por si no quedan posibles movimientos.
   if (!estado.isFinalState()) { // Si no estamos en el nodo final
-    list<GameState> sucesores;
+    list<nodo> sucesores;
     sucesores = calcularSucesores(estado); // Calculo la lista de sucesores
     if (!sucesores.empty()) { // Si puedo realizar algún movimiento
       if (estado.getCurrentPlayer() == J1) // Si es un nodo MAX
@@ -92,16 +148,4 @@ Move MancoBot::MiniMax(const GameState &estado, int profundidad, int alpha,
 
   return resultado;
 }
-
-Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
-
-  Move movimiento = M_NONE;
-  int alpha = numeric_limits<int>::min();
-  int beta = numeric_limits<int>::max();
-  movimiento = MiniMax(state, 20, alpha, beta);
-  // OJO: Recordatorio. NO USAR cin NI cout.
-  // Para salidas por consola (debug) utilizar cerr. Ejemplo:
-  // cerr<< "Lo que quiero mostrar"<<endl;
-
-  return movimiento;
-}
+*/
