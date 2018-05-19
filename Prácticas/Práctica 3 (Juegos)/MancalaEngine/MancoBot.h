@@ -6,11 +6,11 @@
  */
 
 #include "Bot.h"
-#include <list>
-#include <vector>
-#include <ctime>
-#include <ratio>
 #include <chrono>
+#include <ctime>
+#include <list>
+#include <ratio>
+#include <vector>
 
 using namespace std::chrono;
 
@@ -39,14 +39,17 @@ private:
   const int PROFUNDIDAD_INICIAL = 6;
   Player yo;
   Player oponente;
-  bool primera_vez=true;
+  bool primera_vez = true;
+  bool primer_turno = true;
+
   // Métodos
 
   bool CriterioPoda(int alpha, int beta) const;
   list<node> calcularSucesores(const GameState &estado) const;
   int alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
                 bool esNodoMax) const;
-//  bool MovimientoLegal(const GameState &estado, const Move &mov) const;
+  int CalcularHeuristica(const GameState &estado) const;
+  bool Inmolacion(const GameState &estado, const Move &mov) const;
 
   //  int CalcularValorMiniMax(const GameState &estado) const;
   //  Move MiniMaxAB(const GameState &estado, int &alpha, int &beta,

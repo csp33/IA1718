@@ -12,7 +12,7 @@
 #include <limits>
 #include <string>
 using namespace std;
-#define DEBUG 0
+#define DEBUG 1
 #if DEBUG
 long long int generados = 0;
 #endif
@@ -33,6 +33,33 @@ string MancoBot::getName() {
   return NOMBRE; // Sustituir por el nombre del bot
 }
 
+bool MancoBot::Inmolacion(const GameState &estado, const Move &mov) const {
+  Position posicion;
+  posicion = (Position)mov;
+  /*
+  switch (mov) {
+  case M1:
+    posicion = P1;
+    break;
+  case M2:
+    posicion = P2;
+    break;
+  case M3:
+    posicion = P3;
+    break;
+  case M4:
+    posicion = P4;
+    break;
+  case M5:
+    posicion = P5;
+    break;
+  case M6:
+    posicion = P6;
+    break;
+  }*/
+  return estado.getSeedsAt(yo, posicion) == 0;
+}
+
 list<node> MancoBot::calcularSucesores(const GameState &estado) const {
   list<node> resultado;
   node nuevo;
@@ -40,8 +67,10 @@ list<node> MancoBot::calcularSucesores(const GameState &estado) const {
        ++it) {
     nuevo.estado = estado.simulateMove(*it);
     nuevo.movimiento = *it;
-    //  if (MovimientoLegal(nuevo.estado, nuevo.movimiento))
-    if (nuevo.estado.getScore(estado.getCurrentPlayer()) != 0) {
+    //  if (!Inmolacion(nuevo.estado, nuevo.movimiento)) {  //ERROR
+    if (nuevo.estado.getScore(estado.getCurrentPlayer()) != 0) { // Si no me
+      //    inmolo. NO VÁLIDO, OBLIGA A METER UNA SEMILLA EN EL PRIMER TURNO
+
 #if DEBUG
       generados++;
 #endif
@@ -55,25 +84,33 @@ bool MancoBot::CriterioPoda(int alpha, int beta) const { // True si podamos
   return alpha >= beta;
 }
 
+int MancoBot::CalcularHeuristica(const GameState &estado) const {
+  //  resultado = nodo.estado.getScore(nodo.estado.getCurrentPlayer());
+  /* V2 -> resultado = nodo.estado.getScore(J1) - nodo.estado.getScore(J2);*/
+  // Incorporar mejores heurísticas
+  // Heurística: yo.h - contrario.h
+  // h = 50*(1 si soy ganador, 0 si no) + yo.score
+  int resultado;
+  int mi_heuristica = 0;
+  int heuristica_oponente = 0;
+  Player ganador = estado.getWinner();
+  if (ganador == yo)
+    mi_heuristica += 50; // Valor grande
+  else if (ganador == oponente)
+    heuristica_oponente += 50;
+  //  if (estado.getCurrentPlayer() == yo)
+  //    mi_heuristica += 200;
+  mi_heuristica += estado.getScore(yo);
+  heuristica_oponente += estado.getScore(oponente);
+  resultado = mi_heuristica - heuristica_oponente;
+  return resultado;
+}
+
 int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
                         bool esNodoMax) const {
   int resultado;
   if (profundidad == 0) { // Caso base: nodo terminal. Calculamos heurística
-    //  resultado = nodo.estado.getScore(nodo.estado.getCurrentPlayer());
-    /* V2 -> resultado = nodo.estado.getScore(J1) - nodo.estado.getScore(J2);*/
-    // Incorporar mejores heurísticas
-    // Heurística: yo.h - contrario.h
-    // h = 500*(1 si soy ganador, 0 si no) + yo.score
-    int mi_heuristica = 0;
-    int heuristica_oponente = 0;
-    Player ganador = nodo.estado.getWinner();
-    if (ganador == yo)
-      mi_heuristica += 500; // Valor muy grande
-    else if (ganador == oponente)
-      heuristica_oponente += 500;
-    mi_heuristica += nodo.estado.getScore(yo);
-    heuristica_oponente += nodo.estado.getScore(oponente);
-    resultado = mi_heuristica - heuristica_oponente;
+    resultado = CalcularHeuristica(nodo.estado);
   } else {
     int valor;
     list<node> sucesores = calcularSucesores(nodo.estado);
@@ -98,9 +135,10 @@ int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
   }
   return resultado;
 }
-
+/* VERSIÓN OK. FALTA ARREGLAR GETSEEDSAT
 Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
 #if DEBUG
+  generados = 0;
   auto antes = high_resolution_clock::now();
 #endif
 
@@ -118,6 +156,7 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   int max = numeric_limits<int>::min();
   int alpha = numeric_limits<int>::min();
   int beta = numeric_limits<int>::max();
+
   for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
     it->heuristica = alphaBeta(*it, PROFUNDIDAD_INICIAL, alpha, beta, false);
     if (it->heuristica >= max) {
@@ -132,36 +171,49 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   cerr << "Tiempo de cómputo: " << tiempo.count() << endl;
   cerr << " generados " << generados << endl;
 #endif
-
   return movimiento;
 }
-
-/*
-bool MancoBot::MovimientoLegal(const GameState &estado, const Move &mov) const {
-  Position posicion;
-  switch (mov) {
-  case M1:
-    posicion = P1;
-    break;
-  case M2:
-    posicion = P2;
-    break;
-  case M3:
-    posicion = P3;
-    break;
-  case M4:
-    posicion = P4;
-    break;
-  case M5:
-    posicion = P5;
-    break;
-  case M6:
-    posicion = P6;
-    break;
-  }
-  return estado.getSeedsAt(estado.getCurrentPlayer(), posicion) != 0;
-}
 */
+// ARREGLO TEMPORAL GETSEEDSAT -> PRIMERA_VEZ
+Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
+#if DEBUG
+  generados = 0;
+  auto antes = high_resolution_clock::now();
+#endif
+
+  list<node> sucesores = calcularSucesores(state);
+  Move movimiento = M_NONE;
+
+  yo = state.getCurrentPlayer();
+  if (primera_vez) {
+    if (yo == J1)
+      oponente = J2;
+    else
+      oponente = J1;
+    primera_vez = false;
+    movimiento = M4;
+  } else {
+    int max = numeric_limits<int>::min();
+    int alpha = numeric_limits<int>::min();
+    int beta = numeric_limits<int>::max();
+
+    for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
+      it->heuristica = alphaBeta(*it, PROFUNDIDAD_INICIAL, alpha, beta, false);
+      if (it->heuristica >= max) {
+        max = it->heuristica;
+        movimiento = it->movimiento;
+      }
+    }
+  }
+
+#if DEBUG
+  auto despues = high_resolution_clock::now();
+  auto tiempo = duration_cast<duration<double>>(despues - antes);
+  cerr << "Tiempo de cómputo: " << tiempo.count() << endl;
+  cerr << " generados " << generados << endl;
+#endif
+  return movimiento;
+}
 
 /*
 int MancoBot::CalcularValorMiniMax(const GameState &estado) const {
@@ -199,7 +251,8 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 }
 */
 /*
-Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
+Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state)
+{
 
   Move movimiento;
   int alpha = numeric_limits<int>::min();
