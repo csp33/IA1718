@@ -32,9 +32,6 @@ private:
   const string NOMBRE = "MancoBot";
   const vector<Move> POSIBLES_MOVIMIENTOS = {M1, M2, M3, M4, M5, M6};
   const int PROFUNDIDAD_INICIAL = 5;
-  bool primera_vez;
-  Player yo;
-  Player contrincante;
   // Métodos
 
   bool CriterioPoda(int alpha, int beta) const;

@@ -61,7 +61,8 @@ list<node> MancoBot::calcularSucesores(const GameState &estado) const {
        ++it) {
     nuevo.estado = estado.simulateMove(*it);
     nuevo.movimiento = *it;
-    if (MovimientoLegal(nuevo.estado, nuevo.movimiento))
+    //  if (MovimientoLegal(nuevo.estado, nuevo.movimiento))
+    if (nuevo.estado.getScore(estado.getCurrentPlayer()) != 0)
       resultado.push_back(nuevo);
   }
   return resultado;
@@ -77,7 +78,7 @@ int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
   if (profundidad == 0) { // Caso base: nodo terminal
     resultado = nodo.estado.getScore(nodo.estado.getCurrentPlayer());
     /* V2 -> resultado = nodo.estado.getScore(J1) - nodo.estado.getScore(J2);*/
-    //Incorporar mejores heurísticas
+    // Incorporar mejores heurísticas
   } else {
     int valor;
     list<node> sucesores = calcularSucesores(nodo.estado);
@@ -110,6 +111,7 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   int max = numeric_limits<int>::min();
   int alpha = numeric_limits<int>::min();
   int beta = numeric_limits<int>::max();
+  cerr << "El tamanio de sucesores es " << sucesores.size() << endl;
   for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
     it->heuristica = alphaBeta(*it, PROFUNDIDAD_INICIAL, alpha, beta, false);
     if (it->heuristica >= max) {
