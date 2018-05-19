@@ -12,6 +12,10 @@
 #include <limits>
 #include <string>
 using namespace std;
+#define DEBUG 0
+#if DEBUG
+long long int generados = 0;
+#endif
 
 MancoBot::MancoBot() {
   // Inicializar las variables necesarias para ejecutar la partida
@@ -29,6 +33,110 @@ string MancoBot::getName() {
   return NOMBRE; // Sustituir por el nombre del bot
 }
 
+list<node> MancoBot::calcularSucesores(const GameState &estado) const {
+  list<node> resultado;
+  node nuevo;
+  for (auto it = POSIBLES_MOVIMIENTOS.begin(); it != POSIBLES_MOVIMIENTOS.end();
+       ++it) {
+    nuevo.estado = estado.simulateMove(*it);
+    nuevo.movimiento = *it;
+    //  if (MovimientoLegal(nuevo.estado, nuevo.movimiento))
+    if (nuevo.estado.getScore(estado.getCurrentPlayer()) != 0) {
+#if DEBUG
+      generados++;
+#endif
+      resultado.push_back(nuevo);
+    }
+  }
+  return resultado;
+}
+
+bool MancoBot::CriterioPoda(int alpha, int beta) const { // True si podamos
+  return alpha >= beta;
+}
+
+int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
+                        bool esNodoMax) const {
+  int resultado;
+  if (profundidad == 0) { // Caso base: nodo terminal. Calculamos heurística
+    //  resultado = nodo.estado.getScore(nodo.estado.getCurrentPlayer());
+    /* V2 -> resultado = nodo.estado.getScore(J1) - nodo.estado.getScore(J2);*/
+    // Incorporar mejores heurísticas
+    // Heurística: yo.h - contrario.h
+    // h = 500*(1 si soy ganador, 0 si no) + yo.score
+    int mi_heuristica = 0;
+    int heuristica_oponente = 0;
+    Player ganador = nodo.estado.getWinner();
+    if (ganador == yo)
+      mi_heuristica += 500; // Valor muy grande
+    else if (ganador == oponente)
+      heuristica_oponente += 500;
+    mi_heuristica += nodo.estado.getScore(yo);
+    heuristica_oponente += nodo.estado.getScore(oponente);
+    resultado = mi_heuristica - heuristica_oponente;
+  } else {
+    int valor;
+    list<node> sucesores = calcularSucesores(nodo.estado);
+
+    if (esNodoMax) { // Nodo MAX, el siguiente es min y devuelvo alpha
+      for (auto it = sucesores.begin();
+           it != sucesores.end() && !CriterioPoda(alpha, beta); ++it) {
+        valor = alphaBeta(*it, profundidad - 1, alpha, beta, false);
+        if (valor > alpha)
+          alpha = valor;
+      }
+      resultado = alpha;
+    } else { // Nodo min. El siguiente es MAX y devuelvo beta
+      for (auto it = sucesores.begin();
+           it != sucesores.end() && !CriterioPoda(alpha, beta); ++it) {
+        valor = alphaBeta(*it, profundidad - 1, alpha, beta, true);
+        if (valor < beta)
+          beta = valor;
+      }
+      resultado = beta;
+    }
+  }
+  return resultado;
+}
+
+Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
+#if DEBUG
+  auto antes = high_resolution_clock::now();
+#endif
+
+  list<node> sucesores = calcularSucesores(state);
+  Move movimiento = M_NONE;
+
+  yo = state.getCurrentPlayer();
+  if (primera_vez) {
+    if (yo == J1)
+      oponente = J2;
+    else
+      oponente = J1;
+    primera_vez = false;
+  }
+  int max = numeric_limits<int>::min();
+  int alpha = numeric_limits<int>::min();
+  int beta = numeric_limits<int>::max();
+  for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
+    it->heuristica = alphaBeta(*it, PROFUNDIDAD_INICIAL, alpha, beta, false);
+    if (it->heuristica >= max) {
+      max = it->heuristica;
+      movimiento = it->movimiento;
+    }
+  }
+
+#if DEBUG
+  auto despues = high_resolution_clock::now();
+  auto tiempo = duration_cast<duration<double>>(despues - antes);
+  cerr << "Tiempo de cómputo: " << tiempo.count() << endl;
+  cerr << " generados " << generados << endl;
+#endif
+
+  return movimiento;
+}
+
+/*
 bool MancoBot::MovimientoLegal(const GameState &estado, const Move &mov) const {
   Position posicion;
   switch (mov) {
@@ -53,74 +161,7 @@ bool MancoBot::MovimientoLegal(const GameState &estado, const Move &mov) const {
   }
   return estado.getSeedsAt(estado.getCurrentPlayer(), posicion) != 0;
 }
-
-list<node> MancoBot::calcularSucesores(const GameState &estado) const {
-  list<node> resultado;
-  node nuevo;
-  for (auto it = POSIBLES_MOVIMIENTOS.begin(); it != POSIBLES_MOVIMIENTOS.end();
-       ++it) {
-    nuevo.estado = estado.simulateMove(*it);
-    nuevo.movimiento = *it;
-    //  if (MovimientoLegal(nuevo.estado, nuevo.movimiento))
-    if (nuevo.estado.getScore(estado.getCurrentPlayer()) != 0)
-      resultado.push_back(nuevo);
-  }
-  return resultado;
-}
-
-bool MancoBot::CriterioPoda(int alpha, int beta) const { // True si podamos
-  return alpha >= beta;
-}
-
-int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
-                        bool esNodoMax) const {
-  int resultado;
-  if (profundidad == 0) { // Caso base: nodo terminal
-    resultado = nodo.estado.getScore(nodo.estado.getCurrentPlayer());
-    /* V2 -> resultado = nodo.estado.getScore(J1) - nodo.estado.getScore(J2);*/
-    // Incorporar mejores heurísticas
-  } else {
-    int valor;
-    list<node> sucesores = calcularSucesores(nodo.estado);
-
-    if (esNodoMax) { // Si estoy en un nodo MAX, el siguiente es min
-      for (auto it = sucesores.begin();
-           it != sucesores.end() && !CriterioPoda(alpha, beta); ++it) {
-        valor = alphaBeta(*it, profundidad - 1, alpha, beta, false);
-        if (valor > alpha)
-          alpha = valor;
-      }
-      resultado = alpha;
-    } else { // Nodo min. El siguiente es MAX
-      for (auto it = sucesores.begin();
-           it != sucesores.end() && !CriterioPoda(alpha, beta); ++it) {
-        valor = alphaBeta(*it, profundidad - 1, alpha, beta, true);
-        if (valor < beta)
-          beta = valor;
-      }
-      resultado = beta;
-    }
-  }
-  return resultado;
-}
-
-Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
-  list<node> sucesores = calcularSucesores(state);
-  Move movimiento = M_NONE;
-
-  int max = numeric_limits<int>::min();
-  int alpha = numeric_limits<int>::min();
-  int beta = numeric_limits<int>::max();
-  cerr << "El tamanio de sucesores es " << sucesores.size() << endl;
-  for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
-    it->heuristica = alphaBeta(*it, PROFUNDIDAD_INICIAL, alpha, beta, false);
-    if (it->heuristica >= max) {
-      max = it->heuristica;
-      movimiento = it->movimiento;
-    }
-  }
-  return movimiento;
-}
+*/
 
 /*
 int MancoBot::CalcularValorMiniMax(const GameState &estado) const {
