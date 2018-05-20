@@ -35,7 +35,10 @@ public:
 private:
   // Variables
   const string NOMBRE = "MancoBot";
-  const vector<Move> POSIBLES_MOVIMIENTOS = {M1, M2, M3, M4, M5, M6};
+  const vector<Move> MOVIMIENTOS = {M1, M2, M3, M4, M5, M6};
+  const vector<Position> POSICIONES = {P1, P2, P3, P4, P5, P6};
+
+  // 6
   const int PROFUNDIDAD_INICIAL = 6;
   Player yo;
   Player oponente;
@@ -44,24 +47,13 @@ private:
 
   // Métodos
 
-  bool CriterioPoda(int alpha, int beta) const;
+  bool Podar(int alpha, int beta) const;
   list<node> calcularSucesores(const GameState &estado) const;
   int alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
                 bool esNodoMax) const;
   int CalcularHeuristica(const GameState &estado) const;
   bool Inmolacion(const GameState &estado, const Move &mov) const;
-
-  //  int CalcularValorMiniMax(const GameState &estado) const;
-  //  Move MiniMaxAB(const GameState &estado, int &alpha, int &beta,
-  //                 const Player &p) const;
-  //  int CalcularHeuristica(const GameState &estado) const;
-  //  Move CalcularMovimiento(const GameState &estado) const;
-  // Move Minimizador(const list<nodo> &sucesores, int profundidad, int alpha,
-  //                 int &beta) const;
-  //  Move Maximizador(const list<nodo> &sucesores, int profundidad, int &alpha,
-  //                 int beta) const;
-  //  Move MiniMax(const GameState &estado, int profundidad, int alpha,
-  //         int beta) const;
+  int ObtenerSemillas(const Player &p, const GameState &estado) const;
 };
 
 #endif /* MANCOBOT_H_ */
