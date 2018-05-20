@@ -75,8 +75,8 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 
   if (ganador == yo)
     mi_heuristica += 500; // Valor grande
-  else if (ganador == oponente)
-    heuristica_oponente += 500;
+//  else if (ganador == oponente)
+//    heuristica_oponente += 500;
 
   // Sumo las puntuaciones de los graneros.
 
