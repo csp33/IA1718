@@ -38,9 +38,9 @@ bool MancoBot::Inmolacion(const GameState &estado, const Move &mov) const {
 // Calcula los sucesores válidos de un nodo (no causan inmolación)
 list<node> MancoBot::calcularSucesores(const GameState &estado) const {
   list<node> resultado;
-  node nuevo;
   for (auto it = MOVIMIENTOS.begin(); it != MOVIMIENTOS.end(); ++it) {
     if (!Inmolacion(estado, *it)) { // Si el movimiento no causa inmolación
+      node nuevo;
       nuevo.estado = estado.simulateMove(*it); // Lo almaceno
       nuevo.movimiento = *it;
       resultado.push_back(nuevo);
@@ -65,38 +65,78 @@ int MancoBot::ObtenerSemillas(const Player &p, const GameState &estado) const {
   return semillas;
 }
 
+// Devuelve el número de semillas que el jugador parámetro puede robar.
+int MancoBot::CuantasRoba(const Player &p, const GameState &estado,
+                          const Move &mov) const {
+  int cuantas = 0;
+  // Configuro ladrón y víctima
+  Player ladron, victima;
+  ladron = p;
+  if (ladron == J1)
+    victima = J2;
+  else // No se puede dar el caso p==NONE
+    victima = J1;
+
+  // Calculo datos del estado anterior
+  int anterior = estado.getScore(ladron);
+  int sus_semillas = ObtenerSemillas(victima, estado);
+  GameState nuevo;
+  if (!Inmolacion(estado, mov)) { // Si el movimiento es legal
+    // Simulo el movimiento
+    nuevo = estado.simulateMove(mov);
+    int actual = nuevo.getScore(ladron);
+    // Si he robado, calculo la diferencia
+    if (actual > anterior && sus_semillas < ObtenerSemillas(victima, nuevo))
+      cuantas = actual - anterior;
+  }
+  return cuantas;
+}
+
 // Devuelve el valor heurístico de un nodo
+
 int MancoBot::CalcularHeuristica(const GameState &estado) const {
   int resultado;
-  int mi_heuristica = 0;
-  int heuristica_oponente = 0;
-  Player ganador = estado.getWinner();
+  double mi_heuristica = 0.0;
+  double heuristica_oponente = 0.0;
 
   // Si el movimiento me hace ganador, lo elijo.
 
+  Player ganador = estado.getWinner();
   if (ganador == yo)
     mi_heuristica += 500; // Valor grande
   else if (ganador == oponente)
     heuristica_oponente += 500;
 
-  // Sumo las puntuaciones de los graneros.
+  // Sumo las puntuaciones de los graneros (constante alta, están garantizadas).
 
-  mi_heuristica += estado.getScore(yo);
-  heuristica_oponente += estado.getScore(oponente);
+  mi_heuristica += estado.getScore(yo) * 4.5;
+  heuristica_oponente += estado.getScore(oponente) * 4.5;
 
-  // Si puedo volver a tirar, lo hago (siempre que no pierda puntos)
+  // Sumo las semillas que hay en el tablero (constante menor, no garantizadas)
+
+  mi_heuristica += ObtenerSemillas(yo, estado) * 0.2;
+  heuristica_oponente += ObtenerSemillas(oponente, estado) * 0.2;
+
+  // Sumo los posibles robos
+  /*
+
+  list<node> sucesores = calcularSucesores(estado);
+  for (auto suc = sucesores.begin(); suc != sucesores.end(); ++suc)
+    for (auto it = MOVIMIENTOS.begin(); it != MOVIMIENTOS.end(); ++it) {
+      mi_heuristica += CuantasRoba(yo, suc->estado, *it) * 0.5;
+      heuristica_oponente += CuantasRoba(oponente, suc->estado, *it) * 0.5;
+    }
+    */
+
+  // Si puedo volver a tirar, lo hago (siempre que no evite ganar puntos)
 
   if (mi_heuristica == heuristica_oponente && estado.getCurrentPlayer() == yo)
-    mi_heuristica += 200;
+    mi_heuristica += 50;
 
-  /****/
-  //  mi_heuristica = ObtenerSemillas(yo, estado);
-  //  heuristica_oponente = ObtenerSemillas(oponente, estado);
-  /****/
-
-  resultado = mi_heuristica - heuristica_oponente;
+  resultado = (int)(mi_heuristica - heuristica_oponente + 0.5); // Aproximo
   return resultado;
 }
+
 // Algoritmo minimax alpha-beta. Devuelve el coste heurístico de una rama.
 int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
                         bool esNodoMax) const {
@@ -131,6 +171,11 @@ int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
 
 // Devuelve el siguiente movimiento a realizar tras realizar una exploración.
 Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
+#if DEBUG
+  generados = 0;
+  auto antes = high_resolution_clock::now();
+#endif
+
   if (primera_vez) { // Si es la primera vez, configuro las variables internas.
     yo = state.getCurrentPlayer();
     if (yo == J1)
@@ -139,11 +184,6 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
       oponente = J1;
     primera_vez = false;
   }
-
-#if DEBUG
-  generados = 0;
-  auto antes = high_resolution_clock::now();
-#endif
 
   list<node> sucesores = calcularSucesores(state);
   Move movimiento = M_NONE;
@@ -166,6 +206,7 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   cerr << "Tiempo de cómputo: " << tiempo.count() << endl;
   cerr << " generados " << generados << endl;
 #endif
+
   return movimiento;
 }
 
