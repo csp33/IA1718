@@ -31,6 +31,7 @@ string MancoBot::getName() { return NOMBRE; }
 // Devuelve true si el movimiento causa inmolación (pérdida por 48-0)
 bool MancoBot::Inmolacion(const GameState &estado, const Move &mov) const {
   Position posicion = (Position)mov;
+  // return estado.getScore(yo)==0;
   return estado.getSeedsAt(yo, posicion) == 0;
 }
 
@@ -75,8 +76,8 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 
   if (ganador == yo)
     mi_heuristica += 500; // Valor grande
-//  else if (ganador == oponente)
-//    heuristica_oponente += 500;
+  else if (ganador == oponente)
+    heuristica_oponente += 500;
 
   // Sumo las puntuaciones de los graneros.
 
@@ -89,14 +90,11 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
     mi_heuristica += 200;
 
   /****/
-  //  int mis_semillas = ObtenerSemillas(yo, estado);
-  //  int sus_semillas = ObtenerSemillas(oponente, estado);
+  //  mi_heuristica = ObtenerSemillas(yo, estado);
+  //  heuristica_oponente = ObtenerSemillas(oponente, estado);
   /****/
 
   resultado = mi_heuristica - heuristica_oponente;
-  //  resultado =
-  //      (mi_heuristica - heuristica_oponente) + (mis_semillas - sus_semillas);
-
   return resultado;
 }
 // Algoritmo minimax alpha-beta. Devuelve el coste heurístico de una rama.
