@@ -122,12 +122,11 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
   heuristica_oponente += ObtenerSemillas(oponente, estado) * 0.3;
 
   // Sumo los posibles robos
-  /*
-    for (auto it = MOVIMIENTOS.begin(); it != MOVIMIENTOS.end(); ++it) {
-      mi_heuristica += CuantasRoba(yo, estado, *it) * 0.5;
-      heuristica_oponente += CuantasRoba(oponente, estado, *it) * 0.5;
-    }
-  */
+
+  //  for (auto it = MOVIMIENTOS.begin(); it != MOVIMIENTOS.end(); ++it) {
+  //    mi_heuristica += CuantasRoba(yo, estado, *it) * 0.5;
+  //    heuristica_oponente += CuantasRoba(oponente, estado, *it) * 0.5;
+  //  }
 
   // Si puedo volver a tirar, lo hago (siempre que no evite ganar puntos)
 
@@ -136,9 +135,11 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 
 // if (mia == suya && estado.getCurrentPlayer() == yo)
 //  mia += 50;
+
 #if DEBUG
-  cerr << "actual " << estado.getCurrentPlayer() << " yo " << yo << endl;
-  cerr << " mia " << mia << " suya " << suya << endl;
+  cerr << "Jugador actual "
+       << (estado.getCurrentPlayer() == yo ? "yo " : "oponente") << endl;
+  cerr << " Mi heurística: " << mia << ". Su heurística: " << suya << endl;
 #endif
   resultado = mia - suya;
 
