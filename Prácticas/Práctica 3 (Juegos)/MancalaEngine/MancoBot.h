@@ -38,11 +38,12 @@ private:
   const string NOMBRE = "MancoBot";
   const vector<Move> MOVIMIENTOS = {M1, M2, M3, M4, M5, M6};
   const vector<Position> POSICIONES = {P1, P2, P3, P4, P5, P6};
-  const int PROFUNDIDAD_INICIAL = 6; // Con 6 va perfecto
+  const int PROFUNDIDAD_MAXIMA = 6; // Con 6 va perfecto
   Player yo;
   Player oponente;
   bool primera_vez = true;
-  bool primer_turno = true;
+  const int MIN = numeric_limits<int>::min();
+  const int MAX = numeric_limits<int>::max();
 
   // Métodos
 
@@ -52,14 +53,16 @@ private:
 
   list<node> calcularSucesores(const GameState &estado) const;
 
-  int alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
+  int alphaBeta(const GameState &estado, int profundidad, int alpha, int beta,
                 bool esNodoMax) const;
 
   int CalcularHeuristica(const GameState &estado) const;
 
-  int CuantasRoba(const Player &p, const GameState &estado,
+  int CuantasRoba(const Player &ladron, const GameState &estado,
                   const Move &mov) const;
 
   int ObtenerSemillas(const Player &p, const GameState &estado) const;
+  int Maximo(int a, int b) const;
+  int Minimo(int a, int b) const;
 };
 #endif /* MANCOBOT_H_ */

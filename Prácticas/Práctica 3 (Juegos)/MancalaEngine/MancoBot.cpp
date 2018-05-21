@@ -13,7 +13,7 @@
 #include <string>
 using namespace std;
 
-#define DEBUG 0
+#define DEBUG 1
 #if DEBUG
 long long int generados = 0;
 #endif
@@ -28,10 +28,14 @@ string MancoBot::getName() { return NOMBRE; }
 
 /******************************************************************************/
 
+// Devuelve el máximo valor
+int MancoBot::Maximo(int a, int b) const { return a > b ? a : b; }
+
+int MancoBot::Minimo(int a, int b) const { return a < b ? a : b; }
+
 // Devuelve true si el movimiento causa inmolación (pérdida por 48-0)
 bool MancoBot::Inmolacion(const GameState &estado, const Move &mov) const {
   Position posicion = (Position)mov;
-  // return estado.getScore(yo)==0;
   return estado.getSeedsAt(yo, posicion) == 0;
 }
 
@@ -49,7 +53,6 @@ list<node> MancoBot::calcularSucesores(const GameState &estado) const {
 #endif
     }
   }
-
   return resultado;
 }
 
@@ -66,12 +69,11 @@ int MancoBot::ObtenerSemillas(const Player &p, const GameState &estado) const {
 }
 
 // Devuelve el número de semillas que el jugador parámetro puede robar.
-int MancoBot::CuantasRoba(const Player &p, const GameState &estado,
+int MancoBot::CuantasRoba(const Player &ladron, const GameState &estado,
                           const Move &mov) const {
   int cuantas = 0;
-  // Configuro ladrón y víctima
-  Player ladron, victima;
-  ladron = p;
+  // Configuro víctima
+  Player victima;
   if (ladron == J1)
     victima = J2;
   else // No se puede dar el caso p==NONE
@@ -81,6 +83,7 @@ int MancoBot::CuantasRoba(const Player &p, const GameState &estado,
   int anterior = estado.getScore(ladron);
   int sus_semillas = ObtenerSemillas(victima, estado);
   GameState nuevo;
+
   if (!Inmolacion(estado, mov)) { // Si el movimiento es legal
     // Simulo el movimiento
     nuevo = estado.simulateMove(mov);
@@ -114,19 +117,16 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 
   // Sumo las semillas que hay en el tablero (constante menor, no garantizadas)
 
-  mi_heuristica += ObtenerSemillas(yo, estado) * 0.2;
-  heuristica_oponente += ObtenerSemillas(oponente, estado) * 0.2;
+  mi_heuristica += ObtenerSemillas(yo, estado) * 0.3;
+  heuristica_oponente += ObtenerSemillas(oponente, estado) * 0.3;
 
   // Sumo los posibles robos
   /*
-
-  list<node> sucesores = calcularSucesores(estado);
-  for (auto suc = sucesores.begin(); suc != sucesores.end(); ++suc)
     for (auto it = MOVIMIENTOS.begin(); it != MOVIMIENTOS.end(); ++it) {
-      mi_heuristica += CuantasRoba(yo, suc->estado, *it) * 0.5;
-      heuristica_oponente += CuantasRoba(oponente, suc->estado, *it) * 0.5;
+      mi_heuristica += CuantasRoba(yo, estado, *it) * 0.5;
+      heuristica_oponente += CuantasRoba(oponente, estado, *it) * 0.5;
     }
-    */
+  */
 
   // Si puedo volver a tirar, lo hago (siempre que no evite ganar puntos)
 
@@ -134,37 +134,38 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
     mi_heuristica += 50;
 
   resultado = (int)(mi_heuristica - heuristica_oponente + 0.5); // Aproximo
+
   return resultado;
 }
 
 // Algoritmo minimax alpha-beta. Devuelve el coste heurístico de una rama.
-int MancoBot::alphaBeta(const node &nodo, int profundidad, int alpha, int beta,
-                        bool esNodoMax) const {
+int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
+                        int beta, bool esNodoMax) const {
   int resultado;
-  if (profundidad == 0) { // Caso base: nodo terminal. Calculamos heurística.
-    resultado = CalcularHeuristica(nodo.estado);
+  // Caso base: nodo terminal. Calculamos heurística.
+  if (profundidad == PROFUNDIDAD_MAXIMA) {
+    resultado = CalcularHeuristica(estado);
   } else { // No es un nodo terminal. Sigo explorando.
+    int actual;
+    int mejor = esNodoMax ? MIN : MAX; // Si es MAX, maximizo. Si no, minimizo.
+    list<node> hijos = calcularSucesores(estado); // Calculo sus hijos.
 
-    int valor;
-    list<node> hijos = calcularSucesores(nodo.estado); // Calculo sus hijos.
-
-    if (esNodoMax) { // Nodo MAX, el siguiente es min y devuelvo alpha
+    if (esNodoMax) { // Nodo MAX, el siguiente es min y tengo que maximizar.
       for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);
            ++it) {
-        valor = alphaBeta(*it, profundidad - 1, alpha, beta, false);
-        if (valor > alpha)
-          alpha = valor;
+        actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, false);
+        mejor = Maximo(actual, mejor);
+        alpha = Maximo(alpha, mejor);
       }
-      resultado = alpha;
     } else { // Nodo min. El siguiente es MAX y devuelvo beta
       for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);
            ++it) {
-        valor = alphaBeta(*it, profundidad - 1, alpha, beta, true);
-        if (valor < beta)
-          beta = valor;
+        actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, true);
+        mejor = Minimo(actual, mejor);
+        beta = Minimo(actual, mejor);
       }
-      resultado = beta;
     }
+    resultado = mejor;
   }
   return resultado;
 }
@@ -188,12 +189,18 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   list<node> sucesores = calcularSucesores(state);
   Move movimiento = M_NONE;
 
-  int max = numeric_limits<int>::min();
-  int alpha = numeric_limits<int>::min();
-  int beta = numeric_limits<int>::max();
+  int max = MIN;
 
+#if DEBUG
+  cerr << "Numero de sucesores: " << sucesores.size() << endl;
+#endif
+
+  // Este bucle obtiene el máximo de los hijos (es la raíz)
   for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
-    it->heuristica = alphaBeta(*it, PROFUNDIDAD_INICIAL, alpha, beta, false);
+    it->heuristica = alphaBeta(it->estado, 0, MIN, MAX, false);
+#if DEBUG
+    cerr << "Heuristica " << it->heuristica << " max " << max << endl;
+#endif
     if (it->heuristica >= max) {
       max = it->heuristica;
       movimiento = it->movimiento;
