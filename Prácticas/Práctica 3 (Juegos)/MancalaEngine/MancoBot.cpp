@@ -13,7 +13,7 @@
 #include <string>
 using namespace std;
 
-#define DEBUG 1
+#define DEBUG 0
 #if DEBUG
 long long int generados = 0;
 #endif
@@ -134,15 +134,18 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
   int mia = (int)(mi_heuristica + 0.5);
   int suya = (int)(heuristica_oponente + 0.5);
 
-  if (mia == suya && estado.getCurrentPlayer() == yo)
-    mia += 50;
-
+// if (mia == suya && estado.getCurrentPlayer() == yo)
+//  mia += 50;
+#if DEBUG
+  cerr << "actual " << estado.getCurrentPlayer() << " yo " << yo << endl;
+  cerr << " mia " << mia << " suya " << suya << endl;
+#endif
   resultado = mia - suya;
 
   return resultado;
 }
 
-// Algoritmo minimax alpha-beta. Devuelve el coste heurístico de una rama.
+// Algoritmo minimax alpha-beta. Desuyavuelve el coste heurístico de una rama.
 /*
 int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
                         int beta, bool mi_turno) const {
@@ -153,12 +156,10 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
   } else { // No es un nodo terminal. Sigo explorando.
     int actual;
     list<node> hijos = calcularSucesores(estado); // Calculo sus hijos.
-    for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);++it) {
-      actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, !mi_turno);
-      if (mi_turno) // Nodo MAX. Incremento alpha
-        alpha = Maximo(alpha, actual);
-      else // Nodo min. Decremento beta
-        beta = Minimo(beta, actual);
+    for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);++it)
+{ actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, !mi_turno); if
+(mi_turno) // Nodo MAX. Incremento alpha alpha = Maximo(alpha, actual); else //
+Nodo min. Decremento beta beta = Minimo(beta, actual);
     }
     resultado = mi_turno ? alpha : beta;
   }
@@ -175,21 +176,14 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
   } else { // No es un nodo terminal. Sigo explorando.
     int actual;
     list<node> hijos = calcularSucesores(estado); // Calculo sus hijos.
-    if (mi_turno) {                               // Tengo que maximizar alpha
-      for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);
-           ++it) {
-        // Miro de que tipo será el hijo (min/MAX)
-        bool sig_turno = it->estado.getCurrentPlayer() == yo;
-        actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, sig_turno);
+    for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);
+         ++it) {
+      bool sig_turno = it->estado.getCurrentPlayer() == yo;
+      actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, sig_turno);
+      if (mi_turno) // Nodo MAX. Incremento alpha
         alpha = Maximo(alpha, actual);
-      }
-    } else { // Tengo que minimizar beta
-      for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);
-           ++it) {
-        bool sig_turno = it->estado.getCurrentPlayer() == yo;
-        actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, sig_turno);
+      else // Nodo min. Decremento beta
         beta = Minimo(beta, actual);
-      }
     }
     resultado = mi_turno ? alpha : beta;
   }
@@ -226,7 +220,6 @@ Move MancoBot::obtenerMovimiento(const GameState &estado) const {
 
 */
 
-
 // Obtiene el movimiento más óptimo a partir de un estado.
 Move MancoBot::obtenerMovimiento(const GameState &estado) const {
   // Calculo los hijos del estado actual
@@ -243,10 +236,10 @@ Move MancoBot::obtenerMovimiento(const GameState &estado) const {
   for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
     // Compruebo si también será mi turno en el hijo. En ese caso, será MAX.
     bool mi_turno = it->estado.getCurrentPlayer() == yo;
-    actual = alphaBeta(it->estado, 0, alpha, beta, mi_turno);
+    actual = alphaBeta(it->estado, 1, alpha, beta, mi_turno);
 #if DEBUG
-    cerr << "Heuristica de " << it->movimiento << ":" << actual
-         << " max: " << alpha << endl;
+    cerr << "Llamo como " << (mi_turno ? "max" : "min") << ".Heuristica de "
+         << it->movimiento << ":" << actual << " max: " << alpha << endl;
 #endif
     if (actual >= alpha) {
       alpha = actual;

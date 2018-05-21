@@ -37,7 +37,7 @@ private:
   const string NOMBRE = "MancoBot";
   const vector<Move> MOVIMIENTOS = {M1, M2, M3, M4, M5, M6};
   const vector<Position> POSICIONES = {P1, P2, P3, P4, P5, P6};
-  const int PROFUNDIDAD_MAXIMA =6; // Con 6 va perfecto
+  const int PROFUNDIDAD_MAXIMA =2; 
   Player yo;
   Player oponente;
   bool primera_vez = true;
