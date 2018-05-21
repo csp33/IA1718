@@ -143,7 +143,7 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 }
 
 // Algoritmo minimax alpha-beta. Devuelve el coste heurístico de una rama.
-
+/*
 int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
                         int beta, bool mi_turno) const {
   int resultado;
@@ -164,8 +164,8 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
   }
   return resultado;
 }
+*/
 
-/*
 int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
                         int beta, bool mi_turno) const {
   int resultado;
@@ -195,8 +195,8 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
   }
   return resultado;
 }
-*/
 
+/*
 Move MancoBot::obtenerMovimiento(const GameState &estado) const {
   // Calculo los hijos del estado actual
   list<node> sucesores = calcularSucesores(estado);
@@ -224,7 +224,9 @@ Move MancoBot::obtenerMovimiento(const GameState &estado) const {
   return movimiento;
 }
 
-/*
+*/
+
+
 // Obtiene el movimiento más óptimo a partir de un estado.
 Move MancoBot::obtenerMovimiento(const GameState &estado) const {
   // Calculo los hijos del estado actual
@@ -253,7 +255,7 @@ Move MancoBot::obtenerMovimiento(const GameState &estado) const {
   }
   return movimiento;
 }
-*/
+
 // Devuelve el siguiente movimiento a realizar tras realizar una exploración.
 Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
 #if DEBUG
