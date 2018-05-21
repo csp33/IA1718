@@ -162,7 +162,7 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
            ++it) {
         actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, true);
         mejor = Minimo(actual, mejor);
-        beta = Minimo(actual, mejor);
+        beta = Minimo(beta, mejor);
       }
     }
     resultado = mejor;
@@ -190,6 +190,8 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   Move movimiento = M_NONE;
 
   int max = MIN;
+  int alpha = MIN;
+  int beta = MAX;
 
 #if DEBUG
   cerr << "Numero de sucesores: " << sucesores.size() << endl;
@@ -197,7 +199,7 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
 
   // Este bucle obtiene el máximo de los hijos (es la raíz)
   for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
-    it->heuristica = alphaBeta(it->estado, 0, MIN, MAX, false);
+    it->heuristica = alphaBeta(it->estado, 0, alpha, beta, false);
 #if DEBUG
     cerr << "Heuristica " << it->heuristica << " max " << max << endl;
 #endif
