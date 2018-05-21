@@ -99,12 +99,10 @@ int MancoBot::CuantasRoba(const Player &ladron, const GameState &estado,
 
 int MancoBot::CalcularHeuristica(const GameState &estado) const {
   int resultado;
-
   double mi_heuristica = 0.0;
   double heuristica_oponente = 0.0;
 
   // Si el movimiento me hace ganador, lo elijo.
-
   Player ganador = estado.getWinner();
   if (ganador == yo)
     mi_heuristica += 500; // Valor grande
@@ -112,17 +110,14 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
     heuristica_oponente += 500;
 
   // Sumo las puntuaciones de los graneros (constante alta, están garantizadas).
-
   mi_heuristica += estado.getScore(yo) * 4.5;
   heuristica_oponente += estado.getScore(oponente) * 4.5;
 
   // Sumo las semillas que hay en el tablero (constante menor, no garantizadas)
-
   mi_heuristica += ObtenerSemillas(yo, estado) * 0.3;
   heuristica_oponente += ObtenerSemillas(oponente, estado) * 0.3;
 
   // Sumo los posibles robos
-
   //  for (auto it = MOVIMIENTOS.begin(); it != MOVIMIENTOS.end(); ++it) {
   //    mi_heuristica += CuantasRoba(yo, estado, *it) * 0.5;
   //    heuristica_oponente += CuantasRoba(oponente, estado, *it) * 0.5;
@@ -130,11 +125,11 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 
   // Si puedo volver a tirar, lo hago (siempre que no evite ganar puntos)
 
-  int mia = (int)(mi_heuristica + 0.5);
-  int suya = (int)(heuristica_oponente + 0.5);
+  int mia = (int)mi_heuristica;
+  int suya = (int)heuristica_oponente;
 
-// if (mia == suya && estado.getCurrentPlayer() == yo)
-//  mia += 50;
+  if (mia == suya && estado.getCurrentPlayer() == yo)
+    mia += 50;
 
 #if DEBUG
   cerr << "Jugador actual "
@@ -145,28 +140,6 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
 
   return resultado;
 }
-
-// Algoritmo minimax alpha-beta. Desuyavuelve el coste heurístico de una rama.
-/*
-int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
-                        int beta, bool mi_turno) const {
-  int resultado;
-  // Caso base: nodo terminal. Calculamos heurística.
-  if (profundidad == PROFUNDIDAD_MAXIMA) {
-    resultado = CalcularHeuristica(estado);
-  } else { // No es un nodo terminal. Sigo explorando.
-    int actual;
-    list<node> hijos = calcularSucesores(estado); // Calculo sus hijos.
-    for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);++it)
-{ actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, !mi_turno); if
-(mi_turno) // Nodo MAX. Incremento alpha alpha = Maximo(alpha, actual); else //
-Nodo min. Decremento beta beta = Minimo(beta, actual);
-    }
-    resultado = mi_turno ? alpha : beta;
-  }
-  return resultado;
-}
-*/
 
 int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
                         int beta, bool mi_turno) const {
@@ -179,6 +152,7 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
     list<node> hijos = calcularSucesores(estado); // Calculo sus hijos.
     for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);
          ++it) {
+      // Evalúo quién jugará el siguiente turno.
       bool sig_turno = it->estado.getCurrentPlayer() == yo;
       actual = alphaBeta(it->estado, profundidad + 1, alpha, beta, sig_turno);
       if (mi_turno) // Nodo MAX. Incremento alpha
@@ -190,36 +164,6 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
   }
   return resultado;
 }
-
-/*
-Move MancoBot::obtenerMovimiento(const GameState &estado) const {
-  // Calculo los hijos del estado actual
-  list<node> sucesores = calcularSucesores(estado);
-  Move movimiento = M_NONE;
-
-  int max = MIN;
-  int alpha = MIN;
-  int beta = MAX;
-  int actual;
-
-#if DEBUG
-  cerr << "Numero de sucesores: " << sucesores.size() << endl;
-#endif
-  // Me encuentro en un nodo MAX (es mi turno)
-  for (auto it = sucesores.begin(); it != sucesores.end(); ++it) {
-    actual = alphaBeta(it->estado, 0, alpha, beta, false);
-#if DEBUG
-    cerr << "Heuristica " << actual << " max " << max << endl;
-#endif
-    if (actual >= max) {
-      max = actual;
-      movimiento = it->movimiento;
-    }
-  }
-  return movimiento;
-}
-
-*/
 
 // Obtiene el movimiento más óptimo a partir de un estado.
 Move MancoBot::obtenerMovimiento(const GameState &estado) const {
@@ -239,10 +183,10 @@ Move MancoBot::obtenerMovimiento(const GameState &estado) const {
     bool mi_turno = it->estado.getCurrentPlayer() == yo;
     actual = alphaBeta(it->estado, 1, alpha, beta, mi_turno);
 #if DEBUG
-    cerr << "Llamo como " << (mi_turno ? "max" : "min") << ".Heuristica de "
-         << it->movimiento << ":" << actual << " max: " << alpha << endl;
+    cerr << "Heuristica de " << it->movimiento << ":" << actual
+         << " alpha: " << alpha << endl;
 #endif
-    if (actual >= alpha) {
+    if (actual > alpha) {
       alpha = actual;
       movimiento = it->movimiento;
     }
