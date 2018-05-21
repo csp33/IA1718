@@ -50,7 +50,7 @@ fi
 
 #Imprimo mensaje
 
-printf "          ***************************************\n"
-printf "          *\t    Resultado final:            *\n"
-echo "          *    MancoBot: $puntos_manco. GreedyBot: $puntos_greedy        *"
-printf "          ***************************************\n"
+printf "          ***************************************\n" | lolcat;
+printf "          *\t    Resultado final:            *\n" | lolcat;
+echo "          *    MancoBot: $puntos_manco. GreedyBot: $puntos_greedy        *"| lolcat;
+printf "          ***************************************\n" | lolcat;
