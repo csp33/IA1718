@@ -20,7 +20,6 @@ using namespace std::chrono;
 struct node {
   GameState estado;
   Move movimiento;
-  int heuristica;
 };
 
 class MancoBot : Bot {
@@ -38,7 +37,7 @@ private:
   const string NOMBRE = "MancoBot";
   const vector<Move> MOVIMIENTOS = {M1, M2, M3, M4, M5, M6};
   const vector<Position> POSICIONES = {P1, P2, P3, P4, P5, P6};
-  const int PROFUNDIDAD_MAXIMA = 6; // Con 6 va perfecto
+  const int PROFUNDIDAD_MAXIMA =6; // Con 6 va perfecto
   Player yo;
   Player oponente;
   bool primera_vez = true;
@@ -53,8 +52,10 @@ private:
 
   list<node> calcularSucesores(const GameState &estado) const;
 
+  Move obtenerMovimiento(const GameState &estado) const;
+
   int alphaBeta(const GameState &estado, int profundidad, int alpha, int beta,
-                bool esNodoMax) const;
+                bool mi_turno) const;
 
   int CalcularHeuristica(const GameState &estado) const;
 
