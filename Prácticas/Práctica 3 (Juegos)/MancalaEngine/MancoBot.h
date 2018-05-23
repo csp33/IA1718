@@ -37,7 +37,9 @@ private:
   const string NOMBRE = "MancoBot";
   const vector<Move> MOVIMIENTOS = {M1, M2, M3, M4, M5, M6};
   const vector<Position> POSICIONES = {P1, P2, P3, P4, P5, P6};
-  const int PROFUNDIDAD_MAXIMA =2; 
+  // Par: gana J1 empata J2 (realiza mov7)
+  // Impar: gana J2 empata J1
+  const int PROFUNDIDAD_MAXIMA = 8;
   Player yo;
   Player oponente;
   bool primera_vez = true;

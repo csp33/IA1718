@@ -14,8 +14,11 @@
 using namespace std;
 
 #define DEBUG 0
-#if DEBUG
-long long int generados = 0;
+
+#define TEST_GENERADOS 0
+#if TEST_GENERADOS
+int max_generados = numeric_limits<int>::min();
+int generados = 0;
 #endif
 
 MancoBot::MancoBot() {}
@@ -35,23 +38,63 @@ int MancoBot::Minimo(int a, int b) const { return a < b ? a : b; }
 
 // Devuelve true si el movimiento causa inmolación (pérdida por 48-0)
 bool MancoBot::Inmolacion(const GameState &estado, const Move &mov) const {
-  Position posicion = (Position)mov;
-  return estado.getSeedsAt(yo, posicion) == 0;
+  // Position posicion = (Position)mov;
+  Position posicion;
+  switch (mov) {
+  case M1:
+    posicion = P1;
+    break;
+  case M2:
+    posicion = P2;
+    break;
+  case M3:
+    posicion = P3;
+    break;
+  case M4:
+    posicion = P4;
+    break;
+  case M5:
+    posicion = P5;
+    break;
+  case M6:
+    posicion = P6;
+    break;
+  default:
+    cerr << "LA HEMOS LIADO" << endl;
+    break;
+  }
+  Player jugador = estado.getCurrentPlayer();
+  return estado.getSeedsAt(jugador, posicion) == 0;
 }
 
 // Calcula los sucesores válidos de un nodo (no causan inmolación)
 list<node> MancoBot::calcularSucesores(const GameState &estado) const {
   list<node> resultado;
+  bool todos_inmolan = false;
   for (auto it = MOVIMIENTOS.begin(); it != MOVIMIENTOS.end(); ++it) {
     if (!Inmolacion(estado, *it)) { // Si el movimiento no causa inmolación
+      todos_inmolan = true;
       node nuevo;
       nuevo.estado = estado.simulateMove(*it); // Lo almaceno
       nuevo.movimiento = *it;
       resultado.push_back(nuevo);
-#if DEBUG
+#if TEST_GENERADOS
       generados++;
 #endif
     }
+  }
+  if (!todos_inmolan) {
+    cerr << "INMOLA. Jugador actual " << estado.getCurrentPlayer() << endl;
+    // Mías
+    cerr << "YO:" << endl;
+    for (auto it = POSICIONES.begin(); it != POSICIONES.end(); ++it)
+      cerr << "Casilla " << *it << ": " << (int)estado.getSeedsAt(yo, *it)
+           << endl;
+
+    cerr << "OPONENTE:" << endl;
+    for (auto it = POSICIONES.begin(); it != POSICIONES.end(); ++it)
+      cerr << "Casilla " << *it << ": " << (int)estado.getSeedsAt(oponente, *it)
+           << endl;
   }
   return resultado;
 }
@@ -109,11 +152,13 @@ int MancoBot::CalcularHeuristica(const GameState &estado) const {
   else if (ganador == oponente)
     heuristica_oponente += 500;
 
-  // Sumo las puntuaciones de los graneros (constante alta, están garantizadas).
+  // Sumo las puntuaciones de los graneros (constante alta, están
+  // garantizadas).
   mi_heuristica += estado.getScore(yo) * 4.5;
   heuristica_oponente += estado.getScore(oponente) * 4.5;
 
-  // Sumo las semillas que hay en el tablero (constante menor, no garantizadas)
+  // Sumo las semillas que hay en el tablero (constante menor, no
+  // garantizadas)
   mi_heuristica += ObtenerSemillas(yo, estado) * 0.3;
   heuristica_oponente += ObtenerSemillas(oponente, estado) * 0.3;
 
@@ -145,11 +190,14 @@ int MancoBot::alphaBeta(const GameState &estado, int profundidad, int alpha,
                         int beta, bool mi_turno) const {
   int resultado;
   // Caso base: nodo terminal. Calculamos heurística.
-  if (profundidad == PROFUNDIDAD_MAXIMA) {
+  if (profundidad == PROFUNDIDAD_MAXIMA || estado.isFinalState()) {
     resultado = CalcularHeuristica(estado);
   } else { // No es un nodo terminal. Sigo explorando.
     int actual;
     list<node> hijos = calcularSucesores(estado); // Calculo sus hijos.
+#if DEBUG
+    cerr << "Sucesores (rec): " << hijos.size() << endl;
+#endif
     for (auto it = hijos.begin(); it != hijos.end() && !Podar(alpha, beta);
          ++it) {
       // Evalúo quién jugará el siguiente turno.
@@ -201,7 +249,8 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   auto antes = high_resolution_clock::now();
 #endif
 
-  if (primera_vez) { // Si es la primera vez, configuro las variables internas.
+  if (primera_vez) { // Si es la primera vez, configuro las variables
+                     // internas.
     yo = state.getCurrentPlayer();
     if (yo == J1)
       oponente = J2;
@@ -216,7 +265,11 @@ Move MancoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
   auto despues = high_resolution_clock::now();
   auto tiempo = duration_cast<duration<double>>(despues - antes);
   cerr << "Tiempo de cómputo: " << tiempo.count() << endl;
-  cerr << " generados " << generados << endl;
+#endif
+#if TEST_GENERADOS
+  if (generados > max_generados)
+    max_generados = generados;
+  cerr << "Maximos generados: " << max_generados << endl;
 #endif
 
   return movimiento;
